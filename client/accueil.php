@@ -16,11 +16,9 @@ switch ($auth) {
         break;
 
     case "incorrect":
-        echo "incorrect !";
         $displayConnectionError = "";
 
     default:
-        echo "default";
         require_once "connexion.php";
         break;
 }

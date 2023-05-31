@@ -17,6 +17,7 @@ switch ($auth) {
     case "incorrect":
         echo "incorrect !";
         $displayConnectionError = "";
+        break;
 
     default:
         echo "default";

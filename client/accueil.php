@@ -8,7 +8,8 @@ $auth = auth_verif();
 switch ($auth) {
     case "connected":
 
-        //require_once "../views/nav.php";
+        require_once "nav.php";
+        // require once fichier html
         echo "<h1>CONNECTED</h1>";
         //require_once "../views/footer.php";
 

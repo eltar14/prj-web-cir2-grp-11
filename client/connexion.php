@@ -30,7 +30,7 @@
         <form class="col-4 offset-4 colorPurple p-5 rounded-5" method="post" action="">
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="jean.dupont@messagerie.fr" name="usernamx">
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="jean.dupont@messagerie.fr" name="username">
           </div>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Mot de passe</label>

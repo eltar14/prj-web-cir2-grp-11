@@ -27,7 +27,7 @@
       </div>
   
       <div class="row">
-        <form class="col-4 offset-4 colorPurple p-5 rounded-5" method="post" action="auth.php">
+        <form class="col-4 offset-4 colorPurple p-5 rounded-5" method="post" action="">
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email</label>
             <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="jean.dupont@messagerie.fr" name="username">
@@ -42,18 +42,16 @@
 
 
     </div>
-    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0tZdYg6Tf2aGq2C4FyNzwN?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>  </main>
-
 
   <footer class="footer py-3">
     <div class="container">
       <div class="row">
         <div class="col-md-8 offset-md-2 text-center">
           <hr>
-          <small>© CUEFF Allan, FOSSE Raphaël, LE GOFF Quentin</small>
+          <small>© LE BOULCH Antoine, PAITIER Mathias, LE GOFF Quentin</small>
         </div>
         <div class="col">
-          <img src="logo-iSEN-Nantes-ingenieur-400.jpg" id="logo" width="160px" height="80px">
+          <img src="../logo-iSEN-Nantes-ingenieur-400.jpg" id="logo" width="160px" height="80px">
         </div>
       </div>
     </div>

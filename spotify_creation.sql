@@ -2,6 +2,21 @@
 --        Script Postgre 
 ------------------------------------------------------------
 
+drop table if exists user_playlist cascade;
+
+drop table if exists playlist_song cascade;
+
+drop table if exists playlist cascade;
+
+drop table if exists history cascade;
+
+drop table if exists "user" cascade;
+
+drop table if exists song cascade;
+
+drop table if exists album cascade;
+
+drop table if exists artist cascade;
 
 
 ------------------------------------------------------------

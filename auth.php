@@ -9,7 +9,7 @@ function auth_verif(){
 
         if (isset($_POST['username'], $_POST['password'])){
             $username = $_POST['username'];
-            $password = $_POST['password'];
+            $password = password_hash($_POST['password']);
 
             $request = '
             SELECT id_user FROM client 

@@ -2,7 +2,7 @@
 <html class="h-100">
 
 <head>
-  <title>Spotyfi</title>
+  <title>WebAurion++</title>
   <meta charset="utf-8">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -42,6 +42,7 @@
 
 
     </div>
+  </main>
 
   <footer class="footer py-3">
     <div class="container">
@@ -50,12 +51,7 @@
           <hr>
           <small>© LE BOULCH Antoine, PAITIER Mathias, LE GOFF Quentin</small>
         </div>
-        <div class="col">
-          <img src="../logo-iSEN-Nantes-ingenieur-400.jpg" id="logo" width="160px" height="80px">
-        </div>
       </div>
     </div>
   </footer>
-
-
-</body>
+</main>

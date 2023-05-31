@@ -12,12 +12,12 @@ function auth_verif(){
             $password = $_POST['password'];
 
             $request = '
-            SELECT id_user FROM client 
-            WHERE email =:username AND mdp=crypt(:password,mdp)
+            SELECT id_user FROM "user" 
+            WHERE email_user =:email_user AND password_user=crypt(:password_user,password_user)
             ';
             $statement = $db->prepare($request);
-            $statement->bindParam(':username', $username);
-            $statement->bindParam(':password', $password);
+            $statement->bindParam(':email_user', $username);
+            $statement->bindParam(':password_user', $password);
             $statement->execute();
 
             $result = $statement->fetch();

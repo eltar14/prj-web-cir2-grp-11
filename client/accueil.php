@@ -1,6 +1,6 @@
 <?php
-require_once "../models/auth.php";
-require_once "../models/DB.php";
+require_once "../auth.php";
+require_once "../DB.php";
 
 session_start();
 $auth = auth_verif();

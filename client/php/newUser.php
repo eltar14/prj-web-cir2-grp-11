@@ -254,6 +254,14 @@
     </div>
   </main>
 
-  <?php require_once('../../footer.php') ?>
-
+  <footer class="footer py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+          <hr>
+          <small>© LE BOULCH Antoine, PAITIER Mathias, LE GOFF Quentin</small>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>

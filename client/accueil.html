@@ -2,10 +2,46 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Accueil</title>
+    <title>SpØtyφ</title>
     <!-- CSS -->
     <link rel="stylesheet" href="../custom.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <!-- Style pour faire un accordion modifiable sur la couleur pris sur w3shcool : https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_accordion_symbol -->
+    <style>
+        .accordion {
+            background-color: white;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+
+        .accordion:hover {
+            background-color: #ffc7fa;
+        }
+
+        .accordion:after {
+            color: white;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -38,6 +74,11 @@
                             </a>
                         </li>
 
+                        <li>
+                            <br>
+                            <br>
+                            <br>
+                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="#">
@@ -46,6 +87,12 @@
                                 </svg>
                                 Voir vos titres likés
                             </a>
+                        </li>
+
+                        <li>
+                            <br>
+                            <br>
+                            <br>
                         </li>
 
                         <li class="nav-item">
@@ -64,42 +111,220 @@
 
         <a class="nav-link" href="#"> <!-- Nom appli -- Direction accueil -->
             <button type="button" class="btn" style="color: white">
-                Fake Spotify
+                <h1>SpØty<strong>φ</strong></h1>
             </button>
         </a>
-
-
 
         <a class="nav-link" href="#">
-            <button type="button" class="btn" style="color: white"> <!-- Infos utilisateur -->
-                Prénom utilisateur
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-person-circle" viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                </svg>
-            </button>
-        </a>
-        <a class="nav-link" href="../disconnect.php">
-            <button type="button" class="btn"> <!-- Déconnexion -->
-                Déconnexion
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-door-open" viewBox="0 0 16 16">
-                    <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
-                    <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
-                </svg>
-            </button>
+            <div class="dropdown-center" >
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
+                    Prénom utilisateur
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            Votre profil
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="../disconnect.php">
+                            Déconnexion
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-door-open" viewBox="0 0 16 16">
+                                <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                                <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </a>
 
     </div>
 
 </nav>
 
+<!-- Barre de recherche -->
+<form>
+    <div class="table-responsive">
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th>
+                        Filtrer par :
+                        <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" >
+                        <label class="btn btn-outline-secondary" for="option1">Album</label>
+
+                        <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="option2">Artiste</label>
+
+                        <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" checked>
+                        <label class="btn btn-outline-secondary" for="option3">Titre</label>
+                    </th>
+
+                    <th scope="col">
+                        <input type="text" class="form-control" id="inputPassword2" placeholder="Rechercher" style="margin-top: 2em">
+                    </th>
+
+                    <th scope="col">
+                        <button type="submit" class="btn btn-outline-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</form>
+
+
+<!--Menu accordion où l'on voir les différentes informations -->
+<button class="accordion" style="font-size: 1.5em">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-hourglass-split" viewBox="0 0 16 16">
+        <path d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2h-7zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48V8.35zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z"/>
+    </svg>
+    Vos derniers morceaux écoutés
+</button>
+
+<div class="panel">
+    <div class="table-responsive">
+        <table class="table table-borderless align-middle last-listened">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody> <!-- faire les input des 10 derniers morceaux écoutés -->
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<button class="accordion" style="font-size: 1.5em">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-heart-fill" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+    </svg>
+    Vos titres likés
+</button>
+
+<div class="panel">
+    <table class="table align-middle">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre</th>
+            <th scope="col"></th>
+            <th scope="col">Album</th>
+            <th scope="col">Date d'ajout</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                </svg>
+            </th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr>
+                <th scope="row">1</th>
+                <td>
+                    img album
+                </td>
+                <td>
+                    <p>Morceau</p>
+                    <p>Artiste</p>
+                </td>
+                <td>Nom album</td>
+                <td>25 avr. 2026</td>
+                <td>
+                    <button type="button" class="btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                        </svg>
+                    </button>
+                </td>
+                <td>
+                    <button type="button" class="btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                    </button>
+                </td>
+                <td>Durée de la musique</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<button class="accordion" style="font-size: 1.5em">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
+    </svg>
+    Vos playlists
+</button>
+<div class="panel" style="margin-bottom: 6em"> <!-- Margin bottom pour que le footer ne cache pas le contenu -->
+    <table class="table table-borderless align-middle last-listened">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody> <!-- faire les input des 10 derniers morceaux écoutés -->
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 
 
 
 
-
-<nav  class="navbar colorDarkPurple"  style="width: 100%; position: fixed; bottom: 0"> <!-- Footer -->
+<nav class="navbar colorDarkPurple"  style="width: 100%; position: fixed; bottom: 0;"> <!-- Footer -->
     <div class="container-fluid">
         <a class="nav-link">
             <button type="button" class="btn">
@@ -141,7 +366,31 @@
     </div>
 </nav>
 
+<!-- Script JS pour l'accordion de w3shcool -->
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
 
+    // Mettre les accordions en actif de base
+    for (i = 0; i < acc.length; i++) {
+        acc[i].classList.toggle("active");
+        var panel = acc[i].nextElementSibling;
+        panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+
+    // Afficher ou non l'accordion
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 <script src="js/ajax.js"></script>

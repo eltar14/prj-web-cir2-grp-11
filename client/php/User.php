@@ -68,41 +68,36 @@ class User
 
     static function addUser($name, $surname, $email, $birthdate, $password)
     {
-        if(!empty($name) and !empty($surname) and !empty($email) and !empty($birthdate) and !empty($password)){
-            if (User::id($email) == null) {
+        if (User::id($email) == null) {
 
-                try {
-                    $db = DB::connexion();
+            try {
+                $db = DB::connexion();
 
-                    $name = strval($name);
-                    $surname = strval($surname);
-                    $birthdate = strval($birthdate);
-                    $password = strval($password);
-                    $email = strval($email);
+                $name = strval($name);
+                $surname = strval($surname);
+                $birthdate = strval($birthdate);
+                $password = strval($password);
+                $email = strval($email);
 
 
-                    $request = 'INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values (:name_user, :surname_user, :birthdate_user, crypt(:password_user, gen_salt(\'md5\')) , :email_user);';
-                    $statement = $db->prepare($request);
+                $request = 'INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values (:name_user, :surname_user, :birthdate_user, crypt(:password_user, gen_salt(\'md5\')) , :email_user);';
+                $statement = $db->prepare($request);
 
-                    $statement->bindParam(':name_user', $name);
-                    $statement->bindParam(':surname_user', $surname);
-                    $statement->bindParam(':birthdate_user', $birthdate);
-                    $statement->bindParam(':password_user', $password);
-                    $statement->bindParam(':email_user', $email);
-                    $statement->execute();
+                $statement->bindParam(':name_user', $name);
+                $statement->bindParam(':surname_user', $surname);
+                $statement->bindParam(':birthdate_user', $birthdate);
+                $statement->bindParam(':password_user', $password);
+                $statement->bindParam(':email_user', $email);
+                $statement->execute();
 
-                    return "ok";
-                } catch (PDOException $exception) {
-                    error_log('Request error: ' . $exception->getMessage());
-                    return "error";
-                }
-            } else {
-                return "email already exists";
+                return "ok";
+            } catch (PDOException $exception) {
+                error_log('Request error: ' . $exception->getMessage());
+                return "error";
             }
-        }else{
-            return "form incomplet";
+        } else {
+            return "email already exists";
         }
-
     }
 
 

@@ -86,7 +86,7 @@ function post($db, $requestRessource){
         exit();
     }
 }
-function put($db, $requestRessource){ //modif tweet
+function put($db, $requestRessource){ //modif user
     parse_str(file_get_contents('php://input'), $_PUT);
     if ($requestRessource == 'update_name'){
         if (isset($_PUT["id_user"], $_PUT["name_user"])){
@@ -98,15 +98,16 @@ function put($db, $requestRessource){ //modif tweet
             User::updateSurname($_PUT["id_user"], $_PUT["surname_user"]);
         }
 
+    }elseif ($requestRessource = 'update_email'){
+        if (isset($_PUT["id_user"], $_PUT["email_user"])){
+            $email = strval($_PUT["email_user"]);
+            User::updateEmail($_PUT["id_user"], $email);
+        }
+
     }elseif ($requestRessource = 'update_birthdate'){
         if (isset($_PUT["id_user"], $_PUT["birthdate_user"])){
             User::updateBirthdate($_PUT["id_user"], $_PUT["birthdate_user"]);
         }
-    }elseif ($requestRessource = 'update_email'){
-        if (isset($_PUT["id_user"], $_PUT["email_user"])){
-            User::updateEmail($_PUT["id_user"], $_PUT["email_user"]);
-        }
-
     }
     //dbAddTweet($db, $_PUT["login"], $_PUT["text"]);
     //dbModifyTweet($db, array_shift($request), $_PUT["login"], $_PUT["text"]);

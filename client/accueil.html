@@ -6,7 +6,9 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../custom.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"
+            integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
     <!-- Style pour faire un accordion modifiable sur la couleur pris sur w3shcool : https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_accordion_symbol -->
     <style>
         .accordion {
@@ -148,16 +150,23 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+
                             <div>Votre prénom : 
                                 <input type="text" id="nameUserInput">
                             </div>
-                            <div id="surnameUserModal">Votre nom : 
+
+                            <div>Votre nom :
                                 <input type="text" id="surnameUserInput">
                             </div>
+
+                            <div>Votre e-mail :
+                                <input type="email" id="emailUserInput">
+                            </div>
+
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                          <button type="button" class="btn btn-primary">Enregistrer</button>
+                          <button id="submitChangeUserInfo" type="button" class="btn btn-primary">Enregistrer</button>
                         </div>
                       </div>
                     </div>

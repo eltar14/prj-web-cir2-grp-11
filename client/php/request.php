@@ -72,7 +72,24 @@ function post($db, $requestRessource){
 function put($db, $requestRessource){ //modif tweet
     parse_str(file_get_contents('php://input'), $_PUT);
     if ($requestRessource == 'update_name'){
-        User::updateName($_PUT["id_user"], $_PUT["name_user"]);
+        if (isset($_PUT["id_user"], $_PUT["name_user"])){
+            User::updateName($_PUT["id_user"], $_PUT["name_user"]);
+        }
+
+    }elseif ($requestRessource = 'update_surname'){
+        if (isset($_PUT["id_user"], $_PUT["surname_user"])){
+            User::updateSurname($_PUT["id_user"], $_PUT["surname_user"]);
+        }
+
+    }elseif ($requestRessource = 'update_birthdate'){
+        if (isset($_PUT["id_user"], $_PUT["birthdate_user"])){
+            User::updateBirthdate($_PUT["id_user"], $_PUT["birthdate_user"]);
+        }
+    }elseif ($requestRessource = 'update_email'){
+        if (isset($_PUT["id_user"], $_PUT["email_user"])){
+            User::updateEmail($_PUT["id_user"], $_PUT["email_user"]);
+        }
+
     }
     //dbAddTweet($db, $_PUT["login"], $_PUT["text"]);
     //dbModifyTweet($db, array_shift($request), $_PUT["login"], $_PUT["text"]);

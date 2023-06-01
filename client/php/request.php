@@ -8,6 +8,7 @@
 
   require_once('../../DB.php');
   require_once('User.php');
+  require_once ('Artist.php');
 
   // Database connection.
   $db = DB::connexion();
@@ -37,15 +38,31 @@ switch ($requestMethod){
 
 function get($db, $requestRessource)
 {
+    // User
     if ($requestRessource == 'name_user') {
         $id_user =  $_GET["id_user"];
         $data = User::getName($id_user);
     }elseif ($requestRessource == 'surname_user'){
         $id_user =  $_GET["id_user"];
         $data = User::getSurname($id_user);
-    }elseif ($requestRessource == 'all_user'){
+    }elseif ($requestRessource == 'email_user'){
         $id_user =  $_GET["id_user"];
-        $data = User::getAll($id_user); //TODO
+        $data = User::getEmail($id_user);
+    }
+
+    //Artist
+    elseif ($requestRessource == 'all_artist'){
+        $id_artist = $_GET["id_artist"];
+        $data = Artist::getAll($id_artist);
+    }elseif ($requestRessource == 'name_artist'){
+        $id_artist = $_GET["id_artist"];
+        $data = Artist::getName($id_artist);
+    }elseif ($requestRessource == 'description_artist'){
+        $id_artist = $_GET["id_artist"];
+        $data = Artist::getDesctiption($id_artist);
+    }elseif ($requestRessource == 'type_artist'){
+        $id_artist = $_GET["type_artist"];
+        $data = Artist::getType($id_artist);
     }
     // Send data to the client.
     header('Content-Type: application/json; charset=utf-8');

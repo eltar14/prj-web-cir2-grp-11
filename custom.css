@@ -4,7 +4,6 @@
 }
 .colorPurple{
     background-color: #cf47e6;
-    color:rgba(255, 255, 255, 0.8)
 }
 
 .colorDarkPurple {
@@ -14,4 +13,10 @@
 
 .colorPink {
     background-color: #FBCCF3;
+}
+
+
+table.last-listened tbody tr td {
+    border-left: 2px solid black;
+    border-right: 2px solid black;
 }

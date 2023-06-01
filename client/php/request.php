@@ -93,18 +93,18 @@ function put($db, $requestRessource){ //modif user
             User::updateName($_PUT["id_user"], $_PUT["name_user"]);
         }
 
-    }elseif ($requestRessource = 'update_surname'){
+    }elseif ($requestRessource == 'update_surname'){
         if (isset($_PUT["id_user"], $_PUT["surname_user"])){
             User::updateSurname($_PUT["id_user"], $_PUT["surname_user"]);
         }
 
-    }elseif ($requestRessource = 'update_email'){
+    }elseif ($requestRessource == 'update_email'){
         if (isset($_PUT["id_user"], $_PUT["email_user"])){
             $email = strval($_PUT["email_user"]);
             User::updateEmail($_PUT["id_user"], $email);
         }
 
-    }elseif ($requestRessource = 'update_birthdate'){
+    }elseif ($requestRessource == 'update_birthdate'){
         if (isset($_PUT["id_user"], $_PUT["birthdate_user"])){
             User::updateBirthdate($_PUT["id_user"], $_PUT["birthdate_user"]);
         }

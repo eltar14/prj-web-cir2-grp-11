@@ -61,10 +61,9 @@ $('#submitChangeUserInfo').on('click', () =>
         ajaxRequest('PUT', 'php/request.php/update_surname/', rien, 'id_user='+ id_user +'&surname_user='+ document.getElementById('surnameUserInput').value);
         getSurname(document.getElementById('surnameUserInput').value)
 
-        console.warn(document.getElementById('emailUserInput').value)
+
         ajaxRequest('PUT', 'php/request.php/update_email/', rien, 'id_user='+ id_user +'&email_user='+ document.getElementById('emailUserInput').value);
         getEmail(document.getElementById('emailUserInput').value)
-
     }
 );
 /*

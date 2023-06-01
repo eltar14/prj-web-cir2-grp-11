@@ -122,7 +122,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#modalProfile">
                             Votre profil
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-person-circle" viewBox="0 0 16 16">
                                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -140,6 +140,28 @@
                         </a>
                     </li>
                 </ul>
+                <div class="modal fade" id="modalProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Vos informations</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div>Votre prénom : 
+                                <input type="text" id="nameUserInput">
+                            </div>
+                            <div id="surnameUserModal">Votre nom : 
+                                <input type="text" id="surnameUserInput">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                          <button type="button" class="btn btn-primary">Enregistrer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
             </div>
         </a>
 
@@ -222,6 +244,7 @@
         </table>
     </div>
 </div>
+
 
 
 <button class="accordion" style="font-size: 1.5em">

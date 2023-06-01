@@ -66,6 +66,10 @@ class User
         return $statement->fetch()[0];
     }
 
+    static function getPlaylistsList($id_user){
+        //TODO
+    }
+
     static function getAll($id_user){
         $db = DB::connexion();
         $id_user = intval($id_user);

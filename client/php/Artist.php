@@ -30,6 +30,24 @@ class Artist
         return $statement->fetch()[0];
     }
 
+    static function getAll($id_artist){
+        $db = DB::connexion();
+        $id_artist = intval($id_artist);
+        $request = 'SELECT id_artist, name_artist, description_artist, type_artist, artist.id_type_artist FROM artist JOIN type_artist ta on artist.id_type_artist = ta.id_type_artist  WHERE id_artist = :id_artist;';
+        $statement = $db->prepare($request);
+        $statement->bindParam(':id_artist', $id_artist);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+    }
+
+    static function getAllAlbum($id_artist){
+        $db = DB::connexion();
+        $id_artist = intval($id_artist);
+        //TODO
+
+    }
+
     static function addArtist($name_artist, $description_artist, $id_type_artist){
         if(!empty($name_artist) and !empty($description_artist) and !empty($id_type_artist)){
             try {

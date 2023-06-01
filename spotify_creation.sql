@@ -152,7 +152,7 @@ CREATE TABLE public.history(
 
 /* Ajout d'utilisateurs */
 
-INSERT INTO "user"(id_user, name_user, surname_user, birthdate_user, password_user, email_user) values (1, 'Sermon-Thuillier', 'Goustan', '2002-11-12', crypt('gou', gen_salt('md5')) , 'gou.st@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Sermon-Thuillier', 'Goustan', '2002-11-12', crypt('gou', gen_salt('md5')) , 'gou.st@isen.fr');
 INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Paul', 'Fontaine', '2003-06-03', crypt('paul', gen_salt('md5')) , 'paul.f@isen.fr');
 INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Paitier', 'Mathias', '2003-05-12', crypt('mat', gen_salt('md5')) , 'mat.p@isen.fr');
 INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Goff', 'Quentin', '2003-02-28', crypt('que', gen_salt('md5')) , 'que.lg@isen.fr');
@@ -164,12 +164,12 @@ INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email
 
 /* Création des types d'artiste */
 
-INSERT INTO type_artist(id_type_artist, type_artist) values (1, 'Groupe');
+INSERT INTO type_artist(type_artist) values ('Groupe');
 INSERT INTO type_artist(type_artist) values ('Chanteur');
 
 /* Création des styles d'album */
 
-INSERT INTO style_album(id_style_album, style_album) values (1, 'Rock');  /* 1 */
+INSERT INTO style_album(style_album) values ('Rock');  /* 1 */
 INSERT INTO style_album(style_album) values ('Pop');  /* 2 */
 INSERT INTO style_album(style_album) values ('Rap');  /* 3 */
 INSERT INTO style_album(style_album) values ('Classique'); /* 4 */
@@ -192,7 +192,7 @@ INSERT INTO style_album(style_album) values ('Autre'); /* 20 */
 
 /* Création des artistes */
 
-INSERT INTO artist(id_artist, name_artist, id_type_artist) values (1, 'Patrick Sébastien ', 2); /* 1 */
+INSERT INTO artist(name_artist, id_type_artist) values ('Patrick Sébastien ', 2); /* 1 */
 INSERT INTO artist(name_artist, id_type_artist) values ('Johnny Hallyday', 2); /* 2 */
 INSERT INTO artist(name_artist, id_type_artist) values ('Michel Sardou', 2); /* 3 */
 INSERT INTO artist(name_artist, id_type_artist) values ('Jean-Jacques Goldman', 2); /* 4 */
@@ -210,7 +210,7 @@ INSERT INTO artist(name_artist, id_type_artist) values ('Michel Polnareff', 2); 
 
 /* Création des albums */
 
-INSERT INTO album(id_album, name_album, date_album, cover_album, id_artist, id_style_album) values (1, 'Putain, c est génial', '2023-04-28', 'https://m.media-amazon.com/images/I/811TIdiWG6L._UF894,1000_QL80_.jpg', 1, 19); /* 1 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Putain, c est génial', '2023-04-28', 'https://m.media-amazon.com/images/I/811TIdiWG6L._UF894,1000_QL80_.jpg', 1, 19); /* 1 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Même pas peur', '2009-11-09', 'https://m.media-amazon.com/images/I/51-YfI2Q8WL._UF894,1000_QL80_.jpg', 1, 19); /* 2 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Mon pays cest lamoour', '2018-10-19', 'https://static.fnac-static.com/multimedia/Images/FR/NR/d9/45/a0/10503641/1540-1/tsp20180920110115/Mon-pays-c-est-l-amour.jpg', 2, 1); /* 3 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Jhabite en France', '1970-10-01', 'https://m.media-amazon.com/images/I/719QLMPsYOL._SL1400_.jpg', 3, 19); /* 4 */
@@ -228,7 +228,7 @@ INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album
 
 /* Création des chansons */
 
-INSERT INTO song(id_song, title_song, duration_song, link_song, id_album) values (1, 'Putain, cest génial', '00:03:28', 'https://www.youtube.com/watch?v=wiS3GgVluaI', 1);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Putain, cest génial', '00:03:28', 'https://www.youtube.com/watch?v=wiS3GgVluaI', 1);
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tavernier', '00:03:34', 'https://www.youtube.com/watch?v=VhE6vVlcPtg', 1); 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Chtarboxe rap', '00:05:25', 'https://www.youtube.com/watch?v=YDwmaV87wZQ', 1); 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tatoof', '00:03:31', 'https://www.youtube.com/watch?v=ZeIEJvRyDqU', 1); 
@@ -256,7 +256,7 @@ INSERT INTO song(title_song, duration_song, link_song, id_album) values ('On ira
 
 /* Création de playlists */
 
-INSERT INTO playlist(id_playlist, name_playlist, cover_playlist) values (1, 'La liste qui joue', 'https://wallpapercave.com/wp/wp11216531.jpg');
+INSERT INTO playlist(name_playlist, cover_playlist) values ('La liste qui joue', 'https://wallpapercave.com/wp/wp11216531.jpg');
 INSERT INTO playlist(name_playlist, cover_playlist) values ('Playlist ROOOCK !!!', 'https://pro2-bar-s3-cdn-cf4.myportfolio.com/dbea3cc43adf643e2aac2f1cbb9ed2f0/f14d6fc4-2cea-41a2-9724-a7e5dff027e8_rw_1200.jpg?h=60e8fb45f75e1a2612c53a4f2174997c');
 INSERT INTO playlist(name_playlist, cover_playlist) values ('Playlist de Quentin', 'https://mir-s3-cdn-cf.behance.net/project_modules/hd/602f4731226337.5646928c3633f.jpg');
 

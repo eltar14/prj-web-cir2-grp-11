@@ -29,7 +29,7 @@ switch ($requestMethod){
     case "POST":
         post($db, $requestRessource);
     case "PUT":
-        //put($db, $request);
+        put($db, $requestRessource);
     case "DELETE":
         //delete($db, $request);
 }
@@ -43,6 +43,9 @@ function get($db, $requestRessource)
     }elseif ($requestRessource == 'surname_user'){
         $id_user =  $_GET["id_user"];
         $data = User::getSurname($id_user);
+    }elseif ($requestRessource == 'all_user'){
+        $id_user =  $_GET["id_user"];
+        $data = User::getAll($id_user); //TODO
     }
     // Send data to the client.
     header('Content-Type: application/json; charset=utf-8');
@@ -66,15 +69,18 @@ function post($db, $requestRessource){
         exit();
     }
 }
-function put($db, $request){ //modif tweet
+function put($db, $requestRessource){ //modif tweet
     parse_str(file_get_contents('php://input'), $_PUT);
+    if ($requestRessource == 'update_name'){
+        User::updateName($_PUT["id_user"], $_PUT["name_user"]);
+    }
     //dbAddTweet($db, $_PUT["login"], $_PUT["text"]);
-    dbModifyTweet($db, array_shift($request), $_PUT["login"], $_PUT["text"]);
+    //dbModifyTweet($db, array_shift($request), $_PUT["login"], $_PUT["text"]);
     header('HTTP/1.1 200 OK');
     exit();
 }
 function delete($db, $request){ //delete tweet
-    dbDeleteTweet($db, array_shift($request), $_GET["login"]);
+    //dbDeleteTweet($db, array_shift($request), $_GET["login"]);
     exit();
 }
 

@@ -27,7 +27,7 @@ switch ($requestMethod){
     case "GET":
         get($db, $requestRessource);
     case "POST":
-        //post($db);
+        post($db, $requestRessource);
     case "PUT":
         //put($db, $request);
     case "DELETE":
@@ -54,11 +54,13 @@ function get($db, $requestRessource)
 }
 
 // brouillon en dessous =================================
-function post($db){ //add tweet
-    if(isset($_POST["login"]) and $_POST["text"]){
-        dbAddTweet($db, $_POST["login"], $_POST["text"]);
-        header('HTTP/1.1 201 Created');
-        exit();
+function post($db, $requestRessource){
+    if($requestRessource == 'add_user'){   //add user
+        if (isset($_POST["name"], $_POST["surname"], $_POST["email"], $_POST["birthdate"], $_POST["password"])) {
+            User::addUser($_POST["name"], $_POST["surname"], $_POST["email"], $_POST["birthdate"], $_POST["password"]);
+            header('HTTP/1.1 201 Created');
+            exit();
+        }
     }else{
         header('HTTP/1.1 xxx error');
         exit();

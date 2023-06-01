@@ -7,7 +7,9 @@ $auth = auth_verif();
 
 switch ($auth) {
     case "connected":
-        header("Location: accueil.html");
+        require_once "accueil.html";
+        echo "<div id='id_user' style='display: none'>$_SESSION[id_user]</div>";
+        //header("Location: accueil.html");
         break;
 
     case "incorrect":

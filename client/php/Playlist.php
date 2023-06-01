@@ -2,7 +2,7 @@
 require_once "../../DB.php";
 class Playlist
 {
-    static function addPlaylist($id_user, $name_playlist, $cover_playlsit = null){
+    static function addPlaylist($id_user, $name_playlist, $cover_playlist = null){
         try {
         $db = DB::connexion();
 
@@ -86,6 +86,58 @@ class Playlist
             error_log('Request error: '.$exception->getMessage());
         }
 
+    }
+
+    static function getName($id_playlist){
+        $db = DB::connexion();
+        $id_playlist = intval($id_playlist);
+
+        try {
+            $request = 'SELECT name_playlist FROM playlist WHERE id_playlist = :id_playlist;';
+            $statement = $db->prepare($request);
+            $statement->bindParam(':id_playlist', $id_playlist);
+            $statement->execute();
+            $result = $statement->fetch();
+            return $result['name_playlist'];
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+        }
+    }
+
+    static function getCover($id_playlist){
+        $db = DB::connexion();
+        $id_playlist = intval($id_playlist);
+
+        try {
+            $request = 'SELECT cover_playlist FROM playlist WHERE id_playlist = :id_playlist;';
+            $statement = $db->prepare($request);
+            $statement->bindParam(':id_playlist', $id_playlist);
+            $statement->execute();
+            $result = $statement->fetch();
+            return $result['cover_playlist'];
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+        }
+    }
+
+    static function getAllPlaylists(){
+        $db = DB::connexion();
+
+        try {
+            $request = 'SELECT * FROM playlist;';
+            $statement = $db->prepare($request);
+            $statement->execute();
+            $result = $statement->fetchAll();
+            return $result;
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+        }
     }
 
 

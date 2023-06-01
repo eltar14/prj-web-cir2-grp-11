@@ -21,7 +21,7 @@ class Artist
         return $statement->fetch()[0];
     }
 
-    static function getDesctiption($id_artist){
+    static function getDescription($id_artist){
         $db = DB::connexion();
         $request = 'SELECT description_artist FROM artist WHERE id_artist = :id_artist;';
         $statement = $db->prepare($request);
@@ -44,8 +44,12 @@ class Artist
     static function getAllAlbum($id_artist){
         $db = DB::connexion();
         $id_artist = intval($id_artist);
-        //TODO
+        $request = 'SELECT * FROM album JOIN (id_artist)';
+        $statement = $db->prepare($request);
+        $statement->bindParam(':id_artist', $id_artist);
+        $statement->execute();
 
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     static function addArtist($name_artist, $description_artist, $id_type_artist){

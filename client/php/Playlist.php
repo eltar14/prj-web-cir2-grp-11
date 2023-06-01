@@ -2,12 +2,12 @@
 require_once "../../DB.php";
 class Playlist
 {
-    static function addPlaylist($id_user, $name_playlist, $cover_playlist = null){
+    static function addPlaylist($id_user, $name_playlist, $cover_playlist = ""){
         try {
         $db = DB::connexion();
 
         $name_playlist = strval($name_playlist);
-        $cover_playlist = strval($cover_playlsit);
+        $cover_playlist = strval($cover_playlist);
 
         $request = 'INSERT INTO playlist(name_playlist, cover_playlist) values(:name_playlist, :cover_playlist)';
         $statement = $db->prepare($request);

@@ -196,7 +196,7 @@ INSERT INTO artist(id_artist, name_artist, id_type_artist) values (1, 'Patrick S
 INSERT INTO artist(name_artist, id_type_artist) values ('Johnny Hallyday', 2); /* 2 */
 INSERT INTO artist(name_artist, id_type_artist) values ('Michel Sardou', 2); /* 3 */
 INSERT INTO artist(name_artist, id_type_artist) values ('Jean-Jacques Goldman', 2); /* 4 */
-INSERT INTO artist(name_artist, id_type_artist) values ("Sexion d'assaut", 1); /* 5 */
+INSERT INTO artist(name_artist, id_type_artist) values ('Sexion dassaut', 1); /* 5 */
 INSERT INTO artist(name_artist, id_type_artist) values ('Maitre Gims', 2); /* 6 */
 INSERT INTO artist(name_artist, id_type_artist) values ('Booba', 2); /* 7 */
 INSERT INTO artist(name_artist, id_type_artist) values ('Ado', 2); /* 8 */
@@ -210,55 +210,55 @@ INSERT INTO artist(name_artist, id_type_artist) values ('Michel Polnareff', 2); 
 
 /* Création des albums */
 
-INSERT INTO album(id_album, name_album, date_album, cover_album, id_artist, id_style_album) values (1, "Putain, c'est génial", "2023-04-28", "https://m.media-amazon.com/images/I/811TIdiWG6L._UF894,1000_QL80_.jpg", 1, 19); /* 1 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("Même pas peur", '2009-11-09', 'https://m.media-amazon.com/images/I/51-YfI2Q8WL._UF894,1000_QL80_.jpg', 1, 19); /* 2 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("Mon pays c'est l'amoour", '2018-10-19', 'https://static.fnac-static.com/multimedia/Images/FR/NR/d9/45/a0/10503641/1540-1/tsp20180920110115/Mon-pays-c-est-l-amour.jpg', 2, 1); /* 3 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("J'habite en France", '1970-10-01', 'https://m.media-amazon.com/images/I/719QLMPsYOL._SL1400_.jpg', 3, 19); /* 4 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("Positif", '1984-10-01', 'https://m.media-amazon.com/images/I/71ghlGA+GLL._SX355_.jpg', 4, 19); /* 5 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("L'école des points vitaux", '2010-03-29', 'https://www.abcdrduson.com/wp-content/uploads/2014/07/sexion-dassaut-le%CC%81cole-des-points-vitaux.jpg', 5, 3); /* 6 */ 
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("Subliminal", '2013-05-20', 'https://upload.wikimedia.org/wikipedia/en/thumb/0/08/La-face-cachee-by-Maitre-Gims.jpg/220px-La-face-cachee-by-Maitre-Gims.jpg', 6, 3); /* 7 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("Futur", '2012-11-26', 'https://www.abcdrduson.com/wp-content/uploads/2014/07/booba-futur.jpg', 7, 3); /* 8 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("Kyōgen", '2022-01-26', 'https://upload.wikimedia.org/wikipedia/en/thumb/8/81/Ado_-_Kyougen.png/220px-Ado_-_Kyougen.png', 8, 18); /* 9 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("Bunka", '2017-12-13', 'https://static.wikia.nocookie.net/kara-no-kioku-eve/images/c/ca/Bunka_regular.png/revision/latest/scale-to-width-down/1000?cb=20200730023806', 9, 18); /* 10 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("Nakamura", '2018-11-02', 'https://static.fnac-static.com/multimedia/Images/FR/NR/bf/c7/a0/10536895/1540-1/tsp20181009141310/Album-2018.jpg', 10, 7); /* 11 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("Abbey Road", '1969-09-26', 'https://m.media-amazon.com/images/I/91YlTtiGi0L._SY355_.jpg', 11, 1); /* 12 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("I Am", '1979-06-09', 'https://upload.wikimedia.org/wikipedia/en/f/fb/IAmAlbumCover.jpg', 12, 12); /* 13 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("In the Court of the Crimson King", '1969-10-10', 'https://m.media-amazon.com/images/I/71FM257lYjL._UF894,1000_QL80_.jpg', 13, 1); /* 14 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ("Polnarévolution", '1972-11-02', 'https://m.media-amazon.com/images/I/81+eUSFAbwL._UF894,1000_QL80_.jpg', 14, 1); /* 15 */
+INSERT INTO album(id_album, name_album, date_album, cover_album, id_artist, id_style_album) values (1, 'Putain, c est génial', '2023-04-28', 'https://m.media-amazon.com/images/I/811TIdiWG6L._UF894,1000_QL80_.jpg', 1, 19); /* 1 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Même pas peur', '2009-11-09', 'https://m.media-amazon.com/images/I/51-YfI2Q8WL._UF894,1000_QL80_.jpg', 1, 19); /* 2 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Mon pays cest lamoour', '2018-10-19', 'https://static.fnac-static.com/multimedia/Images/FR/NR/d9/45/a0/10503641/1540-1/tsp20180920110115/Mon-pays-c-est-l-amour.jpg', 2, 1); /* 3 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Jhabite en France', '1970-10-01', 'https://m.media-amazon.com/images/I/719QLMPsYOL._SL1400_.jpg', 3, 19); /* 4 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Positif', '1984-10-01', 'https://m.media-amazon.com/images/I/71ghlGA+GLL._SX355_.jpg', 4, 19); /* 5 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Lécole des points vitaux', '2010-03-29', 'https://www.abcdrduson.com/wp-content/uploads/2014/07/sexion-dassaut-le%CC%81cole-des-points-vitaux.jpg', 5, 3); /* 6 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Subliminal', '2013-05-20', 'https://upload.wikimedia.org/wikipedia/en/thumb/0/08/La-face-cachee-by-Maitre-Gims.jpg/220px-La-face-cachee-by-Maitre-Gims.jpg', 6, 3); /* 7 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Futur', '2012-11-26', 'https://www.abcdrduson.com/wp-content/uploads/2014/07/booba-futur.jpg', 7, 3); /* 8 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Kyōgen', '2022-01-26', 'https://upload.wikimedia.org/wikipedia/en/thumb/8/81/Ado_-_Kyougen.png/220px-Ado_-_Kyougen.png', 8, 18); /* 9 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Bunka', '2017-12-13', 'https://static.wikia.nocookie.net/kara-no-kioku-eve/images/c/ca/Bunka_regular.png/revision/latest/scale-to-width-down/1000?cb=20200730023806', 9, 18); /* 10 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Nakamura', '2018-11-02', 'https://static.fnac-static.com/multimedia/Images/FR/NR/bf/c7/a0/10536895/1540-1/tsp20181009141310/Album-2018.jpg', 10, 7); /* 11 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Abbey Road', '1969-09-26', 'https://m.media-amazon.com/images/I/91YlTtiGi0L._SY355_.jpg', 11, 1); /* 12 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('I Am', '1979-06-09', 'https://upload.wikimedia.org/wikipedia/en/f/fb/IAmAlbumCover.jpg', 12, 12); /* 13 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('In the Court of the Crimson King', '1969-10-10', 'https://m.media-amazon.com/images/I/71FM257lYjL._UF894,1000_QL80_.jpg', 13, 1); /* 14 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Polnarévolution', '1972-11-02', 'https://m.media-amazon.com/images/I/81+eUSFAbwL._UF894,1000_QL80_.jpg', 14, 1); /* 15 */
 
 /* Création des chansons */
 
-INSERT INTO song(id_song, title_song, duration_song, link_song, id_album) values (1, "Putain, c'est génial", '00:03:28', 'https://www.youtube.com/watch?v=wiS3GgVluaI', 1);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Tavernier", '00:03:34', 'https://www.youtube.com/watch?v=VhE6vVlcPtg', 1); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Chtarboxe rap", '00:05:25', 'https://www.youtube.com/watch?v=YDwmaV87wZQ', 1); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Tatoof", '00:03:31', 'https://www.youtube.com/watch?v=ZeIEJvRyDqU', 1); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Même pas peur", '00:03:28', 'https://www.youtube.com/watch?v=tEdDg-a4qhk', 2); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Samba Do Brasil", '00:04:23', 'https://www.youtube.com/watch?v=-a5Ts4otwps', 2); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Mon pays c'est l'amour", '00:02:43', 'https://www.youtube.com/watch?v=x1qagp70MEk', 3); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("4m2","00:03:04","https://www.youtube.com/watch?v=Kxbjb0ZILiM",3);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("J'habite en France","00:02:49","https://www.youtube.com/watch?v=pOvxTYiDaAE",4);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Les bals populaires","00:03:07","https://www.youtube.com/watch?v=9AkXfk4M0pw",4);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Envole-moi","00:05:09","https://www.youtube.com/watch?v=My41opLFT7M",5);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Wati by Night","00:04:09","https://www.youtube.com/watch?v=zD80w-mPrKw",6);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Bella","00:04:02","https://www.youtube.com/watch?v=AFg79G2Y8A0",7);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Kalash","00:03:50","https://www.youtube.com/watch?v=pH7OTtQb4m0",8);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Readymade","00:04:03","https://www.youtube.com/watch?v=jg09lNupc1s",9);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Usseewa","00:03:23","https://www.youtube.com/watch?v=Qp3b-RXtz4w",9);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Anoko Secret","00:03:53","https://www.youtube.com/watch?v=sgdPlDG1-8k",10);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Dramaturgy","00:04:06","https://www.youtube.com/watch?v=jJzw1h5CR-I",10);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Djadja","00:02:55","https://www.youtube.com/watch?v=iPGgnzc34tY",11);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Pookie","00:03:02","https://www.youtube.com/watch?v=_bPa-VG0AWo",11);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Copines","00:02:58","https://www.youtube.com/watch?v=EkGiGf8utCM",11);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Here Comes The Sun","00:03:05","https://www.youtube.com/watch?v=GKdl-GCsNJ0",12);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("Boogie Wonderland ","00:04:49","https://www.youtube.com/watch?v=PbpIyn70t8c",13);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("I Talk To The Wind","00:06:06","https://www.youtube.com/watch?v=sjq298rlLWQ",14);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ("On ira tous au paradis","00:04:35","https://www.youtube.com/watch?v=ZwB4iQ7IJ7E",15);
+INSERT INTO song(id_song, title_song, duration_song, link_song, id_album) values (1, 'Putain, cest génial', '00:03:28', 'https://www.youtube.com/watch?v=wiS3GgVluaI', 1);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tavernier', '00:03:34', 'https://www.youtube.com/watch?v=VhE6vVlcPtg', 1); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Chtarboxe rap', '00:05:25', 'https://www.youtube.com/watch?v=YDwmaV87wZQ', 1); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tatoof', '00:03:31', 'https://www.youtube.com/watch?v=ZeIEJvRyDqU', 1); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Même pas peur', '00:03:28', 'https://www.youtube.com/watch?v=tEdDg-a4qhk', 2); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Samba Do Brasil', '00:04:23', 'https://www.youtube.com/watch?v=-a5Ts4otwps', 2); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Mon pays cest lamour', '00:02:43', 'https://www.youtube.com/watch?v=x1qagp70MEk', 3);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('4m2','00:03:04','https://www.youtube.com/watch?v=Kxbjb0ZILiM',3);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Jhabite en France','00:02:49','https://www.youtube.com/watch?v=pOvxTYiDaAE',4);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Les bals populaires','00:03:07','https://www.youtube.com/watch?v=9AkXfk4M0pw',4);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Envole-moi','00:05:09','https://www.youtube.com/watch?v=My41opLFT7M',5);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Wati by Night','00:04:09','https://www.youtube.com/watch?v=zD80w-mPrKw',6);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Bella','00:04:02','https://www.youtube.com/watch?v=AFg79G2Y8A0',7);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Kalash','00:03:50','https://www.youtube.com/watch?v=pH7OTtQb4m0',8);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Readymade','00:04:03','https://www.youtube.com/watch?v=jg09lNupc1s',9);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Usseewa','00:03:23','https://www.youtube.com/watch?v=Qp3b-RXtz4w',9);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Anoko Secret','00:03:53','https://www.youtube.com/watch?v=sgdPlDG1-8k',10);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Dramaturgy','00:04:06','https://www.youtube.com/watch?v=jJzw1h5CR-I',10);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Djadja','00:02:55','https://www.youtube.com/watch?v=iPGgnzc34tY',11);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Pookie','00:03:02','https://www.youtube.com/watch?v=_bPa-VG0AWo',11);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Copines','00:02:58','https://www.youtube.com/watch?v=EkGiGf8utCM',11);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Here Comes The Sun','00:03:05','https://www.youtube.com/watch?v=GKdl-GCsNJ0',12);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Boogie Wonderland ','00:04:49','https://www.youtube.com/watch?v=PbpIyn70t8c',13);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('I Talk To The Wind','00:06:06','https://www.youtube.com/watch?v=sjq298rlLWQ',14);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('On ira tous au paradis','00:04:35','https://www.youtube.com/watch?v=ZwB4iQ7IJ7E',15);
 
 /* Création de playlists */
 
-INSERT INTO playlist(id_playlist, name_playlist, cover_playlist) values (1, "La liste qui joue", "https://wallpapercave.com/wp/wp11216531.jpg");
-INSERT INTO playlist(name_playlist, cover_playlist) values ("Playlist ROOOCK !!!", "https://pro2-bar-s3-cdn-cf4.myportfolio.com/dbea3cc43adf643e2aac2f1cbb9ed2f0/f14d6fc4-2cea-41a2-9724-a7e5dff027e8_rw_1200.jpg?h=60e8fb45f75e1a2612c53a4f2174997c");
-INSERT INTO playlist(name_playlist, cover_playlist) values ("Playlist de Quentin", "https://mir-s3-cdn-cf.behance.net/project_modules/hd/602f4731226337.5646928c3633f.jpg");
+INSERT INTO playlist(id_playlist, name_playlist, cover_playlist) values (1, 'La liste qui joue', 'https://wallpapercave.com/wp/wp11216531.jpg');
+INSERT INTO playlist(name_playlist, cover_playlist) values ('Playlist ROOOCK !!!', 'https://pro2-bar-s3-cdn-cf4.myportfolio.com/dbea3cc43adf643e2aac2f1cbb9ed2f0/f14d6fc4-2cea-41a2-9724-a7e5dff027e8_rw_1200.jpg?h=60e8fb45f75e1a2612c53a4f2174997c');
+INSERT INTO playlist(name_playlist, cover_playlist) values ('Playlist de Quentin', 'https://mir-s3-cdn-cf.behance.net/project_modules/hd/602f4731226337.5646928c3633f.jpg');
 
 /* Ajout de musiques dans la playlist via playlist_song */
 

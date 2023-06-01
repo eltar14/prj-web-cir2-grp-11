@@ -66,6 +66,16 @@ class User
         return $statement->fetch()[0];
     }
 
+    static function getAll($id_user){
+        $db = DB::connexion();
+        $id_user = intval($id_user);
+        $request = 'SELECT id_user, name_user, surname_user, birthdate_user, email_user FROM "user" WHERE id_user = :id_user;';
+        $statement = $db->prepare($request);
+        $statement->bindParam(':id_user', $id_user);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+    }
     static function addUser($name, $surname, $email, $birthdate, $password)
     {
         if (User::id($email) == null) {

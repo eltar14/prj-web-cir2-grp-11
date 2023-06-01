@@ -16,3 +16,10 @@ function getSurname(surname){
     document.getElementById('surnameUserInput').value = surname;
 }
 
+
+ajaxRequest('PUT', 'php/request.php/name_user/?id_user=' + id_user, updateName)
+function updateName(newName){
+    document.getElementById('nav_name_user').innerText = newName;
+    document.getElementById('nameUserInput').value = newName;
+}
+

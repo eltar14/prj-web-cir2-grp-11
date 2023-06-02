@@ -516,8 +516,8 @@ $('#search_results_div').on('click', '.album_info_btn', () =>
     }
 );
 
-function displayModalInfoAlbumName(nameArtist){
-    document.getElementById('nameArtist').innerText = nameArtist;
+function displayModalInfoAlbumName(nameAlbum){
+    document.getElementById('nameAlbum').innerText = nameAlbum;
 }
 
 //$(event.target).closest('.artist_info_btn').attr('value')

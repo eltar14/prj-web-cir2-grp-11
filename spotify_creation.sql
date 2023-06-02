@@ -158,15 +158,15 @@ CREATE TABLE public.history(
 
 /* Ajout d'utilisateurs */
 
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Sermon-Thuillier', 'Goustan', '2002-11-12', crypt('gou', gen_salt('md5')) , 'goustan.sermon-thuiller@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Paul', 'Fontaine', '2003-06-03', crypt('paul', gen_salt('md5')) , 'paul.fontaine@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Paitier', 'Mathias', '2003-05-12', crypt('mat', gen_salt('md5')) , 'mathias.paitier@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Goff', 'Quentin', '2003-02-28', crypt('que', gen_salt('md5')) , 'que.legoff@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Boulch', 'Antoine', '2003-08-01', crypt('ant', gen_salt('md5')) , 'antoine.leboulch@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Pan', 'Ethan', '2003-02-28', crypt('eth', gen_salt('md5')) , 'ethan.lepan@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Kebci', 'Paul', '2003-03-19', crypt('pau', gen_salt('md5')) , 'paul.kebci@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Croguennoc', 'Romain', '2003-10-03', crypt('rom', gen_salt('md5')) , 'romain.croguennoc@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Porodo', 'Théo', '2002-04-06', crypt('the', gen_salt('md5')) , 'theo.porodo@isen.fr');
+INSERT INTO "user"(surname_user, name_user, birthdate_user, password_user, email_user) values ('Sermon-Thuillier', 'Goustan', '2002-11-12', crypt('gou', gen_salt('md5')) , 'goustan.sermon-thuillier@isen.fr');
+INSERT INTO "user"(surname_user, name_user, birthdate_user, password_user, email_user) values ('Paul', 'Fontaine', '2003-06-03', crypt('paul', gen_salt('md5')) , 'paul.fontaine@isen.fr');
+INSERT INTO "user"(surname_user, name_user, birthdate_user, password_user, email_user) values ('Paitier', 'Mathias', '2003-05-12', crypt('mat', gen_salt('md5')) , 'mathias.paitier@isen.fr');
+INSERT INTO "user"(surname_user, name_user, birthdate_user, password_user, email_user) values ('Le Goff', 'Quentin', '2003-02-28', crypt('que', gen_salt('md5')) , 'que.legoff@isen.fr');
+INSERT INTO "user"(surname_user, name_user, birthdate_user, password_user, email_user) values ('Le Boulch', 'Antoine', '2003-08-01', crypt('ant', gen_salt('md5')) , 'antoine.leboulch@isen.fr');
+INSERT INTO "user"(surname_user, name_user, birthdate_user, password_user, email_user) values ('Le Pan', 'Ethan', '2003-02-28', crypt('eth', gen_salt('md5')) , 'ethan.lepan@isen.fr');
+INSERT INTO "user"(surname_user, name_user, birthdate_user, password_user, email_user) values ('Kebci', 'Paul', '2003-03-19', crypt('pau', gen_salt('md5')) , 'paul.kebci@isen.fr');
+INSERT INTO "user"(surname_user, name_user, birthdate_user, password_user, email_user) values ('Croguennoc', 'Romain', '2003-10-03', crypt('rom', gen_salt('md5')) , 'romain.croguennoc@isen.fr');
+INSERT INTO "user"(surname_user, name_user, birthdate_user, password_user, email_user) values ('Porodo', 'Théo', '2002-04-06', crypt('the', gen_salt('md5')) , 'theo.porodo@isen.fr');
 
 /* Création des types d'artiste */
 
@@ -212,13 +212,14 @@ INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('The
 INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Earth Wind and Fire', 1, 'Description'); /* 12 */
 INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('King Crimson', 1, 'Description'); /* 13 */
 INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Michel Polnareff', 2, 'Description'); /* 14 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Daniel Balavoine', 1, 'Description'); /* 15 */
 
 
 /* Création des albums */
 
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Putain, c est génial', '2023-04-28', 'https://m.media-amazon.com/images/I/811TIdiWG6L._UF894,1000_QL80_.jpg', 1, 19); /* 1 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Même pas peur', '2009-11-09', 'https://m.media-amazon.com/images/I/51-YfI2Q8WL._UF894,1000_QL80_.jpg', 1, 19); /* 2 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Mon pays cest lamoour', '2018-10-19', 'https://static.fnac-static.com/multimedia/Images/FR/NR/d9/45/a0/10503641/1540-1/tsp20180920110115/Mon-pays-c-est-l-amour.jpg', 2, 1); /* 3 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Mon pays cest l amour', '2018-10-19', 'https://static.fnac-static.com/multimedia/Images/FR/NR/d9/45/a0/10503641/1540-1/tsp20180920110115/Mon-pays-c-est-l-amour.jpg', 2, 1); /* 3 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Jhabite en France', '1970-10-01', 'https://m.media-amazon.com/images/I/719QLMPsYOL._SL1400_.jpg', 3, 19); /* 4 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Positif', '1984-10-01', 'https://m.media-amazon.com/images/I/71ghlGA+GLL._SX355_.jpg', 4, 19); /* 5 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Lécole des points vitaux', '2010-03-29', 'https://www.abcdrduson.com/wp-content/uploads/2014/07/sexion-dassaut-le%CC%81cole-des-points-vitaux.jpg', 5, 3); /* 6 */
@@ -231,6 +232,7 @@ INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('I Am', '1979-06-09', 'https://upload.wikimedia.org/wikipedia/en/f/fb/IAmAlbumCover.jpg', 12, 12); /* 13 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('In the Court of the Crimson King', '1969-10-10', 'https://m.media-amazon.com/images/I/71FM257lYjL._UF894,1000_QL80_.jpg', 13, 1); /* 14 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Polnarévolution', '1972-11-02', 'https://m.media-amazon.com/images/I/81+eUSFAbwL._UF894,1000_QL80_.jpg', 14, 1); /* 15 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Sauver l amour', '1985-10-14', 'https://p5.storage.canalblog.com/58/32/636073/125759783_o.jpg', 15, 3); /* 16 */
 
 /* Création des chansons */
 
@@ -238,27 +240,45 @@ INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Putain
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tavernier', '214', 'https://www.youtube.com/watch?v=VhE6vVlcPtg', 1); 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Chtarboxe rap', '325', 'https://www.youtube.com/watch?v=YDwmaV87wZQ', 1); 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tatoof', '211', 'https://www.youtube.com/watch?v=ZeIEJvRyDqU', 1); 
+
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Même pas peur', '208', 'https://www.youtube.com/watch?v=tEdDg-a4qhk', 2); 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Samba Do Brasil', '263', 'https://www.youtube.com/watch?v=-a5Ts4otwps', 2); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Mon pays cest lamour', '163', 'https://www.youtube.com/watch?v=x1qagp70MEk', 3);
+
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Mon pays cest l amour', '163', 'https://www.youtube.com/watch?v=x1qagp70MEk', 3);
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('4m2','184','https://www.youtube.com/watch?v=Kxbjb0ZILiM',3);
+
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Jhabite en France','169','https://www.youtube.com/watch?v=pOvxTYiDaAE',4);
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Les bals populaires','187','https://www.youtube.com/watch?v=9AkXfk4M0pw',4);
+
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Envole-moi','309','https://www.youtube.com/watch?v=My41opLFT7M',5);
+
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Wati by Night','249','https://www.youtube.com/watch?v=zD80w-mPrKw',6);
+
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Bella','242','https://www.youtube.com/watch?v=AFg79G2Y8A0',7);
+
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Kalash','230','https://www.youtube.com/watch?v=pH7OTtQb4m0',8);
+
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Readymade','243','https://www.youtube.com/watch?v=jg09lNupc1s',9);
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Usseewa','203','https://www.youtube.com/watch?v=Qp3b-RXtz4w',9);
+
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Anoko Secret','237','https://www.youtube.com/watch?v=sgdPlDG1-8k',10);
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Dramaturgy','246','https://www.youtube.com/watch?v=jJzw1h5CR-I',10);
+
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Djadja','175','https://www.youtube.com/watch?v=iPGgnzc34tY',11);
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Pookie','182','https://www.youtube.com/watch?v=_bPa-VG0AWo',11);
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Copines','178','https://www.youtube.com/watch?v=EkGiGf8utCM',11);
+
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Here Comes The Sun','185','https://www.youtube.com/watch?v=GKdl-GCsNJ0',12);
+
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Boogie Wonderland ','289','https://www.youtube.com/watch?v=PbpIyn70t8c',13);
+
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('I Talk To The Wind','366','https://www.youtube.com/watch?v=sjq298rlLWQ',14);
+
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('On ira tous au paradis','275','https://www.youtube.com/watch?v=ZwB4iQ7IJ7E',15);
+
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Aimer est plus fort que d etre aimé','246','https://www.youtube.com/watch?v=3Pwd24iBu5o',16);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tous les cris les S.O.S','306','https://www.youtube.com/watch?v=urWV2OjAmUQ',16);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('L Aziza','261','https://www.youtube.com/watch?v=lHjJlSq3BhA',16);
 
 /* Création de playlists */
 

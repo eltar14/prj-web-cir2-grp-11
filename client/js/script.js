@@ -152,11 +152,8 @@ function display_song_cards2(values){
 
 function display_song_cards(values){
     let str = '';
-    console.warn(values)
     let total_length = values.length;
     let nbr = Math.ceil(total_length/5);
-    console.warn('number : ' +nbr);
-    console.warn('tot len : ' +total_length);
     str += '<div id="carouselExampleControls" class="carousel slide carousel-dark" data-bs-ride="carousel">\n' +
         '        <div class="carousel-inner">';
 
@@ -259,7 +256,6 @@ function create_card_2(title, description, image_src, button_text, button_url){
 }
 
 function display_album_cards(values){
-    console.warn(values)
     for (const album of values) {
         document.getElementById("search_results_div").innerHTML = "";
         document.getElementById("search_results_div").appendChild(createCard(
@@ -269,7 +265,6 @@ function display_album_cards(values){
     }
 }
 function display_artist_cards(values){
-    console.warn(values)
     for (const artist of values) {
         document.getElementById("search_results_div").innerHTML = "";
         document.getElementById("search_results_div").appendChild(createCard(

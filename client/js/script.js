@@ -182,11 +182,11 @@ function display_song_cards(values){
 
     }
     str += '</div>\n' +
-        '        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">\n' +
+        '        <button class="carousel-control-prev btn-outline-light" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">\n' +
         '            <span class="carousel-control-prev-icon" aria-hidden="true"></span>\n' +
         '            <span class="visually-hidden">Previous</span>\n' +
         '        </button>\n' +
-        '        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">\n' +
+        '        <button class="carousel-control-next btn-outline-light" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">\n' +
         '            <span class="carousel-control-next-icon" aria-hidden="true"></span>\n' +
         '            <span class="visually-hidden">Next</span>\n' +
         '        </button>\n' +

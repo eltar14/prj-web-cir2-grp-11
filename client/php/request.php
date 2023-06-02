@@ -86,6 +86,7 @@ function get($db, $requestRessource)
 
 
 
+
     // Send data to the client.
     header('Content-Type: application/json; charset=utf-8');
     header('Cache-control: no-store, no-cache, must-revalidate');

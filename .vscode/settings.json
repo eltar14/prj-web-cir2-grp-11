@@ -4,10 +4,11 @@
             "previewLimit": 50,
             "server": "localhost",
             "port": 5432,
+            "askForPassword": true,
             "driver": "PostgreSQL",
-            "name": "projetG11",
+            "name": "Groupe11",
             "database": "groupe11",
-            "username": "groupe11"
+            "username": "postgres"
         }
     ]
 }

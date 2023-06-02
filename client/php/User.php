@@ -17,7 +17,11 @@ class User
         return $statement->fetch()[0];
     }
 
-
+    /**
+     * returns the surname of the user with the given id
+     * @param $id_user
+     * @return mixed
+     */
     static function getSurname($id_user){
         $db = DB::connexion();
         $request = 'SELECT surname_user FROM "user" WHERE id_user=:id_user;';
@@ -28,7 +32,12 @@ class User
         return $statement->fetch()[0];
     }
 
-
+    /**
+     * returns the birthdate of the user with the specified id
+     * not the age
+     * @param $id_user
+     * @return mixed
+     */
     static function getBirthdate($id_user){
         $db = DB::connexion();
         $request = 'SELECT birthdate_user FROM "user" WHERE id_user=:id_user;';
@@ -39,7 +48,11 @@ class User
         return $statement->fetch()[0];
     }
 
-
+    /**
+     * returns the email of the user with the specified id
+     * @param $id_user
+     * @return string or NULL
+     */
     static function getEmail($id_user){
         $db = DB::connexion();
         $request = 'SELECT email_user FROM "user" WHERE id_user=:id_user;';
@@ -66,6 +79,11 @@ class User
         return $statement->fetch()[0];
     }
 
+    /**
+     * returns the IDs of the playlists from the specified user
+     * @param $id_user
+     * @return array
+     */
     static function getPlaylistsList($id_user){
         //TODO
     }

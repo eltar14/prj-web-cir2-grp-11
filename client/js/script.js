@@ -141,6 +141,17 @@ $('#go_search').on('click', () =>
 );
 
 
+$('#printArtistInfo').on('click', () =>
+    {
+        console.log('click on printArtistInfo button')
+
+        
+
+        ajaxRequest('GET', 'php/request.php/artist/?id_artist=' + id_artist, rien(1));
+    }
+);
+
+
 // Song results
 function display_song_cards2(values){
     div1 = document.createElement("div");
@@ -448,17 +459,6 @@ function create_song_card(title, description, image_src, button_text, button_url
     return div.innerHTML;
 }
 
-
-$('#printArtistInfo').on('click', () =>
-    {
-        console.log('click on printArtistInfo button')
-
-        let id_artist = document.getElementById('id_artist').innerText;
-        console.log(id_artist);
-
-        ajaxRequest('GET', 'php/request.php/artist/?id_artist=' + id_artist, rien(1));
-    }
-);
 
 /*
 

@@ -8,7 +8,7 @@
             "driver": "PostgreSQL",
             "name": "Groupe11",
             "database": "groupe11",
-            "username": "postgres"
+            "username": "groupe11"
         }
     ]
 }

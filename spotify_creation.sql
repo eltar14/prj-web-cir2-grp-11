@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 ------------------------------------------------------------
 --        Script Postgre 
 ------------------------------------------------------------
@@ -17,6 +19,10 @@ drop table if exists song cascade;
 drop table if exists album cascade;
 
 drop table if exists artist cascade;
+
+drop table if exists style_album cascade;
+
+drop table if exists type_artist cascade;
 
 
 ------------------------------------------------------------
@@ -152,15 +158,15 @@ CREATE TABLE public.history(
 
 /* Ajout d'utilisateurs */
 
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Sermon-Thuillier', 'Goustan', '2002-11-12', crypt('gou', gen_salt('md5')) , 'gou.st@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Paul', 'Fontaine', '2003-06-03', crypt('paul', gen_salt('md5')) , 'paul.f@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Paitier', 'Mathias', '2003-05-12', crypt('mat', gen_salt('md5')) , 'mat.p@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Goff', 'Quentin', '2003-02-28', crypt('que', gen_salt('md5')) , 'que.lg@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Boulch', 'Antoine', '2003-08-01', crypt('ant', gen_salt('md5')) , 'ant.lb@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Pan', 'Ethan', '2003-02-28', crypt('eth', gen_salt('md5')) , 'eth.lp@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Kebci', 'Paul', '2003-03-19', crypt('pau', gen_salt('md5')) , 'paul.k@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Croguennoc', 'Romain', '2003-10-03', crypt('rom', gen_salt('md5')) , 'rom.c@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Porodo', 'Théo', '2002-04-06', crypt('the', gen_salt('md5')) , 'the.p@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Sermon-Thuillier', 'Goustan', '2002-11-12', crypt('gou', gen_salt('md5')) , 'goustan.sermon-thuiller@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Paul', 'Fontaine', '2003-06-03', crypt('paul', gen_salt('md5')) , 'paul.fontaine@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Paitier', 'Mathias', '2003-05-12', crypt('mat', gen_salt('md5')) , 'mathias.paitier@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Goff', 'Quentin', '2003-02-28', crypt('que', gen_salt('md5')) , 'que.legoff@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Boulch', 'Antoine', '2003-08-01', crypt('ant', gen_salt('md5')) , 'antoine.leboulch@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Pan', 'Ethan', '2003-02-28', crypt('eth', gen_salt('md5')) , 'ethan.lepan@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Kebci', 'Paul', '2003-03-19', crypt('pau', gen_salt('md5')) , 'paul.kebci@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Croguennoc', 'Romain', '2003-10-03', crypt('rom', gen_salt('md5')) , 'romain.croguennoc@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Porodo', 'Théo', '2002-04-06', crypt('the', gen_salt('md5')) , 'theo.porodo@isen.fr');
 
 /* Création des types d'artiste */
 
@@ -192,20 +198,20 @@ INSERT INTO style_album(style_album) values ('Autre'); /* 20 */
 
 /* Création des artistes */
 
-INSERT INTO artist(name_artist, id_type_artist) values ('Patrick Sébastien ', 2); /* 1 */
-INSERT INTO artist(name_artist, id_type_artist) values ('Johnny Hallyday', 2); /* 2 */
-INSERT INTO artist(name_artist, id_type_artist) values ('Michel Sardou', 2); /* 3 */
-INSERT INTO artist(name_artist, id_type_artist) values ('Jean-Jacques Goldman', 2); /* 4 */
-INSERT INTO artist(name_artist, id_type_artist) values ('Sexion dassaut', 1); /* 5 */
-INSERT INTO artist(name_artist, id_type_artist) values ('Maitre Gims', 2); /* 6 */
-INSERT INTO artist(name_artist, id_type_artist) values ('Booba', 2); /* 7 */
-INSERT INTO artist(name_artist, id_type_artist) values ('Ado', 2); /* 8 */
-INSERT INTO artist(name_artist, id_type_artist) values ('Eve', 2); /* 9 */
-INSERT INTO artist(name_artist, id_type_artist) values ('Aya Nakamura', 2); /* 10 */
-INSERT INTO artist(name_artist, id_type_artist) values ('The Beatles', 1); /* 11 */
-INSERT INTO artist(name_artist, id_type_artist) values ('Earth Wind and Fire', 1); /* 12 */
-INSERT INTO artist(name_artist, id_type_artist) values ('King Crimson', 1); /* 13 */
-INSERT INTO artist(name_artist, id_type_artist) values ('Michel Polnareff', 2); /* 14 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Patrick Sébastien ', 2, 'Description'); /* 1 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Johnny Hallyday', 2, 'Description'); /* 2 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Michel Sardou', 2, 'Description'); /* 3 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Jean-Jacques Goldman', 2, 'Description'); /* 4 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Sexion dassaut', 1, 'Description'); /* 5 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Maitre Gims', 2, 'Description'); /* 6 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Booba', 2, 'Description'); /* 7 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Ado', 2, 'Description'); /* 8 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Eve', 2, 'Description'); /* 9 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Aya Nakamura', 2, 'Description'); /* 10 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('The Beatles', 1, 'Description'); /* 11 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Earth Wind and Fire', 1, 'Description'); /* 12 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('King Crimson', 1, 'Description'); /* 13 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Michel Polnareff', 2, 'Description'); /* 14 */
 
 
 /* Création des albums */
@@ -228,31 +234,31 @@ INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album
 
 /* Création des chansons */
 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Putain, cest génial', '00:03:28', 'https://www.youtube.com/watch?v=wiS3GgVluaI', 1);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tavernier', '00:03:34', 'https://www.youtube.com/watch?v=VhE6vVlcPtg', 1); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Chtarboxe rap', '00:05:25', 'https://www.youtube.com/watch?v=YDwmaV87wZQ', 1); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tatoof', '00:03:31', 'https://www.youtube.com/watch?v=ZeIEJvRyDqU', 1); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Même pas peur', '00:03:28', 'https://www.youtube.com/watch?v=tEdDg-a4qhk', 2); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Samba Do Brasil', '00:04:23', 'https://www.youtube.com/watch?v=-a5Ts4otwps', 2); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Mon pays cest lamour', '00:02:43', 'https://www.youtube.com/watch?v=x1qagp70MEk', 3);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('4m2','00:03:04','https://www.youtube.com/watch?v=Kxbjb0ZILiM',3);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Jhabite en France','00:02:49','https://www.youtube.com/watch?v=pOvxTYiDaAE',4);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Les bals populaires','00:03:07','https://www.youtube.com/watch?v=9AkXfk4M0pw',4);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Envole-moi','00:05:09','https://www.youtube.com/watch?v=My41opLFT7M',5);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Wati by Night','00:04:09','https://www.youtube.com/watch?v=zD80w-mPrKw',6);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Bella','00:04:02','https://www.youtube.com/watch?v=AFg79G2Y8A0',7);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Kalash','00:03:50','https://www.youtube.com/watch?v=pH7OTtQb4m0',8);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Readymade','00:04:03','https://www.youtube.com/watch?v=jg09lNupc1s',9);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Usseewa','00:03:23','https://www.youtube.com/watch?v=Qp3b-RXtz4w',9);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Anoko Secret','00:03:53','https://www.youtube.com/watch?v=sgdPlDG1-8k',10);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Dramaturgy','00:04:06','https://www.youtube.com/watch?v=jJzw1h5CR-I',10);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Djadja','00:02:55','https://www.youtube.com/watch?v=iPGgnzc34tY',11);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Pookie','00:03:02','https://www.youtube.com/watch?v=_bPa-VG0AWo',11);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Copines','00:02:58','https://www.youtube.com/watch?v=EkGiGf8utCM',11);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Here Comes The Sun','00:03:05','https://www.youtube.com/watch?v=GKdl-GCsNJ0',12);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Boogie Wonderland ','00:04:49','https://www.youtube.com/watch?v=PbpIyn70t8c',13);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('I Talk To The Wind','00:06:06','https://www.youtube.com/watch?v=sjq298rlLWQ',14);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('On ira tous au paradis','00:04:35','https://www.youtube.com/watch?v=ZwB4iQ7IJ7E',15);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Putain, cest génial', '208', 'https://www.youtube.com/watch?v=wiS3GgVluaI', 1);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tavernier', '214', 'https://www.youtube.com/watch?v=VhE6vVlcPtg', 1); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Chtarboxe rap', '325', 'https://www.youtube.com/watch?v=YDwmaV87wZQ', 1); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tatoof', '211', 'https://www.youtube.com/watch?v=ZeIEJvRyDqU', 1); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Même pas peur', '208', 'https://www.youtube.com/watch?v=tEdDg-a4qhk', 2); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Samba Do Brasil', '263', 'https://www.youtube.com/watch?v=-a5Ts4otwps', 2); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Mon pays cest lamour', '163', 'https://www.youtube.com/watch?v=x1qagp70MEk', 3);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('4m2','184','https://www.youtube.com/watch?v=Kxbjb0ZILiM',3);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Jhabite en France','169','https://www.youtube.com/watch?v=pOvxTYiDaAE',4);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Les bals populaires','187','https://www.youtube.com/watch?v=9AkXfk4M0pw',4);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Envole-moi','309','https://www.youtube.com/watch?v=My41opLFT7M',5);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Wati by Night','249','https://www.youtube.com/watch?v=zD80w-mPrKw',6);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Bella','242','https://www.youtube.com/watch?v=AFg79G2Y8A0',7);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Kalash','230','https://www.youtube.com/watch?v=pH7OTtQb4m0',8);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Readymade','243','https://www.youtube.com/watch?v=jg09lNupc1s',9);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Usseewa','203','https://www.youtube.com/watch?v=Qp3b-RXtz4w',9);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Anoko Secret','237','https://www.youtube.com/watch?v=sgdPlDG1-8k',10);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Dramaturgy','246','https://www.youtube.com/watch?v=jJzw1h5CR-I',10);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Djadja','175','https://www.youtube.com/watch?v=iPGgnzc34tY',11);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Pookie','182','https://www.youtube.com/watch?v=_bPa-VG0AWo',11);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Copines','178','https://www.youtube.com/watch?v=EkGiGf8utCM',11);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Here Comes The Sun','185','https://www.youtube.com/watch?v=GKdl-GCsNJ0',12);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Boogie Wonderland ','289','https://www.youtube.com/watch?v=PbpIyn70t8c',13);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('I Talk To The Wind','366','https://www.youtube.com/watch?v=sjq298rlLWQ',14);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('On ira tous au paradis','275','https://www.youtube.com/watch?v=ZwB4iQ7IJ7E',15);
 
 /* Création de playlists */
 
@@ -262,37 +268,37 @@ INSERT INTO playlist(name_playlist, cover_playlist) values ('Playlist de Quentin
 
 /* Ajout de musiques dans la playlist via playlist_song */
 
-INSERT INTO playlist_song(id_playlist, id_song) values (1, 1);
-INSERT INTO playlist_song(id_playlist, id_song) values (1, 2);
-INSERT INTO playlist_song(id_playlist, id_song) values (1, 4);
-INSERT INTO playlist_song(id_playlist, id_song) values (1, 6);
-INSERT INTO playlist_song(id_playlist, id_song) values (1, 9);
-INSERT INTO playlist_song(id_playlist, id_song) values (1, 10);
-INSERT INTO playlist_song(id_playlist, id_song) values (1, 12);
-INSERT INTO playlist_song(id_playlist, id_song) values (1, 13);
-INSERT INTO playlist_song(id_playlist, id_song) values (1, 14);
-INSERT INTO playlist_song(id_playlist, id_song) values (1, 15);
-INSERT INTO playlist_song(id_playlist, id_song) values (1, 18);
-INSERT INTO playlist_song(id_playlist, id_song) values (1, 19);
-INSERT INTO playlist_song(id_playlist, id_song) values (1, 23);
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 1, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 2, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 4, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 6, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 9, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 10, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 12, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 13, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 14, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 15, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 18, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 19, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 23, '2023-02-06');
 
-INSERT INTO playlist_song(id_playlist, id_song) values (2, 7);
-INSERT INTO playlist_song(id_playlist, id_song) values (2, 8);
-INSERT INTO playlist_song(id_playlist, id_song) values (2, 22);
-INSERT INTO playlist_song(id_playlist, id_song) values (2, 24);
-INSERT INTO playlist_song(id_playlist, id_song) values (2, 25);
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (2, 7, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (2, 8, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (2, 22, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (2, 24, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (2, 25, '2023-02-06');
 
-INSERT INTO playlist_song(id_playlist, id_song) values (3, 9);
-INSERT INTO playlist_song(id_playlist, id_song) values (3, 10);
-INSERT INTO playlist_song(id_playlist, id_song) values (3, 11);
-INSERT INTO playlist_song(id_playlist, id_song) values (3, 12);
-INSERT INTO playlist_song(id_playlist, id_song) values (3, 13);
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (3, 9, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (3, 10, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (3, 11, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (3, 12, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (3, 13, '2023-02-06');
 
 /* On lie les playlists aux utilisateurs via user_playlist */
 
-INSERT INTO user_playlist(id_user, id_playlist) values (1, 1);
-INSERT INTO user_playlist(id_user, id_playlist) values (7, 2);
-INSERT INTO user_playlist(id_user, id_playlist) values (4, 3);
+INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (1, 1, '2023-02-06');
+INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (7, 2, '2023-02-06');
+INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (4, 3, '2023-02-06');
 
 
 

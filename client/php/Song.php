@@ -12,6 +12,11 @@ class Song
         return $statement->fetch()[0];
     }
 
+    /**
+     * returns duration of the song in seconds
+     * @param $id_song
+     * @return mixed
+     */
     static function getDuration($id_song){
         $db = DB::connexion();
         $request = 'SELECT duration_song FROM song WHERE id_song=:id_song;';
@@ -75,4 +80,20 @@ class Song
 
         return $statement->fetchAll(PDO::FETCH_ASSOC)[0];
     }
+
+
+    static function search($val){
+
+        $db = DB::connexion();
+        $val = strval($val);
+        $val = '%'.$val.'%';
+        $request = "SELECT id_song, title_song, duration_song, link_song, song.id_album, name_album FROM song JOIN album a on song.id_album = a.id_album WHERE title_song ILIKE :val ;";
+        $statement = $db->prepare($request);
+        $statement->bindParam(':val', $val);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+    }
+
+
+
 }

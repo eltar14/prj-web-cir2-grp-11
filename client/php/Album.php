@@ -33,5 +33,17 @@ class Album
         return $statement->fetch()[0];
     }
 
-    static function 
+
+
+    static function search($val){
+
+        $db = DB::connexion();
+        $val = strval($val);
+        $val = '%'.$val.'%';
+        $request = "SELECT id_album, name_album, date_album, cover_album, id_artist, id_style_album FROM album WHERE name_album ILIKE :val ;";
+        $statement = $db->prepare($request);
+        $statement->bindParam(':val', $val);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+    }
 }

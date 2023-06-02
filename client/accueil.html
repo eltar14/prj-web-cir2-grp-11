@@ -186,22 +186,22 @@
                 <tr>
                     <th>
                         Filtrer par :
-                        <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" >
-                        <label class="btn btn-outline-secondary" for="option1">Album</label>
+                        <input type="radio" class="btn-check" name="options" id="search_album" value="album" autocomplete="off" >
+                        <label class="btn btn-outline-secondary" for="search_album">Album</label>
 
-                        <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="option2">Artiste</label>
+                        <input type="radio" class="btn-check" name="options" id="search_artist" value="artist" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="search_artist">Artiste</label>
 
-                        <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" checked>
-                        <label class="btn btn-outline-secondary" for="option3">Titre</label>
+                        <input type="radio" class="btn-check" name="options" id="search_titre" value="title" autocomplete="off" checked>
+                        <label class="btn btn-outline-secondary" for="search_titre">Titre</label>
                     </th>
 
                     <th scope="col">
-                        <input type="text" class="form-control" id="inputPassword2" placeholder="Rechercher" style="margin-top: 2em">
+                        <input type="text" class="form-control" id="search_value" placeholder="Rechercher" style="margin-top: 2em">
                     </th>
 
                     <th scope="col">
-                        <button type="submit" class="btn btn-outline-secondary">
+                        <button id="go_search" type="button" class="btn btn-outline-secondary">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                             </svg>
@@ -212,6 +212,45 @@
         </table>
     </div>
 </form>
+<!--Résultats de recherche -->
+<button class="accordion" style="font-size: 1.5em">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+    </svg>
+    Résultats de recherche
+</button>
+
+<div class="panel">
+    <div class="table-responsive">
+        <table class="table table-borderless align-middle last-listened">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody> <!-- faire les input des 10 derniers morceaux écoutés -->
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
 <!--Menu accordion où l'on voir les différentes informations -->

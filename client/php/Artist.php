@@ -87,7 +87,7 @@ class Artist
         $statement = $db->prepare($request);
         $statement->bindParam(':val', $val);
         $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
 

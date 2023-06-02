@@ -6,9 +6,13 @@
 // PUT    /tweet/i?login=...&text=...
 // DELETE /tweet/i?login=...
 
-  require_once('../../DB.php');
-  require_once('User.php');
+  require_once('../../DB.php')
+  ;
+  require_once ('User.php');
   require_once ('Artist.php');
+  require_once ('Song.php');
+  require_once ('Album.php');
+
 
   // Database connection.
   $db = DB::connexion();
@@ -32,10 +36,10 @@ switch ($requestMethod){
     case "PUT":
         put($db, $requestRessource);
     case "DELETE":
-        //delete($db, $request);
+        delete($db, $request);
 }
 
-
+// ========= GET ==========
 function get($db, $requestRessource)
 {
     // User
@@ -59,11 +63,29 @@ function get($db, $requestRessource)
         $data = Artist::getName($id_artist);
     }elseif ($requestRessource == 'description_artist'){
         $id_artist = $_GET["id_artist"];
-        $data = Artist::getDesctiption($id_artist);
+        $data = Artist::getDescription($id_artist);
     }elseif ($requestRessource == 'type_artist'){
         $id_artist = $_GET["type_artist"];
         $data = Artist::getType($id_artist);
+    }elseif ($requestRessource == 'search_artist'){
+        $val = $_GET["search"];
+        $data = Artist::search($val);
     }
+
+    //Album
+    elseif ($requestRessource == 'search_album') {
+        $val = $_GET["search"];
+        $data = Album::search($val);
+    }
+
+    //Song
+    elseif ($requestRessource == 'search_song') {
+        $val = $_GET["search"];
+        $data = Song::search($val);
+    }
+
+
+
     // Send data to the client.
     header('Content-Type: application/json; charset=utf-8');
     header('Cache-control: no-store, no-cache, must-revalidate');
@@ -73,7 +95,7 @@ function get($db, $requestRessource)
     exit();
 }
 
-// brouillon en dessous =================================
+// ========= POST ==========
 function post($db, $requestRessource){
     if($requestRessource == 'add_user'){   //add user
         if (isset($_POST["name"], $_POST["surname"], $_POST["email"], $_POST["birthdate"], $_POST["password"])) {
@@ -86,6 +108,8 @@ function post($db, $requestRessource){
         exit();
     }
 }
+
+// ========= PUT ==========
 function put($db, $requestRessource){ //modif user
     parse_str(file_get_contents('php://input'), $_PUT);
     if ($requestRessource == 'update_name'){
@@ -114,6 +138,8 @@ function put($db, $requestRessource){ //modif user
     header('HTTP/1.1 200 OK');
     exit();
 }
+
+// brouillon en dessous =================================
 function delete($db, $request){ //delete tweet
     //dbDeleteTweet($db, array_shift($request), $_GET["login"]);
     exit();

@@ -101,8 +101,13 @@
           <div class="input-group mb-3">
             <label for="exampleFormControlInput1" class="col-sm-3 col-form-label">Date de naissance</label>
 
+            
             <div class="col-sm-8">
-              <input type="date" id="birthDate" name='birthDate'> 
+              <div class="input-group date" id="datepicker">
+                <input type="date" class="form-control" id="date"/>
+                <span class="input-group-append">
+                </span>
+              </div>
             </div>
           </div>
 

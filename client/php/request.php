@@ -76,6 +76,9 @@ function get($db, $requestRessource)
     elseif ($requestRessource == 'search_album') {
         $val = $_GET["search"];
         $data = Album::search($val);
+    }elseif ($requestRessource == 'all_album') {
+        $val = $_GET["id_album"];
+        $data = Album::getAll($val);
     }
 
     //Song

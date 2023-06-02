@@ -512,7 +512,7 @@ $('#search_results_div').on('click', '.album_info_btn', () =>
     {
         console.log($(event.target).closest('.album_info_btn').attr('value'));
         let id_album = $(event.target).closest('.album_info_btn').attr('value')
-        ajaxRequest('GET', 'php/request.php/name_album/?id_album=' + id_album, displayModalInfoAlbumName);
+        ajaxRequest('GET', 'php/request.php/all_album/?id_album=' + id_album, displayModalInfoAlbumName);
     }
 );
 

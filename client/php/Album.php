@@ -59,4 +59,15 @@ WHERE name_album ILIKE :val ;";
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+    static function getSongList($id_album){
+        $db = DB::connexion();
+        $id_album = intval($id_album);
+        $request = 'SELECT album.id_album, name_album, id_song, title_song, duration_song, link_song FROM album JOIN song s on album.id_album = s.id_album WHERE album.id_album = :id_album;';
+        $statement = $db->prepare($request);
+        $statement->bindParam(':id_album', $id_album);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

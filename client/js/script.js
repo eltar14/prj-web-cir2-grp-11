@@ -136,6 +136,14 @@ $('#go_search').on('click', () =>
                 ajaxRequest('GET', 'php/request.php/search_song/?search=' + searched_value, display_song_cards);
                 break;
         }
+        setTimeout(() => {
+            document.getElementById('accordion_recherche').classList.add('active');
+            let panel = document.getElementById('accordion_recherche').nextElementSibling;
+            panel.style.maxHeight = panel.scrollHeight + "px";
+
+        }, 100);
+
+
 
     }
 );

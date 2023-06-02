@@ -149,6 +149,25 @@ $('#go_search').on('click', () =>
 );
 
 
+$('#search_album').on('click', () =>
+    {
+        $('#go_search').click();
+    }
+);
+
+
+$('#search_artist').on('click', () =>
+    {
+        $('#go_search').click();
+    }
+    );
+
+
+$('#search_titre').on('click', () =>
+    {
+        $('#go_search').click();
+    }
+);
 // Song results
 function display_song_cards2(values){
     div1 = document.createElement("div");
@@ -279,7 +298,7 @@ function create_album_card(title, date_album, name_artist, image_src, id_album){
     cardText2.textContent = date_album;
 
     let button1 = document.createElement("button");
-    button1.className = "btn btn-primary";
+    button1.className = "btn btn-primary album_info_btn";
     button1.value = id_album;
     button1.setAttribute('data-bs-target', '#modalAlbum');
     button1.setAttribute('data-bs-toggle', 'modal');
@@ -481,6 +500,23 @@ $('#search_results_div').on('click', '.artist_info_btn', () =>
 
 
 function displayModalInfoArtistName(nameArtist){
+    document.getElementById('nameArtist').innerText = nameArtist;
+}
+
+
+
+
+
+
+$('#search_results_div').on('click', '.album_info_btn', () =>
+    {
+        console.log($(event.target).closest('.album_info_btn').attr('value'));
+        let id_album = $(event.target).closest('.album_info_btn').attr('value')
+        ajaxRequest('GET', 'php/request.php/name_album/?id_album=' + id_album, displayModalInfoAlbumName);
+    }
+);
+
+function displayModalInfoAlbumName(nameArtist){
     document.getElementById('nameArtist').innerText = nameArtist;
 }
 

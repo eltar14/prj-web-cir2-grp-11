@@ -194,68 +194,111 @@
 
 <!-- Barre de recherche -->
 <form>
-    <div class="table-responsive">
-        <table class="table table-borderless">
-            <thead>
-                <tr>
-                    <th>
-                        Filtrer par :
-                        <input type="radio" class="btn-check" name="options" id="search_album" value="album" autocomplete="off" >
-                        <label class="btn btn-outline-secondary" for="search_album">Album</label>
+    <table class="table table-borderless">
+        <thead>
+        <tr>
+            <th>
+                Filtrer par :
+                <input type="radio" class="btn-check" name="options" id="search_album" value="album" autocomplete="off" >
+                <label class="btn btn-outline-secondary" for="search_album">Album</label>
 
-                        <input type="radio" class="btn-check" name="options" id="search_artist" value="artist" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="search_artist">Artiste</label>
+                <input type="radio" class="btn-check" name="options" id="search_artist" value="artist" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="search_artist">Artiste</label>
 
-                        <input type="radio" class="btn-check" name="options" id="search_titre" value="title" autocomplete="off" checked>
-                        <label class="btn btn-outline-secondary" for="search_titre">Titre</label>
+                <input type="radio" class="btn-check" name="options" id="search_titre" value="title" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary" for="search_titre">Titre</label>
 
-                        <!-- Bouton pour tester le modal de l'artiste -->
-<!--                        <input type="radio" class="btn-check" name="options" id="printArtistInfo" value="infosArtist" autocomplete="off" checked>-->
-<!--                        <label class="btn btn-outline-secondary" for="printArtistInfo" data-bs-toggle="modal" data-bs-target="#modalArtist">Infos artiste</label>-->
+                <!-- Bouton pour tester le modal de l'artiste -->
+                <!--                        <input type="radio" class="btn-check" name="options" id="printArtistInfo" value="infosArtist" autocomplete="off" checked>-->
+                <!--                        <label class="btn btn-outline-secondary" for="printArtistInfo" data-bs-toggle="modal" data-bs-target="#modalArtist">Infos artiste</label>-->
 
-                        <div class="modal fade" id="modalArtist" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Informations à propos de l'artiste</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <table class="table table-borderless">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Nom de l'artiste : </td>
-                                                <td id="nameArtist"></td>
-                                            </tr>
-                                            
-                                            <tr>
-                                                <td>Description de l'artiste : </td>
-                                                <td id="descriptionArtist"></td>
-                                            </tr>
-        
-                                            <tr>
-                                                <td>Type de l'artiste : </td>
-                                                <td id="typeArtist"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-        
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                </div>
-                              </div>
+                <!-- modal de l'artiste -->
+                <div class="modal fade" id="modalArtist" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Informations à propos de l'artiste</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                          </div>
-                    </div>
+                            <div class="modal-body">
+                                <table class="table table-borderless">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Nom de l'artiste : </td>
+                                        <td id="nameArtist"></td>
+                                    </tr>
 
-                        <!-- FIN -->
+                                    <tr>
+                                        <td>Description de l'artiste : </td>
+                                        <td id="descriptionArtist"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Type de l'artiste : </td>
+                                        <td id="typeArtist"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- modal de l'album -->
+                <div class="modal fade" id="modalAbum" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Informations à propos de l'artiste</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-borderless">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Nom de l'artiste : </td>
+                                        <td id="nameAlbum"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Description de l'artiste : </td>
+                                        <td id=""></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Type de l'artiste : </td>
+                                        <td id="styleAlbum"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- FIN -->
                     </th>
 
                     <th scope="col">

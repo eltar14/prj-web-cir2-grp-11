@@ -66,6 +66,17 @@ table.playlist tbody tr td {
     max-height: 100%;
 }
 
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    width: 3rem !important;
+    height: 3rem !important;
+    /*background-color: gray !important;*/
+}
+
+.carousel-control-next, .carousel-control-prev {
+    width: auto !important;
+}
+
 @media (min-width: 768px) {
     .card img {
         height: 11em;

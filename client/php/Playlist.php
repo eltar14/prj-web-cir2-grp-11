@@ -140,6 +140,10 @@ class Playlist
         }
     }
 
+    function isLiked(){
+        
+    }
+
 
 
 

@@ -177,11 +177,12 @@ function display_song_cards2(values){
 
 }
 
-function display_song_cards(values){
+function display_song_cards(values, r = false){
+    let id = r?'carouselSongA':'carouselSongB';
     let str = '';
     let total_length = values.length;
     let nbr = Math.ceil(total_length/5);
-    str += '<div id="carouselExampleControls" class="carousel slide carousel-dark" data-bs-ride="carousel">\n' +
+    str += '<div id="' + id + '" class="carousel slide carousel-dark" data-bs-ride="carousel">\n' +
         '        <div class="carousel-inner">';
 
     for (let i = 0; i < nbr; i++) {
@@ -209,17 +210,22 @@ function display_song_cards(values){
 
     }
     str += '</div>\n' +
-        '        <button class="carousel-control-prev btn-outline-light" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">\n' +
+        '        <button class="carousel-control-prev btn-outline-light" type="button" data-bs-target="#' + id + '" data-bs-slide="prev">\n' +
         '            <span class="carousel-control-prev-icon" aria-hidden="true"></span>\n' +
         '            <span class="visually-hidden">Previous</span>\n' +
         '        </button>\n' +
-        '        <button class="carousel-control-next btn-outline-light" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">\n' +
+        '        <button class="carousel-control-next btn-outline-light" type="button" data-bs-target="#' + id + '" data-bs-slide="next">\n' +
         '            <span class="carousel-control-next-icon" aria-hidden="true"></span>\n' +
         '            <span class="visually-hidden">Next</span>\n' +
         '        </button>\n' +
         '    </div>';
 
-    document.getElementById("search_results_div").innerHTML = str;
+    if(r){
+        return str;
+    }else{
+        document.getElementById("search_results_div").innerHTML = str;
+    }
+
 }
 
 
@@ -231,7 +237,7 @@ function display_album_cards(values){
     let str = '';
     let total_length = values.length;
     let nbr = Math.ceil(total_length/5);
-    str += '<div id="carouselExampleControls" class="carousel slide carousel-dark" data-bs-ride="carousel">\n' +
+    str += '<div id="carouselAlbums" class="carousel slide carousel-dark" data-bs-ride="carousel">\n' +
         '        <div class="carousel-inner">';
 
     for (let i = 0; i < nbr; i++) {
@@ -260,11 +266,11 @@ function display_album_cards(values){
 
     }
     str += '</div>\n' +
-        '        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">\n' +
+        '        <button class="carousel-control-prev" type="button" data-bs-target="#carouselAlbums" data-bs-slide="prev">\n' +
         '            <span class="carousel-control-prev-icon" aria-hidden="true"></span>\n' +
         '            <span class="visually-hidden">Previous</span>\n' +
         '        </button>\n' +
-        '        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">\n' +
+        '        <button class="carousel-control-next" type="button" data-bs-target="#carouselAlbums" data-bs-slide="next">\n' +
         '            <span class="carousel-control-next-icon" aria-hidden="true"></span>\n' +
         '            <span class="visually-hidden">Next</span>\n' +
         '        </button>\n' +
@@ -333,7 +339,7 @@ function display_artist_cards(values){
     let str = '';
     let total_length = values.length;
     let nbr = Math.ceil(total_length/5);
-    str += '<div id="carouselExampleControls" class="carousel slide carousel-dark" data-bs-ride="carousel">\n' +
+    str += '<div id="carouselArtists" class="carousel slide carousel-dark" data-bs-ride="carousel">\n' +
         '        <div class="carousel-inner">';
 
     for (let i = 0; i < nbr; i++) {
@@ -361,11 +367,11 @@ function display_artist_cards(values){
 
     }
     str += '</div>\n' +
-        '        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">\n' +
+        '        <button class="carousel-control-prev" type="button" data-bs-target="#carouselArtists" data-bs-slide="prev">\n' +
         '            <span class="carousel-control-prev-icon" aria-hidden="true"></span>\n' +
         '            <span class="visually-hidden">Previous</span>\n' +
         '        </button>\n' +
-        '        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">\n' +
+        '        <button class="carousel-control-next" type="button" data-bs-target="#carouselArtists" data-bs-slide="next">\n' +
         '            <span class="carousel-control-next-icon" aria-hidden="true"></span>\n' +
         '            <span class="visually-hidden">Next</span>\n' +
         '        </button>\n' +
@@ -516,8 +522,19 @@ $('#search_results_div').on('click', '.album_info_btn', () =>
     }
 );
 
-function displayModalInfoAlbumName(nameAlbum){
-    document.getElementById('nameAlbum').innerText = nameAlbum;
+function displayModalInfoAlbumName(album_infos){
+    document.getElementById('nameAlbum').innerText = album_infos['name_album'];
+    document.getElementById('dateAlbum').innerText = album_infos['date_album'];
+    document.getElementById('styleAlbum').innerText = album_infos['style_album'];
+    let id_album = album_infos['id_album'];
+    console.warn(id_album);
+    ajaxRequest('GET', 'php/request.php/songs_album/?id_album=' + id_album, aux)
+
+    function aux(songs){
+        document.getElementById('album_modal_carousel').innerHTML = display_song_cards(songs, true);
+    }
+
+
 }
 
 //$(event.target).closest('.artist_info_btn').attr('value')

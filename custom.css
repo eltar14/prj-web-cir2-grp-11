@@ -4,15 +4,17 @@
 }
 .colorPurple{
     background-color: #cf47e6;
+    color: white;
 }
 
 .colorDarkPurple {
     background-color: #85039A;
-    color:rgba(255, 255, 255, 0.8);
+    color: white;
 }
 
 .colorPink {
     background-color: #FBCCF3;
+    color: white;
 }
 
 

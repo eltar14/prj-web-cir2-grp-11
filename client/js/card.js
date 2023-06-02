@@ -35,12 +35,12 @@ function createCard(title, description, imageSrc, buttonText, buttonUrl) {
   }
 
 
-  
+
   var card = createCard(
-    "Titre de la carte",
-    "Description de la carte",
-    "chemin/vers/image.jpg",
-    "Bouton",
+    "Titre de la carte", //Titre de la carte
+    "Description de la carte", //Description de la carte
+    "chemin/vers/image.jpg", //chemin/vers/image.jpg
+    "Bouton", //Bouton
     ""
   );
   

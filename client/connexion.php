@@ -37,6 +37,7 @@
             <input type="password" name="password" class="form-control" id="exampleFormControlInput1" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" name="password">
           </div>
           <input class="btn btn-light shadow mt-3" type="submit" value="Se connecter">
+          <a href="php/newUser.php" class="textColorDarkPurple text-decoration-none">Première connexion ?</a>
         </form>
       </div>
 

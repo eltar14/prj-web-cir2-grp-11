@@ -201,7 +201,9 @@ function display_song_cards(values, r = false){
                     values[pos]['name_album'],
                     values[pos]['cover_album'],
                     'Ecouter',
-                    values[pos]['link_song'])
+                    values[pos]['link_song'],
+                    values[pos]['id_song']
+                    )
             }
 
         }
@@ -418,7 +420,7 @@ function create_artist_card(title, description, image_src, id_artist){
     div.appendChild(card);
     return div.innerHTML;
 }
-function create_song_card(title, description, image_src, button_text, button_url){
+function create_song_card(title, description, image_src, button_text, button_url, id_song){
     let card = document.createElement("div");
     card.className = "card";
 
@@ -439,9 +441,14 @@ function create_song_card(title, description, image_src, button_text, button_url
     cardText.textContent = description;
 
     let button1 = document.createElement("a");
-    button1.className = "btn btn-primary";
-    button1.textContent = button_text;
+    let button1inner = document.createElement("button");
+
+    button1inner.className = "btn btn-primary";
     button1.href = button_url;
+    button1inner.textContent = button_text;
+    button1inner.value = id_song;
+    button1.appendChild(button1inner);
+
 
     let button2 = document.createElement("button");
     button2.className = "btn";

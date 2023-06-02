@@ -227,12 +227,6 @@ function display_song_cards(values, r = false){
     }
 
 }
-
-
-
-
-
-
 function display_album_cards(values){
     let str = '';
     let total_length = values.length;

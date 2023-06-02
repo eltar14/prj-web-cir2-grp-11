@@ -158,15 +158,15 @@ CREATE TABLE public.history(
 
 /* Ajout d'utilisateurs */
 
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Sermon-Thuillier', 'Goustan', '2002-11-12', crypt('gou', gen_salt('md5')) , 'gou.st@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Paul', 'Fontaine', '2003-06-03', crypt('paul', gen_salt('md5')) , 'paul.f@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Paitier', 'Mathias', '2003-05-12', crypt('mat', gen_salt('md5')) , 'mat.p@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Goff', 'Quentin', '2003-02-28', crypt('que', gen_salt('md5')) , 'que.lg@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Boulch', 'Antoine', '2003-08-01', crypt('ant', gen_salt('md5')) , 'ant.lb@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Pan', 'Ethan', '2003-02-28', crypt('eth', gen_salt('md5')) , 'eth.lp@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Kebci', 'Paul', '2003-03-19', crypt('pau', gen_salt('md5')) , 'paul.k@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Croguennoc', 'Romain', '2003-10-03', crypt('rom', gen_salt('md5')) , 'rom.c@isen.fr');
-INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Porodo', 'Théo', '2002-04-06', crypt('the', gen_salt('md5')) , 'the.p@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Sermon-Thuillier', 'Goustan', '2002-11-12', crypt('gou', gen_salt('md5')) , 'goustan.sermon-thuiller@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Paul', 'Fontaine', '2003-06-03', crypt('paul', gen_salt('md5')) , 'paul.fontaine@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Paitier', 'Mathias', '2003-05-12', crypt('mat', gen_salt('md5')) , 'mathias.paitier@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Goff', 'Quentin', '2003-02-28', crypt('que', gen_salt('md5')) , 'que.legoff@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Boulch', 'Antoine', '2003-08-01', crypt('ant', gen_salt('md5')) , 'antoine.leboulch@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Le Pan', 'Ethan', '2003-02-28', crypt('eth', gen_salt('md5')) , 'ethan.lepan@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Kebci', 'Paul', '2003-03-19', crypt('pau', gen_salt('md5')) , 'paul.kebci@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Croguennoc', 'Romain', '2003-10-03', crypt('rom', gen_salt('md5')) , 'romain.croguennoc@isen.fr');
+INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values ('Porodo', 'Théo', '2002-04-06', crypt('the', gen_salt('md5')) , 'theo.porodo@isen.fr');
 
 /* Création des types d'artiste */
 

@@ -78,4 +78,18 @@ class Artist
     }
 
 
+    static function search($val){
+
+        $db = DB::connexion();
+        $val = strval($val);
+        $val = '%'.$val.'%';
+        $request = "SELECT id_artist, name_artist, description_artist, type_artist FROM artist JOIN type_artist ta on ta.id_type_artist = artist.id_type_artist WHERE name_artist ILIKE :val;";
+        $statement = $db->prepare($request);
+        $statement->bindParam(':val', $val);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+    }
+
+
+
 }

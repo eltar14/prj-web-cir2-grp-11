@@ -87,7 +87,10 @@ class Song
         $db = DB::connexion();
         $val = strval($val);
         $val = '%'.$val.'%';
-        $request = "SELECT id_song, title_song, duration_song, link_song, song.id_album, name_album FROM song JOIN album a on song.id_album = a.id_album WHERE title_song ILIKE :val ;";
+        $request = "SELECT id_song, title_song, duration_song, link_song, song.id_album, name_album, cover_album
+FROM song
+    JOIN album a on song.id_album = a.id_album
+WHERE title_song ILIKE :val ;";
         $statement = $db->prepare($request);
         $statement->bindParam(':val', $val);
         $statement->execute();

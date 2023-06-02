@@ -50,7 +50,7 @@ class Album
     static function getAll($idAlbum){
         $db = DB::connexion();
         $idAlbum = intval($idAlbum);
-        $request = 'SELECT name_album, date_album, cover_album, name_artist, style_album FROM album JOIN artist USING (id_artist) JOIN type_artist USING (id_style_album) WHERE id_album = :id_album;';
+        $request = 'SELECT name_album, date_album, cover_album, name_artist, style_album FROM album JOIN artist USING (id_artist) JOIN style_album USING (id_style_album) WHERE id_album = :id_album;';
         $statement = $db->prepare($request);
         $statement->bindParam(':id_album', $idAlbum);
         $statement->execute();

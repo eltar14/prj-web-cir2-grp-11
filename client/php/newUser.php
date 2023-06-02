@@ -44,7 +44,8 @@
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
               </div>
-              ';
+              ';  
+              header('Location: ../accueil.php');
               break;
             case "error":
               echo '
@@ -97,12 +98,17 @@
             </div>
           </div>
 
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 row">
             <label for="exampleFormControlInput1" class="col-sm-3 col-form-label">Date de naissance</label>
 
-            <div class="col-sm-8">
-              <input type="date" id="birthDate" name='birthDate'> 
-            </div>
+            
+              <div class="col-sm-8">
+                <div class="input-group date" id="datepicker">
+                  <input type="date" class="form-control" id="date" name="birthDate"/>
+                  <span class="input-group-append">
+                  </span>
+                </div>
+              </div>
           </div>
 
           <div class="mb-3 row">

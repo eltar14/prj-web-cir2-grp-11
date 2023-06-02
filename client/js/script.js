@@ -169,7 +169,7 @@ function display_song_cards(values){
         for (let j = 0; j < 5; j++) {
             if (((i)*5 + j+1) <= total_length){
                 let pos = 5*i + j;
-                str += create_card_2(values[pos]['title_song'],
+                str += create_song_card(values[pos]['title_song'],
                     values[pos]['name_album'],
                     values[pos]['cover_album'],
                     'Ecouter',
@@ -198,7 +198,31 @@ function display_song_cards(values){
 
 
 
-function create_card_2(title, description, image_src, button_text, button_url){
+
+
+function display_album_cards(values){
+    for (const album of values) {
+        document.getElementById("search_results_div").innerHTML = "";
+        document.getElementById("search_results_div").appendChild(createCard(
+            album['name_album'], album['name_artist'], album['cover_album'], 'Voir', ''
+            )
+        )
+    }
+}
+
+// album['name_album'], album['name_artist'], album['cover_album'], 'Voir', ''
+function display_artist_cards(values){
+    for (const artist of values) {
+        document.getElementById("search_results_div").innerHTML = "";
+        document.getElementById("search_results_div").appendChild(createCard(
+                artist['name_artist'], artist['type_artist'], '', 'Voir', ''
+            )
+        )
+    }
+}
+
+
+function create_song_card(title, description, image_src, button_text, button_url){
     let card = document.createElement("div");
     card.className = "card";
 
@@ -255,24 +279,6 @@ function create_card_2(title, description, image_src, button_text, button_url){
     return div.innerHTML;
 }
 
-function display_album_cards(values){
-    for (const album of values) {
-        document.getElementById("search_results_div").innerHTML = "";
-        document.getElementById("search_results_div").appendChild(createCard(
-            album['name_album'], album['name_artist'], album['cover_album'], 'Voir', ''
-            )
-        )
-    }
-}
-function display_artist_cards(values){
-    for (const artist of values) {
-        document.getElementById("search_results_div").innerHTML = "";
-        document.getElementById("search_results_div").appendChild(createCard(
-                artist['name_artist'], artist['type_artist'], '', 'Voir', ''
-            )
-        )
-    }
-}
 
 /*
 

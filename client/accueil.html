@@ -152,18 +152,30 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Votre nom :</td>
+                                        <td><input type="text" id="surnameUserInput"></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>Votre prénom :</td>
+                                        <td><input type="text" id="nameUserInput"></td>
+                                    </tr>
 
-                            <div>Votre prénom : 
-                                <input type="text" id="nameUserInput">
-                            </div>
-
-                            <div>Votre nom :
-                                <input type="text" id="surnameUserInput">
-                            </div>
-
-                            <div>Votre e-mail :
-                                <input type="email" id="emailUserInput">
-                            </div>
+                                    <tr>
+                                        <td>Votre e-mail :</td>
+                                        <td><input type="email" id="emailUserInput"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
                         </div>
                         <div class="modal-footer">
@@ -224,7 +236,7 @@
 
 <div class="panel">
     <div class="table-responsive">
-        <table class="table table-borderless align-middle last-listened">
+        <table class="table table-borderless align-middle" id="search_resluts_display">
             <thead>
             <tr>
                 <th scope="col"></th>
@@ -364,7 +376,7 @@
     Vos playlists
 </button>
 <div class="panel" style="margin-bottom: 6em"> <!-- Margin bottom pour que le footer ne cache pas le contenu -->
-    <table class="table table-borderless align-middle last-listened">
+    <table class="table table-borderless align-middle playlist">
         <thead>
         <tr>
             <th scope="col"></th>

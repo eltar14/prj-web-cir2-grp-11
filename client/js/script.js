@@ -212,16 +212,110 @@ function display_album_cards(values){
 
 // album['name_album'], album['name_artist'], album['cover_album'], 'Voir', ''
 function display_artist_cards(values){
-    for (const artist of values) {
-        document.getElementById("search_results_div").innerHTML = "";
-        document.getElementById("search_results_div").appendChild(createCard(
-                artist['name_artist'], artist['type_artist'], '', 'Voir', ''
-            )
-        )
+
+    let str = '';
+    let total_length = values.length;
+    let nbr = Math.ceil(total_length/5);
+    str += '<div id="carouselExampleControls" class="carousel slide carousel-dark" data-bs-ride="carousel">\n' +
+        '        <div class="carousel-inner">';
+
+    for (let i = 0; i < nbr; i++) {
+        if (i === 0){
+            str += '<div class="carousel-item active">' +
+                '<div class="cards-wrapper">';
+        } else {
+            str += '<div class="carousel-item">\n' +
+                '                <div class="cards-wrapper">';
+        }
+
+        for (let j = 0; j < 5; j++) {
+            if (((i)*5 + j+1) <= total_length){
+                let pos = 5*i + j;
+                str += create_artist_card(values[pos]['name_artist'],
+                    values[pos]['description_artist'],
+                    '',
+                    values[pos]['id_artist']
+                )
+            }
+
+        }
+        str += '</div>\n' +
+            '            </div>';
+
     }
+    str += '</div>\n' +
+        '        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">\n' +
+        '            <span class="carousel-control-prev-icon" aria-hidden="true"></span>\n' +
+        '            <span class="visually-hidden">Previous</span>\n' +
+        '        </button>\n' +
+        '        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">\n' +
+        '            <span class="carousel-control-next-icon" aria-hidden="true"></span>\n' +
+        '            <span class="visually-hidden">Next</span>\n' +
+        '        </button>\n' +
+        '    </div>';
+
+    document.getElementById("search_results_div").innerHTML = str;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
+function create_artist_card(title, description, image_src, id_artist){
+    let card = document.createElement("div");
+    card.className = "card";
 
+    let image = document.createElement("img");
+    image.className = "card-img-top";
+    image.src = image_src;
+    image.alt = title;
+
+    let cardBody = document.createElement("div");
+    cardBody.className = "card-body";
+
+    let cardTitle = document.createElement("h5");
+    cardTitle.className = "card-title";
+    cardTitle.textContent = title;
+
+    let cardText = document.createElement("p");
+    cardText.className = "card-text";
+    cardText.textContent = description;
+
+    let button1 = document.createElement("button");
+    button1.className = "btn btn-primary";
+    button1.value = id_artist;
+    button1.innerHTML = '\n' +
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">\n' +
+        '  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>\n' +
+        '  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>\n' +
+        '</svg>';
+
+
+
+    // Ajouter les éléments à la carte
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardText);
+    cardBody.appendChild(button1);
+    card.appendChild(image);
+    card.appendChild(cardBody);
+
+    let div = document.createElement("div");
+    div.appendChild(card);
+    return div.innerHTML;
+}
 function create_song_card(title, description, image_src, button_text, button_url){
     let card = document.createElement("div");
     card.className = "card";

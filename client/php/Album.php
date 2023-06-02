@@ -32,6 +32,26 @@ class Album
 
         return $statement->fetch()[0];
     }
+ 
+    static function getAll($idAlbum){
+        $db = DB::connexion();
+        $idAlbum = intval($idAlbum);
+        $request = 'SELECT name_album, date_album, cover_album, name_artist, style_album FROM album JOIN artist USING (id_artist) JOIN type_artist USING (id_style_album) WHERE id_album = :id_album;';
+        $statement = $db->prepare($request);
+        $statement->bindParam(':id_album', $idAlbum);
+        $statement->execute();
 
-    static function 
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    static function getAllTrack($idAlbum){
+        $db = DB::connexion();
+        $idAlbum = intval($idAlbum);
+        $request = 'SELECT title_song, duration_song, link_song FROM song JOIN album USING (id_album);';
+        $statement = $db->prepare($request);
+        $statement->bindParam(':id_album', $idAlbum);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

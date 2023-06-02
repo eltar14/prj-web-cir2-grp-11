@@ -23,6 +23,12 @@ table.last-listened tbody tr td {
     border-right: 2px solid black;
 }
 
+
+table.playlist tbody tr td {
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
 .textColorDarkPurple{
     color: #85039A;
 }

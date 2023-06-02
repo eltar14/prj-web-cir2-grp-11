@@ -152,18 +152,30 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            
-                            <div>Votre prénom : 
-                                <input type="text" id="nameUserInput">
-                            </div>
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Votre nom :</td>
+                                        <td><input type="text" id="surnameUserInput"></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>Votre prénom :</td>
+                                        <td><input type="text" id="nameUserInput"></td>
+                                    </tr>
 
-                            <div>Votre nom :
-                                <input type="text" id="surnameUserInput">
-                            </div>
-
-                            <div>Votre e-mail :
-                                <input type="email" id="emailUserInput">
-                            </div>
+                                    <tr>
+                                        <td>Votre e-mail :</td>
+                                        <td><input type="email" id="emailUserInput"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
                         </div>
                         <div class="modal-footer">

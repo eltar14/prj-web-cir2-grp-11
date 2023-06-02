@@ -98,7 +98,7 @@
             </div>
           </div>
 
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 row">
             <label for="exampleFormControlInput1" class="col-sm-3 col-form-label">Date de naissance</label>
 
             

@@ -32,6 +32,7 @@ function getSurname(surname){
 function createCard(title, description, imageSrc, buttonText, buttonUrl) {
     var card = document.createElement("div");
     card.className = "card";
+    card.style.width = '300';
     
     var image = document.createElement("img");
     image.className = "card-img-top";
@@ -126,18 +127,47 @@ $('#go_search').on('click', () =>
 
         switch (type){
             case 'album':
-                ajaxRequest('GET', 'php/request.php/search_album/?search=' + searched_value, console.warn);
+                ajaxRequest('GET', 'php/request.php/search_album/?search=' + searched_value, display_album_cards);
                 break;
             case 'artist':
-                ajaxRequest('GET', 'php/request.php/search_artist/?search=' + searched_value, console.warn);
+                ajaxRequest('GET', 'php/request.php/search_artist/?search=' + searched_value, display_artist_cards);
                 break;
             case 'title':
-                ajaxRequest('GET', 'php/request.php/search_song/?search=' + searched_value, console.warn);
+                ajaxRequest('GET', 'php/request.php/search_song/?search=' + searched_value, display_song_cards);
                 break;
         }
 
     }
 );
+
+function display_song_cards(values){
+    console.warn(values)
+    for (const song of values) {
+        document.getElementById("search_results_div").appendChild(createCard(
+            song['title_song'], song['name_album'], '', 'Ecouter', song['link_song']
+            )
+        )
+    }
+}
+
+function display_album_cards(values){
+    console.warn(values)
+    for (const song of values) {
+        document.getElementById("search_results_div").appendChild(createCard(
+                song['title_song'], song['name_album'], '', 'Ecouter', song['link_song']
+            )
+        )
+    }
+}
+function display_artist_cards(values){
+    console.warn(values)
+    for (const song of values) {
+        document.getElementById("search_results_div").appendChild(createCard(
+                song['title_song'], song['name_album'], '', 'Ecouter', song['link_song']
+            )
+        )
+    }
+}
 
 /*
 
@@ -151,3 +181,10 @@ ajaxRequest('GET', 'php/request.php/name_user/?id_user=' + id_user, printt);*/
 
 // let search = 'paul';
 // ajaxRequest('GET', 'php/request.php/search_album/?search=' + search, console.warn);
+
+
+document.getElementById("search_results_div").appendChild(createCard("Test1 card",
+    "Une belle description lorem ipsum dolor sit amet.",
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
+    'Voir',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg'))

@@ -115,6 +115,30 @@ $('#submitChangeUserInfo').on('click', () =>
         getEmail(document.getElementById('emailUserInput').value)
     }
 );
+
+$('#go_search').on('click', () =>
+    {
+        console.log('click search');
+        let searched_value = document.getElementById('search_value').value;
+        console.log(searched_value);
+        let type = document.querySelector('input[name="options"]:checked').value;
+        console.log(type);
+
+        switch (type){
+            case 'album':
+                ajaxRequest('GET', 'php/request.php/search_album/?search=' + searched_value, console.warn);
+                break;
+            case 'artist':
+                ajaxRequest('GET', 'php/request.php/search_artist/?search=' + searched_value, console.warn);
+                break;
+            case 'title':
+                ajaxRequest('GET', 'php/request.php/search_song/?search=' + searched_value, console.warn);
+                break;
+        }
+
+    }
+);
+
 /*
 
 function printt(val){
@@ -124,3 +148,6 @@ function printt(val){
 ajaxRequest('PUT', 'php/request.php/update_name/', printt, 'id_user='+ id_user +'&name_user=polooo');
 
 ajaxRequest('GET', 'php/request.php/name_user/?id_user=' + id_user, printt);*/
+
+// let search = 'paul';
+// ajaxRequest('GET', 'php/request.php/search_album/?search=' + search, console.warn);

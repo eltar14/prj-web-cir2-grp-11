@@ -376,7 +376,7 @@ function create_artist_card(title, description, image_src, id_artist){
     cardText.textContent = description;
 
     let button1 = document.createElement("button");
-    button1.className = "btn btn-primary";
+    button1.className = "btn btn-primary artist_info_btn";
     button1.value = id_artist;
     button1.setAttribute('data-bs-target', '#modalArtist')
     button1.setAttribute('data-bs-toggle', 'modal')
@@ -467,6 +467,24 @@ $('#printArtistInfo').on('click', () =>
         ajaxRequest('GET', 'php/request.php/artist/?id_artist=' + id_artist, rien(1));
     }
 );
+
+
+//search_results_div
+
+$('#search_results_div').on('click', '.artist_info_btn', () =>
+    {
+        console.log($(event.target).closest('.artist_info_btn').attr('value'));
+        let id_artist = $(event.target).closest('.artist_info_btn').attr('value')
+        ajaxRequest('GET', 'php/request.php/name_artist/?id_artist=' + id_artist, displayModalInfoArtistName);
+    }
+);
+
+
+function displayModalInfoArtistName(nameArtist){
+    document.getElementById('nameArtist').innerText = nameArtist;
+}
+
+//$(event.target).closest('.artist_info_btn').attr('value')
 
 /*
 

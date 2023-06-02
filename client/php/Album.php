@@ -40,7 +40,9 @@ class Album
         $db = DB::connexion();
         $val = strval($val);
         $val = '%'.$val.'%';
-        $request = "SELECT id_album, name_album, date_album, cover_album, id_artist, id_style_album FROM album WHERE name_album ILIKE :val ;";
+        $request = "SELECT id_album, name_album, date_album, cover_album, album.id_artist, id_style_album, name_artist FROM album
+                                                                                JOIN artist a on a.id_artist = album.id_artist
+WHERE name_album ILIKE :val ;";
         $statement = $db->prepare($request);
         $statement->bindParam(':val', $val);
         $statement->execute();

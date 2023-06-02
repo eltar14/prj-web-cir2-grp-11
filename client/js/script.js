@@ -280,6 +280,17 @@ function create_song_card(title, description, image_src, button_text, button_url
 }
 
 
+$('#printArtistInfo').on('click', () =>
+    {
+        console.log('click on printArtistInfo button')
+
+        let id_artist = document.getElementById('id_artist').innerText;
+        console.log(id_artist);
+
+        ajaxRequest('GET', 'php/request.php/artist/?id_artist=' + id_artist, rien(1));
+    }
+);
+
 /*
 
 function printt(val){

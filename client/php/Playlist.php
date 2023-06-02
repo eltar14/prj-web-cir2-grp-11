@@ -141,7 +141,15 @@ class Playlist
     }
 
     function isLiked(){
-        
+        $db = DB::connexion();
+
+        try{
+            $request = 'SELECT ';
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+        }
     }
 
 

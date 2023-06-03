@@ -499,14 +499,24 @@ $('#printArtistInfo').on('click', () =>
 $('#search_results_div').on('click', '.artist_info_btn', () =>
     {
         console.log($(event.target).closest('.artist_info_btn').attr('value'));
-        let id_artist = $(event.target).closest('.artist_info_btn').attr('value')
+        let id_artist = $(event.target).closest('.artist_info_btn').attr('value');
         ajaxRequest('GET', 'php/request.php/name_artist/?id_artist=' + id_artist, displayModalInfoArtistName);
+        ajaxRequest('GET', 'php/request.php/description_artist/?id_artist=' + id_artist, displayModalDescriptionArtist);
+        ajaxRequest('GET', 'php/request.php/type_artist/?id_artist=' + id_artist, displayModalTypeArtist);
     }
 );
 
 
 function displayModalInfoArtistName(nameArtist){
     document.getElementById('nameArtist').innerText = nameArtist;
+}
+
+function displayModalDescriptionArtist(descriptionArtist){
+    document.getElementById('descriptionArtist').innerText = descriptionArtist;
+}
+
+function displayModalTypeArtist(typeArtist){
+    document.getElementById('typeArtist').innerText = typeArtist;
 }
 
 

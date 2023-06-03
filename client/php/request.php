@@ -65,7 +65,7 @@ function get($db, $requestRessource)
         $id_artist = $_GET["id_artist"];
         $data = Artist::getDescription($id_artist);
     }elseif ($requestRessource == 'type_artist'){
-        $id_artist = $_GET["type_artist"];
+        $id_artist = $_GET["id_artist"];
         $data = Artist::getType($id_artist);
     }elseif ($requestRessource == 'search_artist'){
         $val = $_GET["search"];

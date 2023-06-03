@@ -52,6 +52,9 @@ function get($db, $requestRessource)
     }elseif ($requestRessource == 'email_user'){
         $id_user =  $_GET["id_user"];
         $data = User::getEmail($id_user);
+    }elseif ($requestRessource == 'fav_user'){
+        $id_user =  $_GET["id_user"];
+        $data = User::getLikedSongs($id_user);
     }
 
     //Artist
@@ -104,16 +107,28 @@ function get($db, $requestRessource)
 
 // ========= POST ==========
 function post($db, $requestRessource){
+    // User
     if($requestRessource == 'add_user'){   //add user
         if (isset($_POST["name"], $_POST["surname"], $_POST["email"], $_POST["birthdate"], $_POST["password"])) {
             User::addUser($_POST["name"], $_POST["surname"], $_POST["email"], $_POST["birthdate"], $_POST["password"]);
             header('HTTP/1.1 201 Created');
             exit();
         }
-    }else{
+    }elseif ($requestRessource == 'add_fav'){
+        if (isset($_POST["id_user"], $_POST["id_song"])){
+            User::addFav($_POST["id_user"], $_POST["id_song"]);
+            header('HTTP/1.1 201 Created');
+            exit();
+        }
+    }
+
+    else{
         header('HTTP/1.1 xxx error');
         exit();
     }
+
+
+
 }
 
 // ========= PUT ==========

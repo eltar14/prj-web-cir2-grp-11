@@ -88,6 +88,56 @@ class User
         //TODO
     }
 
+
+    static function getIdFavPlaylist($id_user){
+        try{
+            $db = DB::connexion();
+            $id_user = intval($id_user);
+
+            $request = 'SELECT p.id_playlist FROM user_playlist
+                   JOIN playlist p on p.id_playlist = user_playlist.id_playlist
+                   WHERE id_user = :id_user
+                    AND is_fav;';
+            $statement = $db->prepare($request);
+            $statement->bindParam(':id_user', $id_user);
+            $statement->execute();
+
+            return $statement->fetch()[0];
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+            return false;
+        }
+    }
+
+    static function getLikedSongs($id_user){
+        try{
+            $db = DB::connexion();
+            $id_user = intval($id_user);
+
+            $id_fav_playlist = User::getIdFavPlaylist($id_user);
+
+            $request = 'SELECT s.id_song, title_song, link_song, duration_song, date_add_song_playlist, name_album, cover_album 
+                            FROM playlist_song 
+                                JOIN playlist p on p.id_playlist = playlist_song.id_playlist 
+                                JOIN song s on playlist_song.id_song = s.id_song 
+                                JOIN album a on a.id_album = s.id_album 
+                            WHERE p.id_playlist = :id_playlist;';
+            $statement = $db->prepare($request);
+            $statement->bindParam(':id_playlist', $id_fav_playlist);
+            $statement->execute();
+
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+            return false;
+        }
+
+
+    }
     static function getAll($id_user){
         $db = DB::connexion();
         $id_user = intval($id_user);
@@ -257,5 +307,29 @@ class User
             return false;
         }
     }
+
+
+    static function addFav($id_user, $id_song){
+        try{
+            $db = DB::connexion();
+            $id_user = intval($id_user);
+            $id_song = intval($id_song);
+
+            $id_fav_playlist = User::getIdFavPlaylist($id_user);
+            $request = 'INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) VALUES (:id_playlist, :id_song, CURRENT_DATE);';
+            $statement = $db->prepare($request);
+            $statement->bindParam(':id_playlist', $id_fav_playlist);
+            $statement->bindParam(':id_song', $id_song);
+            $statement->execute();
+
+            return true;
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+            return false;
+        }
+    }
+
 
 }

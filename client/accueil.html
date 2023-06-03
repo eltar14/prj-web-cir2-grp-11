@@ -376,7 +376,7 @@
 
 
 
-<button class="accordion" style="font-size: 1.5em">
+<button class="accordion" id="accordion_likes" style="font-size: 1.5em">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-heart-fill" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
     </svg>
@@ -384,55 +384,8 @@
 </button>
 
 <div class="panel">
-    <table class="table align-middle">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Titre</th>
-            <th scope="col"></th>
-            <th scope="col">Album</th>
-            <th scope="col">Date d'ajout</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
-                </svg>
-            </th>
-        </tr>
-        </thead>
-        <tbody class="table-group-divider">
-            <tr>
-                <th scope="row">1</th>
-                <td>
-                    img album
-                </td>
-                <td>
-                    <p>Morceau</p>
-                    <p>Artiste</p>
-                </td>
-                <td>Nom album</td>
-                <td>25 avr. 2026</td>
-                <td>
-                    <button type="button" class="btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                        </svg>
-                    </button>
-                </td>
-                <td>
-                    <button type="button" class="btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </button>
-                </td>
-                <td>Durée de la musique</td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="liked_songs">
+    </div>
 </div>
 
 
@@ -524,15 +477,15 @@
     var i;
 
     // Mettre les accordions en actif de base
-    for (i = 0; i < acc.length; i++) {
-        if(acc[i].id !== 'accordion_recherche'){
+/*    for (i = 0; i < acc.length; i++) {
+        if(acc[i].id !== 'accordion_recherche' || acc[i].id !== 'accordion_likes'){
             acc[i].classList.toggle("active");
             var panel = acc[i].nextElementSibling;
             panel.style.maxHeight = panel.scrollHeight + "px";
         }
 
 
-    }
+    }*/
 
     // Afficher ou non l'accordion
     for (i = 0; i < acc.length; i++) {

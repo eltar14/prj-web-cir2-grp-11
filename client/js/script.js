@@ -490,7 +490,7 @@ $('#printArtistInfo').on('click', () =>
         let id_artist = document.getElementById('id_artist').innerText;
         console.log(id_artist);
 
-        ajaxRequest('GET', 'php/request.php/artist/?id_artist=' + id_artist, rien(1));
+        ajaxRequest('GET', 'php/request.php/artist/?id_artist=' + id_artist, rien);
     }
 );
 
@@ -538,7 +538,6 @@ function displayModalInfoAlbumName(album_infos){
     document.getElementById('dateAlbum').innerText = album_infos['date_album'];
     document.getElementById('styleAlbum').innerText = album_infos['style_album'];
     let id_album = album_infos['id_album'];
-    console.warn(id_album);
     ajaxRequest('GET', 'php/request.php/songs_album/?id_album=' + id_album, aux)
 
     function aux(songs){
@@ -547,6 +546,25 @@ function displayModalInfoAlbumName(album_infos){
 
 
 }
+
+// === display liked songs ==
+
+function display_liked_songs(){
+    ajaxRequest('GET', 'php/request.php/fav_user/?id_user=' + id_user, aux2);
+    function aux2(songs){
+        document.getElementById('liked_songs').innerHTML = display_song_cards(songs, true);
+        setTimeout(() => {
+            document.getElementById('accordion_likes').classList.add('active');
+            let panel = document.getElementById('accordion_likes').nextElementSibling;
+            panel.style.maxHeight = panel.scrollHeight + "px";
+
+        }, 100);
+    }
+}
+display_liked_songs();
+
+
+
 
 //$(event.target).closest('.artist_info_btn').attr('value')
 
@@ -570,3 +588,6 @@ document.getElementById("search_results_div").appendChild(createCard("Test1 card
     'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
     'Voir',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg'))*/
+
+
+

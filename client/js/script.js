@@ -117,8 +117,9 @@ $('#submitChangeUserInfo').on('click', () =>
     }
 );
 
-$('#go_search').on('click', () =>
+$('#go_search').on('click', (e) =>
     {
+        e.preventDefault();
         console.log('click search');
         let searched_value = document.getElementById('search_value').value;
         console.log(searched_value);
@@ -723,6 +724,15 @@ $('#create_new_playlist_button').on('click', () =>
 
     }
 );
+
+
+$('#form_search').on('keyup keypress', function(e) {
+    var keyCode = e.keyCode || e.which;
+    if (keyCode === 13) {
+        e.preventDefault();
+        return false;
+    }
+});
 //create_new_playlist_button
 
 

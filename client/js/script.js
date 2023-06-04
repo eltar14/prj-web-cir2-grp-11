@@ -169,12 +169,6 @@ $('#search_titre').on('click', () =>
     }
 );
 // Song results
-function display_song_cards2(values){
-    div1 = document.createElement("div");
-    div1.id = 'carouselExampleControls';
-}
-
-
 
 // ========== CAROUSELS ==========
 // ===== SONG =====

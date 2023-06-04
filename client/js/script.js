@@ -177,8 +177,11 @@ function display_song_cards2(values){
 
 }
 
-function display_song_cards(values, r = false){
+function display_song_cards(values, r = false, oid = false){
     let id = r?'carouselSongA':'carouselSongB';
+    if (oid){
+        id = 'carouselSongC';
+    }
     let str = '';
     let total_length = values.length;
     let nbr = Math.ceil(total_length/5);
@@ -569,7 +572,7 @@ function displayModalInfoAlbumName(album_infos){
     ajaxRequest('GET', 'php/request.php/songs_album/?id_album=' + id_album + '&id_user=' + id_user, aux)
 
     function aux(songs){
-        document.getElementById('album_modal_carousel').innerHTML = display_song_cards(songs, true);
+        document.getElementById('album_modal_carousel').innerHTML = display_song_cards(songs, true, true);
     }
 
 

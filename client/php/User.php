@@ -128,7 +128,22 @@ class User
             $statement->bindParam(':id_playlist', $id_fav_playlist);
             $statement->execute();
 
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+            $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            $arr2 = [];
+            foreach ($arr as $song){
+                $is_liked = Song::isLikedByUser($song['id_song'], $id_user);
+                $song["is_liked"] = $is_liked;
+                $arr2[] = $song;
+            }
+
+            return $arr2;
+
+
+
         }
         catch (PDOException $exception)
         {
@@ -137,6 +152,35 @@ class User
         }
 
 
+    }
+
+    static function getLikedSongsIds($id_user){
+        try{
+            $db = DB::connexion();
+            $id_user = intval($id_user);
+
+            $id_fav_playlist = User::getIdFavPlaylist($id_user);
+
+            $request = 'SELECT id_song 
+                            FROM playlist_song 
+                                JOIN playlist p on p.id_playlist = playlist_song.id_playlist 
+                            WHERE p.id_playlist = :id_playlist;';
+            $statement = $db->prepare($request);
+            $statement->bindParam(':id_playlist', $id_fav_playlist);
+            $statement->execute();
+
+            $dico = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $arr = array();
+            foreach ($dico as $val){
+                $arr[] = $val['id_song']; //array push
+            }
+            return $arr;
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+            return false;
+        }
     }
     static function getAll($id_user){
         $db = DB::connexion();

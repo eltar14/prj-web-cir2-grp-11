@@ -133,7 +133,7 @@ $('#go_search').on('click', () =>
                 ajaxRequest('GET', 'php/request.php/search_artist/?search=' + searched_value, display_artist_cards);
                 break;
             case 'title':
-                ajaxRequest('GET', 'php/request.php/search_song/?search=' + searched_value, display_song_cards);
+                ajaxRequest('GET', 'php/request.php/search_song/?search=' + searched_value +'&id_user=' + id_user, display_song_cards);
                 break;
         }
         setTimeout(() => {
@@ -202,7 +202,8 @@ function display_song_cards(values, r = false){
                     values[pos]['cover_album'],
                     'Ecouter',
                     values[pos]['link_song'],
-                    values[pos]['id_song']
+                    values[pos]['id_song'],
+                    values[pos]['is_liked']
                     )
             }
 
@@ -229,6 +230,93 @@ function display_song_cards(values, r = false){
     }
 
 }
+
+function create_song_card(title, description, image_src, button_text, button_url, id_song, is_liked){
+
+    let card = document.createElement("div");
+    card.className = "card";
+
+    let image = document.createElement("img");
+    image.className = "card-img-top";
+    image.src = image_src;
+    image.alt = title;
+
+    let cardBody = document.createElement("div");
+    cardBody.className = "card-body";
+
+    let cardTitle = document.createElement("h5");
+    cardTitle.className = "card-title";
+    cardTitle.textContent = title;
+
+    let cardText = document.createElement("p");
+    cardText.className = "card-text";
+    cardText.textContent = description;
+
+    let button1 = document.createElement("a");
+    let button1inner = document.createElement("button");
+
+    button1inner.className = "btn btn-primary";
+    button1.href = button_url;
+    button1inner.textContent = button_text;
+    button1inner.value = id_song;
+    button1.appendChild(button1inner);
+
+    let button2 = document.createElement("button");
+    button2.className = "btn like_button";
+    button2.type = "button";
+    button2.value = id_song;
+
+    if (is_liked){
+        button2.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-heart-fill" viewBox="0 0 16 16">\n' +
+            '                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>\n' +
+            '                </svg>'
+    }else {
+        button2.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-heart" viewBox="0 0 16 16">\n' +
+            '  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>\n' +
+            '</svg>';
+    }
+
+
+
+
+
+    let button3 = document.createElement("button");
+    button3.className = "btn playlist_button";
+    button3.type = "button";
+    button3.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-plus-circle" viewBox="0 0 16 16">\n' +
+        '                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>\n' +
+        '                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>\n' +
+        '                </svg>';
+
+    // Ajouter les éléments à la carte
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardText);
+    cardBody.appendChild(button1);
+    cardBody.appendChild(button2);
+    cardBody.appendChild(button3);
+
+    card.appendChild(image);
+    card.appendChild(cardBody);
+
+    let div = document.createElement("div");
+    div.appendChild(card);
+    return div.innerHTML;
+}
+
+function fill_like_heart(like_id_array, id_song){
+    if (id_song in like_id_array){
+        return '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-heart-fill" viewBox="0 0 16 16">\n' +
+            '                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>\n' +
+            '                </svg>';
+    }else{
+        return '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-heart" viewBox="0 0 16 16">\n' +
+            '  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>\n' +
+            '</svg>';
+    }
+
+}
+
+
 function display_album_cards(values){
     let str = '';
     let total_length = values.length;
@@ -420,67 +508,7 @@ function create_artist_card(title, description, image_src, id_artist){
     div.appendChild(card);
     return div.innerHTML;
 }
-function create_song_card(title, description, image_src, button_text, button_url, id_song){
-    let card = document.createElement("div");
-    card.className = "card";
 
-    let image = document.createElement("img");
-    image.className = "card-img-top";
-    image.src = image_src;
-    image.alt = title;
-
-    let cardBody = document.createElement("div");
-    cardBody.className = "card-body";
-
-    let cardTitle = document.createElement("h5");
-    cardTitle.className = "card-title";
-    cardTitle.textContent = title;
-
-    let cardText = document.createElement("p");
-    cardText.className = "card-text";
-    cardText.textContent = description;
-
-    let button1 = document.createElement("a");
-    let button1inner = document.createElement("button");
-
-    button1inner.className = "btn btn-primary";
-    button1.href = button_url;
-    button1inner.textContent = button_text;
-    button1inner.value = id_song;
-    button1.appendChild(button1inner);
-
-
-    let button2 = document.createElement("button");
-    button2.className = "btn";
-    button2.type = "button";
-    button2.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-heart-fill" viewBox="0 0 16 16">\n' +
-        '                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>\n' +
-        '                </svg>';
-
-
-
-    let button3 = document.createElement("button");
-    button3.className = "btn";
-    button3.type = "button";
-    button3.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-plus-circle" viewBox="0 0 16 16">\n' +
-        '                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>\n' +
-        '                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>\n' +
-        '                </svg>';
-
-    // Ajouter les éléments à la carte
-    cardBody.appendChild(cardTitle);
-    cardBody.appendChild(cardText);
-    cardBody.appendChild(button1);
-    cardBody.appendChild(button2);
-    cardBody.appendChild(button3);
-
-    card.appendChild(image);
-    card.appendChild(cardBody);
-
-    let div = document.createElement("div");
-    div.appendChild(card);
-    return div.innerHTML;
-}
 
 
 $('#printArtistInfo').on('click', () =>
@@ -521,7 +549,7 @@ function displayModalTypeArtist(typeArtist){
 }
 
 
-
+//TODO add like + update + crea playlist a la crea nv compte
 
 
 
@@ -538,7 +566,7 @@ function displayModalInfoAlbumName(album_infos){
     document.getElementById('dateAlbum').innerText = album_infos['date_album'];
     document.getElementById('styleAlbum').innerText = album_infos['style_album'];
     let id_album = album_infos['id_album'];
-    ajaxRequest('GET', 'php/request.php/songs_album/?id_album=' + id_album, aux)
+    ajaxRequest('GET', 'php/request.php/songs_album/?id_album=' + id_album + '&id_user=' + id_user, aux)
 
     function aux(songs){
         document.getElementById('album_modal_carousel').innerHTML = display_song_cards(songs, true);
@@ -564,6 +592,31 @@ function display_liked_songs(){
 display_liked_songs();
 
 
+$('body').on('click', '.like_button', () =>
+    {
+
+        let btn = $(event.target).closest('.like_button');
+        let id_song = btn.attr('value');
+        console.log(id_song);
+        btn.toggleClass('filled');
+        if (btn.hasClass('filled')){
+            btn.html('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-heart-fill" viewBox="0 0 16 16">\n' +
+            '                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>\n' +
+            '                </svg>');
+        }else{
+            btn.html('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-heart" viewBox="0 0 16 16">\n' +
+                '  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>\n' +
+                '</svg>');
+        }
+
+
+        ajaxRequest('POST', 'php/request.php/add_fav/', rien, 'id_user='+ id_user + '&id_song=' +  id_song);
+        setTimeout(() => {
+            display_liked_songs()
+            $('#go_search').click();
+        }, 100);
+    }
+);
 
 
 //$(event.target).closest('.artist_info_btn').attr('value')

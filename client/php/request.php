@@ -55,6 +55,9 @@ function get($db, $requestRessource)
     }elseif ($requestRessource == 'fav_user'){
         $id_user =  $_GET["id_user"];
         $data = User::getLikedSongs($id_user);
+    }elseif ($requestRessource == 'fav_id_list'){
+        $id_user =  $_GET["id_user"];
+        $data = User::getLikedSongs($id_user);
     }
 
     //Artist
@@ -84,13 +87,19 @@ function get($db, $requestRessource)
         $data = Album::getAll($val);
     }elseif ($requestRessource == 'songs_album') {
         $val = $_GET["id_album"];
-        $data = Album::getSongList($val);
+        $id_user = $_GET["id_user"];
+        $data = Album::getSongList($val, $id_user);
     }
 //getSongList
     //Song
     elseif ($requestRessource == 'search_song') {
         $val = $_GET["search"];
-        $data = Song::search($val);
+        $id_user = $_GET["id_user"];
+        $data = Song::search($val, $id_user);
+    }elseif ($requestRessource == 'is_liked_by_user_song') {
+        $id_user = $_GET["id_user"];
+        $id_song = $_GET["id_song"];
+        $data = Song::isLikedByUser($id_song, $id_user);
     }
 
 

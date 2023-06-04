@@ -172,10 +172,12 @@ $('#search_titre').on('click', () =>
 function display_song_cards2(values){
     div1 = document.createElement("div");
     div1.id = 'carouselExampleControls';
-
-
-
 }
+
+
+
+// ========== CAROUSELS ==========
+// ===== SONG =====
 
 function display_song_cards(values, r = false, oid = false){
     let id = r?'carouselSongA':'carouselSongB';
@@ -311,20 +313,7 @@ function create_song_card(title, description, image_src, button_text, button_url
     return div.innerHTML;
 }
 
-function fill_like_heart(like_id_array, id_song){
-    if (id_song in like_id_array){
-        return '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-heart-fill" viewBox="0 0 16 16">\n' +
-            '                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>\n' +
-            '                </svg>';
-    }else{
-        return '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-heart" viewBox="0 0 16 16">\n' +
-            '  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>\n' +
-            '</svg>';
-    }
-
-}
-
-
+// ===== ALBUM =====
 function display_album_cards(values){
     let str = '';
     let total_length = values.length;
@@ -423,9 +412,7 @@ function create_album_card(title, date_album, name_artist, image_src, id_album){
 
 
 
-
-
-// album['name_album'], album['name_artist'], album['cover_album'], 'Voir', ''
+// ===== ARTIST =====
 function display_artist_cards(values){
 
     let str = '';
@@ -503,8 +490,6 @@ function create_artist_card(title, description, image_src, id_artist){
         '  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>\n' +
         '</svg>';
 
-
-
     // Ajouter les éléments à la carte
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(cardText);
@@ -515,6 +500,83 @@ function create_artist_card(title, description, image_src, id_artist){
     let div = document.createElement("div");
     div.appendChild(card);
     return div.innerHTML;
+}
+
+// ===== SONG =====
+
+function display_playlists_cards(playlists){
+    let str = '';
+    let total_length = playlists.length;
+    let nbr = Math.ceil(total_length/5);
+    str += '<div id="carouselPlaylists" class="carousel slide carousel-dark" data-bs-ride="carousel">\n' +
+        '        <div class="carousel-inner">';
+
+    for (let i = 0; i < nbr; i++) {
+        if (i === 0){
+            str += '<div class="carousel-item active">' +
+                '<div class="cards-wrapper">';
+        } else {
+            str += '<div class="carousel-item">\n' +
+                '                <div class="cards-wrapper">';
+        }
+
+        for (let j = 0; j < 5; j++) {
+            if (((i)*5 + j+1) <= total_length){
+                let pos = 5*i + j;
+                str += createPlaylistCard(playlists[pos]['name_playlist'],
+                    playlists[pos]['date_playlist'],
+                    playlists[pos]['cover_playlist']
+                )
+            }
+
+        }
+        str += '</div>\n' +
+            '            </div>';
+
+    }
+    str += '</div>\n' +
+        '        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPlaylists" data-bs-slide="prev">\n' +
+        '            <span class="carousel-control-prev-icon" aria-hidden="true"></span>\n' +
+        '            <span class="visually-hidden">Previous</span>\n' +
+        '        </button>\n' +
+        '        <button class="carousel-control-next" type="button" data-bs-target="#carouselPlaylists" data-bs-slide="next">\n' +
+        '            <span class="carousel-control-next-icon" aria-hidden="true"></span>\n' +
+        '            <span class="visually-hidden">Next</span>\n' +
+        '        </button>\n' +
+        '    </div>';
+
+    document.getElementById("playlists").innerHTML = str; //TODO ===================
+}
+function createPlaylistCard(title, date, cover_url){
+    let card = document.createElement("div");
+    card.className = "card";
+
+    let image = document.createElement("img");
+    image.className = "card-img-top";
+    image.src = cover_url;
+    image.alt = title;
+
+    let cardBody = document.createElement("div");
+    cardBody.className = "card-body";
+
+    let cardTitle = document.createElement("h5");
+    cardTitle.className = "card-title";
+    cardTitle.textContent = title;
+
+    let cardText = document.createElement("p");
+    cardText.className = "card-text";
+    cardText.textContent = date;
+
+
+    // Ajouter les éléments à la carte
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardText);
+    card.appendChild(image);
+    card.appendChild(cardBody);
+
+    let div = document.createElement("div");
+    div.appendChild(card);
+    return div.innerHTML;    
 }
 
 
@@ -581,7 +643,7 @@ function displayModalInfoAlbumName(album_infos){
     }
 }
 
-// === display liked songs ==
+// === display liked songs at page loading ===
 
 function display_liked_songs(){
     ajaxRequest('GET', 'php/request.php/fav_user/?id_user=' + id_user, aux2);
@@ -597,13 +659,24 @@ function display_liked_songs(){
 }
 display_liked_songs();
 
-
+// === display users playlists at page loading ===
 function display_playlists(){
+    ajaxRequest('GET', 'php/request.php/playlists_user/?id_user=' + id_user, aux3);
 
 }
+display_playlists();
 
 function aux3(playlists){
+
+    //console.warn('playlists');
+    //console.warn(playlists);
+    document.getElementById('playlists').innerHTML = playlists;
+
+    display_playlists_cards(playlists);
     setTimeout(() => {
+        document.getElementById('accordion_playlists').classList.add('active');
+        let panel = document.getElementById('accordion_playlists').nextElementSibling;
+        panel.style.maxHeight = panel.scrollHeight + "px";
 
     }, 100);
 }

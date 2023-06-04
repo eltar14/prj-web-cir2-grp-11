@@ -80,7 +80,7 @@ class User
     }
 
     /**
-     * returns the IDs of the playlists from the specified user
+     * returns the IDs and more of the playlists from the specified user
      * @param $id_user
      * @return array
      */
@@ -88,7 +88,7 @@ class User
         try{
             $db = DB::connexion();
             $id_user = intval($id_user);
-            $request = 'SELECT * FROM user_playlist
+            $request = 'SELECT id_user, p.id_playlist, name_playlist, cover_playlist, is_fav, date_playlist FROM user_playlist
                         JOIN playlist p on p.id_playlist = user_playlist.id_playlist
                         WHERE id_user=:id_user;';
             $statement = $db->prepare($request);

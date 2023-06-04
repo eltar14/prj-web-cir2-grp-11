@@ -58,6 +58,9 @@ function get($db, $requestRessource)
     }elseif ($requestRessource == 'fav_id_list'){
         $id_user =  $_GET["id_user"];
         $data = User::getLikedSongs($id_user);
+    }elseif ($requestRessource == 'playlists_user'){
+        $id_user =  $_GET["id_user"];
+        $data = User::getPlaylistsList($id_user);
     }
 
     //Artist

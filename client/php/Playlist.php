@@ -38,6 +38,8 @@ class Playlist
         }
     }
 
+
+
     static function updateName($id_playlist, $new_name){
         try {
             $db = DB::connexion();
@@ -117,34 +119,6 @@ class Playlist
             $statement->execute();
             $result = $statement->fetch();
             return $result['cover_playlist'];
-        }
-        catch (PDOException $exception)
-        {
-            error_log('Request error: '.$exception->getMessage());
-        }
-    }
-
-    static function getAllPlaylists(){
-        $db = DB::connexion();
-
-        try {
-            $request = 'SELECT * FROM playlist;';
-            $statement = $db->prepare($request);
-            $statement->execute();
-            $result = $statement->fetchAll();
-            return $result;
-        }
-        catch (PDOException $exception)
-        {
-            error_log('Request error: '.$exception->getMessage());
-        }
-    }
-
-    function isLiked(){
-        $db = DB::connexion();
-
-        try{
-            $request = 'SELECT ';
         }
         catch (PDOException $exception)
         {

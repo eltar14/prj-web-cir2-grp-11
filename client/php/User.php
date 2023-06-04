@@ -85,7 +85,22 @@ class User
      * @return array
      */
     static function getPlaylistsList($id_user){
-        //TODO
+        try{
+            $db = DB::connexion();
+            $id_user = intval($id_user);
+            $request = 'SELECT * FROM user_playlist
+                        JOIN playlist p on p.id_playlist = user_playlist.id_playlist
+                        WHERE id_user=:id_user;';
+            $statement = $db->prepare($request);
+            $statement->bindParam(':id_user', $id_user);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+            return false;
+        }
     }
 
 

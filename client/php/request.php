@@ -130,6 +130,15 @@ function post($db, $requestRessource){
             exit();
         }
     }
+    // Playlist
+    elseif ($requestRessource == 'add_playlist'){
+        if (isset($_POST["id_user"], $_POST["name_playlist"], $_POST["new_playlist_cover_url"])){
+            Playlist::addPlaylist($_POST["id_user"], $_POST["name_playlist"], $_POST["new_playlist_cover_url"]);
+            header('HTTP/1.1 201 Created');
+            exit();
+        }
+    }
+
 
     else{
         header('HTTP/1.1 xxx error');

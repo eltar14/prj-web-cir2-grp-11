@@ -288,6 +288,9 @@ function create_song_card(title, description, image_src, button_text, button_url
     let button3 = document.createElement("button");
     button3.className = "btn playlist_button";
     button3.type = "button";
+    button3.value = id_song;
+    button3.setAttribute('data-bs-target', '#modalPlaylist')
+    button3.setAttribute('data-bs-toggle', 'modal')
     button3.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-plus-circle" viewBox="0 0 16 16">\n' +
         '                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>\n' +
         '                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>\n' +
@@ -595,6 +598,17 @@ function display_liked_songs(){
 display_liked_songs();
 
 
+function display_playlists(){
+
+}
+
+function aux3(playlists){
+    setTimeout(() => {
+
+    }, 100);
+}
+
+
 $('body').on('click', '.like_button', () =>
     {
 
@@ -620,6 +634,29 @@ $('body').on('click', '.like_button', () =>
         }, 100);
     }
 );
+
+$('body').on('click', '.playlist_button', () =>
+{
+    let btn = $(event.target).closest('.playlist_button');
+    let id_song = btn.attr('value');
+    console.log(id_song);
+
+    $('#create_new_playlist_button').val(id_song);
+
+}
+);
+
+
+
+$('#create_new_playlist_button').on('click', () =>
+    {
+        let playlist_name = $('#new_playlist_name').val();
+        let cover_url = $('#new_playlist_cover_url').val();
+        ajaxRequest('POST', 'php/request.php/add_playlist/', rien, 'id_user='+ id_user + '&name_playlist=' +  playlist_name + '&new_playlist_cover_url=' +cover_url);
+
+    }
+);
+//create_new_playlist_button
 
 
 //$(event.target).closest('.artist_info_btn').attr('value')

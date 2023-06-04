@@ -212,96 +212,7 @@
                 <!--                        <input type="radio" class="btn-check" name="options" id="printArtistInfo" value="infosArtist" autocomplete="off" checked>-->
                 <!--                        <label class="btn btn-outline-secondary" for="printArtistInfo" data-bs-toggle="modal" data-bs-target="#modalArtist">Infos artiste</label>-->
 
-                <!-- modal de l'artiste -->
-                <div class="modal fade" id="modalArtist" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Informations à propos de l'artiste</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <table class="table table-borderless">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col"></th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Nom de l'artiste : </td>
-                                        <td id="nameArtist"></td>
-                                    </tr>
 
-                                    <tr>
-                                        <td>Description de l'artiste : </td>
-                                        <td id="descriptionArtist"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Type de l'artiste : </td>
-                                        <td id="typeArtist"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <!-- modal de l'album -->
-                <div class="modal fade" id="modalAlbum" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Informations à propos de l'album</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <table class="table table-borderless">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col"></th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Nom de l'album : </td>
-                                        <td id="nameAlbum"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Date de sortie : </td>
-                                        <td id="dateAlbum"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Style de l'album : </td>
-                                        <td id="styleAlbum"></td>
-                                    </tr>
-
-
-                                    </tbody>
-                                </table>
-
-                                <div id="album_modal_carousel" style="height: 500px"></div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- FIN -->
                     </th>
 
                     <th scope="col">
@@ -396,36 +307,150 @@
     Vos playlists
 </button>
 <div class="panel" style="margin-bottom: 6em"> <!-- Margin bottom pour que le footer ne cache pas le contenu -->
-    <table class="table table-borderless align-middle playlist">
-        <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody> <!-- faire les input des 10 derniers morceaux écoutés -->
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
+    <div id="playlists">
+
+    </div>
+</div>
+
+<!-- MODAL ======================================================================================================= -->
+
+
+<!-- modal de l'artiste -->
+<div class="modal fade" id="modalArtist" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Informations à propos de l'artiste</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless">
+                    <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Nom de l'artiste : </td>
+                        <td id="nameArtist"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Description de l'artiste : </td>
+                        <td id="descriptionArtist"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Type de l'artiste : </td>
+                        <td id="typeArtist"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
+
+
+<!-- modal de l'album -->
+<div class="modal fade" id="modalAlbum" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Informations à propos de l'album</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless">
+                    <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Nom de l'album : </td>
+                        <td id="nameAlbum"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Date de sortie : </td>
+                        <td id="dateAlbum"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Style de l'album : </td>
+                        <td id="styleAlbum"></td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+
+                <div id="album_modal_carousel" style="height: 500px"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal playlist -->
+<div class="modal fade" id="modalPlaylist" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Gestion playlist</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Contenu modal de gestion des playlists-->
+                <div style="display: flex; justify-content: space-between">
+                    <div>
+                        <h5>div gauche</h5>
+
+                    </div>
+                    <div>
+                        <h5>Nouvelle playlist</h5>
+                        <form>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="new_playlist_title_desc">Nom</span>
+                                <input id="new_playlist_name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="new_playlist_title_desc" required>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="new_playlist_cover_url_desc">Url image cover</span>
+                                <input id="new_playlist_cover_url" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="new_playlist_cover_url_desc" required>
+                            </div>
+
+                            <button type="button" id="create_new_playlist_button" class="btn btn-primary">Créer la playlist</button>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- FIN -->
+
+
+<!-- =============== -->
 
 
 

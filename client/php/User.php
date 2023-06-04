@@ -141,9 +141,6 @@ class User
             }
 
             return $arr2;
-
-
-
         }
         catch (PDOException $exception)
         {
@@ -359,18 +356,50 @@ class User
             $id_user = intval($id_user);
             $id_song = intval($id_song);
 
+
+
+            $liked_arr = User::getLikedSongsIds($id_user);
+            if (!in_array($id_song, $liked_arr)){
+                $id_fav_playlist = User::getIdFavPlaylist($id_user);
+                $request = 'INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) VALUES (:id_playlist, :id_song, CURRENT_DATE);';
+                $statement = $db->prepare($request);
+                $statement->bindParam(':id_playlist', $id_fav_playlist);
+                $statement->bindParam(':id_song', $id_song);
+                $statement->execute();
+
+                return true;
+            }else{
+                return User::deleteFav($id_user, $id_song);
+            }
+
+
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+            return false;
+        }
+    }
+
+    static function deleteFav($id_user, $id_song)
+    {
+        try {
+            $db = DB::connexion();
+            $id_user = intval($id_user);
+            $id_song = intval($id_song);
+
+
             $id_fav_playlist = User::getIdFavPlaylist($id_user);
-            $request = 'INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) VALUES (:id_playlist, :id_song, CURRENT_DATE);';
+
+            $request = 'DELETE FROM playlist_song WHERE id_song=:id_song AND id_playlist=:id_playlist;';
             $statement = $db->prepare($request);
             $statement->bindParam(':id_playlist', $id_fav_playlist);
             $statement->bindParam(':id_song', $id_song);
             $statement->execute();
 
             return true;
-        }
-        catch (PDOException $exception)
-        {
-            error_log('Request error: '.$exception->getMessage());
+        } catch (PDOException $exception) {
+            error_log('Request error: ' . $exception->getMessage());
             return false;
         }
     }

@@ -574,8 +574,6 @@ function displayModalInfoAlbumName(album_infos){
     function aux(songs){
         document.getElementById('album_modal_carousel').innerHTML = display_song_cards(songs, true, true);
     }
-
-
 }
 
 // === display liked songs ==

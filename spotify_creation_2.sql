@@ -283,62 +283,41 @@ INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tous l
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('L Aziza','261','https://www.youtube.com/watch?v=lHjJlSq3BhA',16);
 
 /* Création de playlists */
-/* Titres likes */
-INSERT INTO playlist(name_playlist, cover_playlist, is_fav) values ('Titres likés', 'https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg', true);
-INSERT INTO playlist(name_playlist, cover_playlist, is_fav) values ('Titres likés', 'https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg', true);
-INSERT INTO playlist(name_playlist, cover_playlist, is_fav) values ('Titres likés', 'https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg', true);
-INSERT INTO playlist(name_playlist, cover_playlist, is_fav) values ('Titres likés', 'https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg', true);
-INSERT INTO playlist(name_playlist, cover_playlist, is_fav) values ('Titres likés', 'https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg', true);
-INSERT INTO playlist(name_playlist, cover_playlist, is_fav) values ('Titres likés', 'https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg', true);
-INSERT INTO playlist(name_playlist, cover_playlist, is_fav) values ('Titres likés', 'https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg', true);
-INSERT INTO playlist(name_playlist, cover_playlist, is_fav) values ('Titres likés', 'https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg', true);
-INSERT INTO playlist(name_playlist, cover_playlist, is_fav) values ('Titres likés', 'https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg', true);
 
-
-/* Autres playlists */
 INSERT INTO playlist(name_playlist, cover_playlist) values ('La liste qui joue', 'https://wallpapercave.com/wp/wp11216531.jpg');
 INSERT INTO playlist(name_playlist, cover_playlist) values ('Playlist ROOOCK !!!', 'https://pro2-bar-s3-cdn-cf4.myportfolio.com/dbea3cc43adf643e2aac2f1cbb9ed2f0/f14d6fc4-2cea-41a2-9724-a7e5dff027e8_rw_1200.jpg?h=60e8fb45f75e1a2612c53a4f2174997c');
 INSERT INTO playlist(name_playlist, cover_playlist) values ('Playlist de Quentin', 'https://mir-s3-cdn-cf.behance.net/project_modules/hd/602f4731226337.5646928c3633f.jpg');
 
 /* Ajout de musiques dans la playlist via playlist_song */
 
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (10, 1, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (10, 2, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (10, 4, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (10, 6, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (10, 9, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (10, 10, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (10, 12, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (10, 13, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (10, 14, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (10, 15, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (10, 18, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (10, 19, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (10, 23, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 1, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 2, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 4, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 6, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 9, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 10, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 12, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 13, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 14, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 15, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 18, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 19, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (1, 23, '2023-02-06');
 
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (11, 7, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (11, 8, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (11, 22, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (11, 24, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (11, 25, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (2, 7, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (2, 8, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (2, 22, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (2, 24, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (2, 25, '2023-02-06');
 
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (12, 9, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (12, 10, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (12, 11, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (12, 12, '2023-02-06');
-INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (12, 13, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (3, 9, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (3, 10, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (3, 11, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (3, 12, '2023-02-06');
+INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) values (3, 13, '2023-02-06');
 
 /* On lie les playlists aux utilisateurs via user_playlist */
-INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (1, 1, '2023-02-03');
-INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (2, 2, '2023-02-03');
-INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (3, 3, '2023-02-03');
-INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (4, 4, '2023-02-03');
-INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (5, 5, '2023-02-03');
-INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (6, 6, '2023-02-03');
-INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (7, 7, '2023-02-03');
-INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (8, 8, '2023-02-03');
-INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (9, 9, '2023-02-03');
 
-INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (1, 10, '2023-02-06');
-INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (7, 11, '2023-02-06');
-INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (4, 12, '2023-02-06');
+INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (1, 1, '2023-02-06');
+INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (7, 2, '2023-02-06');
+INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (4, 3, '2023-02-06');

@@ -62,6 +62,10 @@ function get($db, $requestRessource)
         $id_user =  $_GET["id_user"];
         $data = User::getPlaylistsList($id_user);
     }
+    elseif ($requestRessource == 'history_user'){
+        $id_user =  $_GET["id_user"];
+        $data = User::getHistory($id_user);
+    }
 
     //Artist
     elseif ($requestRessource == 'all_artist'){
@@ -146,7 +150,7 @@ function post($db, $requestRessource){
     }
     elseif ($requestRessource == 'add_to_history'){
         if (isset($_POST["id_user"], $_POST["id_song"])){
-            User::addToHistory($_POST["id_user"], $_POST["id_song"]);
+            User::addToHistory($_POST["id_user"], $_POST["id_song"]);   
             header('HTTP/1.1 201 Created');
             exit();
         }

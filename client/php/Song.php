@@ -155,33 +155,7 @@ class Song
 
     }
 
-    static function getHistory($id_user){
-        try{
-            $db = DB::connexion();
-
-            $request = 'SELECT id_song, title_song, duration_song, link_song, song.id_album, name_album, cover_album
-                        FROM history
-                            JOIN song on history.id_song = song.id_song
-                            JOIN album a on song.id_album = a.id_album
-                        WHERE id_user = :id_user
-                        ORDER BY date_history DESC
-                        LIMIT 10;';
-
-            $statement = $db->prepare($request);
-
-            $statement->bindParam(':id_user', $id_user);
-
-            $statement->execute();
-
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
-        }
-        catch (PDOException $exception)
-        {
-            error_log('Request error: '.$exception->getMessage());
-            return false;
-        }
-        
-    }
+    
     
 
 

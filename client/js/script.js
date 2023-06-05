@@ -580,10 +580,8 @@ function createPlaylistCard(title, date, cover_url){
 // ===== HISTORY =====
 
 function display_history_cards(values, r = false, oid = false){
-    let id = r?'carouselSongA':'carouselSongB';
-    if (oid){
-        id = 'carouselSongC';
-    }
+    
+    let id = 'carouselHistory';
     let str = '';
     let total_length = values.length;
     let nbr = Math.ceil(total_length/5);
@@ -855,11 +853,30 @@ $('body').on('click', '.go_listen', () =>
     console.log($(event.target).closest('.go_listen').attr('value'));
     let id_song = $(event.target).closest('.go_listen').attr('value');
     
-    ajaxRequest('GET', 'php/request.php/add_to_history/?id_song=' + id_song +'&?id_user=' + id_user, display_history_cards());
-
+    ajaxRequest('POST', 'php/request.php/add_to_history/', rien, 'id_user='+ id_user + '&id_song=' +  id_song);
 }
 );
 
+function display_history(){
+    ajaxRequest('GET', 'php/request.php/history_user/?id_user=' + id_user, aux4);
+
+}
+display_history();
+
+function aux4(history){
+
+    //console.warn('playlists');
+    console.warn(history);
+    document.getElementById('history').innerHTML = history;
+
+    display_history_cards(history);
+    setTimeout(() => {
+        document.getElementById('accordion_history').classList.add('active');
+        let panel = document.getElementById('accordion_history').nextElementSibling;
+        panel.style.maxHeight = panel.scrollHeight + "px";
+
+    }, 100);
+}
 
 
 

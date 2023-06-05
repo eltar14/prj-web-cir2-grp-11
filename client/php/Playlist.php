@@ -59,12 +59,40 @@ class Playlist
             return false;
         }
     }
+    static function deleteSongFromPlaylist($id_playlist, $id_song){
+        $db = DB::connexion();
+        $id_song = intval($id_song);
+        $id_playlist = intval($id_playlist);
 
+        try {
+            $request = 'DELETE FROM playlist_song WHERE id_playlist=:id_playlist AND id_song = :id_song;';
+            $statement = $db->prepare($request);
+            $statement->bindParam(':id_song', $id_song);
+            $statement->bindParam(':id_playlist', $id_playlist);
+            $statement->execute();
+
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+        }
+    }
 
     static function delete($id_playlist){
         $db = DB::connexion();
         $id_playlist = intval($id_playlist);
 
+        try {
+            $request = 'DELETE FROM playlist_song WHERE id_playlist = :id_playlist;';
+            $statement = $db->prepare($request);
+            $statement->bindParam(':id_playlist', $id_playlist);
+            $statement->execute();
+
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+        }
         try {
             $request = 'DELETE FROM user_playlist WHERE id_playlist = :id_playlist;';
             $statement = $db->prepare($request);
@@ -105,6 +133,31 @@ class Playlist
         catch (PDOException $exception)
         {
             error_log('Request error: '.$exception->getMessage());
+            return false;
+        }
+    }
+
+    static function getContent($id_playlist){
+        try {
+            $db = DB::connexion();
+            $id_playlist = intval($id_playlist);
+
+            $request = 'SELECT title_song, name_album, cover_album, link_song, s.id_song as id_song, ps.id_playlist FROM playlist
+                        JOIN playlist_song ps on playlist.id_playlist = ps.id_playlist
+                        JOIN song s on ps.id_song = s.id_song
+                        JOIN album a on a.id_album = s.id_album
+                        WHERE playlist.id_playlist = :id_playlist;';
+
+            $statement = $db->prepare($request);
+            $statement->bindParam(':id_playlist', $id_playlist);
+            $statement->execute();
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+
+        }catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+            return false;
         }
     }
 

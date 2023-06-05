@@ -37,7 +37,7 @@ switch ($requestMethod){
     case "PUT":
         put($db, $requestRessource);
     case "DELETE":
-        delete($db, $requestRessource);
+        delete($db, $requestRessource, $request);
 }
 
 // ========= GET ==========
@@ -94,7 +94,7 @@ function get($db, $requestRessource)
         $id_user = $_GET["id_user"];
         $data = Album::getSongList($val, $id_user);
     }
-//getSongList
+
     //Song
     elseif ($requestRessource == 'search_song') {
         $val = $_GET["search"];
@@ -106,6 +106,11 @@ function get($db, $requestRessource)
         $data = Song::isLikedByUser($id_song, $id_user);
     }
 
+    //Playlist
+    elseif ($requestRessource == 'get_playlist_content') {
+        $id_playlist = intval($_GET["id_playlist"]);
+        $data = Playlist::getContent($id_playlist);
+    }
 
 
 
@@ -190,12 +195,18 @@ function put($db, $requestRessource){ //modif user
 }
 
 
-function delete($db, $requestRessource){ //delete tweet
+function delete($db, $requestRessource, $request){ //delete tweet
     //dbDeleteTweet($db, array_shift($request), $_GET["login"]);
     if ($requestRessource == 'delete_playlist'){
         if (isset($_GET["id_playlist"])){
             Playlist::delete($_GET["id_playlist"]);
         }
+    }elseif ($requestRessource == 'delete_song_from_playlist'){
+        $id_playlist = array_shift($request);
+        $id_song = array_shift($request);
+
+        Playlist::deleteSongFromPlaylist($id_playlist, $id_song);
+        echo json_encode($id_playlist, $id_song);
     }
 
     header('HTTP/1.1 200 OK');

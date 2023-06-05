@@ -5,6 +5,7 @@ require_once ('User.php');
 require_once ('Artist.php');
 require_once ('Song.php');
 require_once ('Album.php');
+require_once ('Playlist.php');
 
 // Connection to the database
 $db = DB::connexion();

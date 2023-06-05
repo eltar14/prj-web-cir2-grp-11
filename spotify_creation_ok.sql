@@ -234,7 +234,7 @@ INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('I Am', '1979-06-09', 'https://upload.wikimedia.org/wikipedia/en/f/fb/IAmAlbumCover.jpg', 12, 12); /* 13 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('In the Court of the Crimson King', '1969-10-10', 'https://m.media-amazon.com/images/I/71FM257lYjL._UF894,1000_QL80_.jpg', 13, 1); /* 14 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Polnarévolution', '1972-11-02', 'https://m.media-amazon.com/images/I/81+eUSFAbwL._UF894,1000_QL80_.jpg', 14, 1); /* 15 */
-INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Sauver l amour', '1985-10-14', 'https://p5.storage.canalblog.com/58/32/636073/125759783_o.jpg', 15, 3); /* 16 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Sauver l amour', '1985-10-14', 'https://p5.storage.canalblog.com/58/32/636073/125759783_o.jpg', 15, 19); /* 16 */
 
 /* Création des chansons */
 

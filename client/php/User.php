@@ -344,26 +344,6 @@ class User
         }
     }
 
-    static function addSongToUserHistory($id_user, $id_song){
-        try {
-            $db = DB::connexion();
-            $id_user = intval($id_user);
-            $id_song = intval($id_song);
-            $request = 'INSERT INTO history(id_song, id_user) VALUES (:id_song, :id_user);';
-            $statement = $db->prepare($request);
-            $statement->bindParam(':id_song', $id_song);
-            $statement->bindParam(':id_user', $id_user);
-            $statement->execute();
-
-            return true;
-        }
-        catch (PDOException $exception)
-        {
-            error_log('Request error: '.$exception->getMessage());
-            return false;
-        }
-    }
-
 
     static function addFav($id_user, $id_song){
         try{

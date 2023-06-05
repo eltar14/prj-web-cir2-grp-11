@@ -92,6 +92,9 @@ function get($db, $requestRessource)
         $val = $_GET["id_album"];
         $id_user = $_GET["id_user"];
         $data = Album::getSongList($val, $id_user);
+    }elseif ($requestRessource == 'get_all_album') {
+        $id_artist = $_GET["id_artist"];
+        $data = Album::getAllAlbum($id_artist);
     }
 //getSongList
     //Song

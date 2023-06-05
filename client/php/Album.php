@@ -59,6 +59,18 @@ WHERE name_album ILIKE :val ;";
 
         return $statement->fetchAll(PDO::FETCH_ASSOC)[0];
     }
+
+    static function getAllAlbum($idArtist){
+        $db = DB::connexion();
+        $idArtist = intval($idArtist);
+        $request = 'SELECT id_album, name_album, date_album, cover_album, name_artist, style_album FROM album JOIN artist USING (id_artist) JOIN style_album USING (id_style_album) WHERE id_artist = :id_artist;';
+        $statement = $db->prepare($request);
+        $statement->bindParam(':id_artist', $idArtist);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     static function getSongList($id_album, $id_user){
         $db = DB::connexion();
         $id_album = intval($id_album);

@@ -177,6 +177,7 @@
                                 </tbody>
                             </table>
 
+
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -239,10 +240,15 @@
 </button>
 
 <div class="panel">
-    <div id="search_results_div">
-
+    <div class="row">
+      <div class="col">
+        <div id="search_results_div">
+            
+        </div>
+      </div>
     </div>
 </div>
+
 
 
 <!--Menu accordion où l'on voir les différentes informations -->
@@ -268,9 +274,14 @@
     Vos titres likés
 </button>
 
-<div class="panel">
-    <div id="liked_songs">
+<div class="panel" style = 'margin-bottom: 6em;'>
+    <div class="row">
+      <div class="col">
+            <div id="liked_songs">
 
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -281,9 +292,13 @@
     </svg>
     Vos playlists
 </button>
-<div class="panel" style="margin-bottom: 6em"> <!-- Margin bottom pour que le footer ne cache pas le contenu -->
-    <div id="playlists">
+<div class="container" style ='margin-bottom: 6em;'>
+    <div class="row">
+      <div class="col"> <!-- Margin bottom pour que le footer ne cache pas le contenu -->
+        <div id="playlists">
 
+        </div>
+      </div>
     </div>
 </div>
 
@@ -323,7 +338,8 @@
                     </tr>
                     </tbody>
                 </table>
-
+                <div id="all_album_modal_carousel" style="height: 500px"></div>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -370,7 +386,7 @@
 
                     </tbody>
                 </table>
-
+                
                 <div id="album_modal_carousel" style="height: 500px"></div>
             </div>
             <div class="modal-footer">

@@ -497,7 +497,7 @@ function create_artist_card(title, description, image_src, id_artist){
     return div.innerHTML;
 }
 
-// ===== SONG =====
+// ===== PLAYLIST =====
 
 function display_playlists_cards(playlists){
     let str = '';
@@ -520,7 +520,8 @@ function display_playlists_cards(playlists){
                 let pos = 5*i + j;
                 str += createPlaylistCard(playlists[pos]['name_playlist'],
                     playlists[pos]['date_playlist'],
-                    playlists[pos]['cover_playlist']
+                    playlists[pos]['cover_playlist'],
+                    playlists[pos]['id_playlist']
                 )
             }
 
@@ -542,7 +543,7 @@ function display_playlists_cards(playlists){
 
     document.getElementById("playlists").innerHTML = str; //TODO ===================
 }
-function createPlaylistCard(title, date, cover_url){
+function createPlaylistCard(title, date, cover_url, id_playlist){
     let card = document.createElement("div");
     card.className = "card";
 
@@ -562,10 +563,36 @@ function createPlaylistCard(title, date, cover_url){
     cardText.className = "card-text";
     cardText.textContent = date;
 
+    let btn_container = document.createElement('div');
+    btn_container.style.display = "flex";
+    btn_container.style.justifyContent = "space-between";
+
+
+    let button_more = document.createElement("button");
+    button_more.type = 'button';
+    button_more.className = 'btn btn-primary more_playlist_button';
+    button_more.value = id_playlist;
+    button_more.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">\n' +
+        '  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>\n' +
+        '  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>\n' +
+        '</svg>';
+
+    let button_delete = document.createElement("button");
+    button_delete.type = 'button';
+    button_delete.className = 'btn btn-danger btn-sm delete_playlist_button';
+    button_delete.value = id_playlist;
+    button_delete.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">\n' +
+        '  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>\n' +
+        '  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>\n' +
+        '</svg>';
+
 
     // Ajouter les éléments à la carte
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(cardText);
+    btn_container.appendChild(button_more);
+    btn_container.appendChild(button_delete);
+    cardBody.appendChild(btn_container);
     card.appendChild(image);
     card.appendChild(cardBody);
 
@@ -573,7 +600,6 @@ function createPlaylistCard(title, date, cover_url){
     div.appendChild(card);
     return div.innerHTML;    
 }
-
 
 
 $('#printArtistInfo').on('click', () =>
@@ -710,18 +736,97 @@ $('body').on('click', '.playlist_button', () =>
     console.log(id_song);
 
     $('#create_new_playlist_button').val(id_song);
+    ajaxRequest('GET', 'php/request.php/playlists_user/?id_user=' + id_user, display_playlists_in_modal);
+}
+);
+
+// onclick bouton infos playlist
+$('body').on('click', '.more_playlist_button', () =>
+{
+    let btn = $(event.target).closest('.more_playlist_button');
+    let id_playlist = btn.attr('value');
+    console.log('info playlist id : ',id_playlist);
+
+}
+);
+
+// onclick bouton delete playlist
+$('body').on('click', '.delete_playlist_button', () =>
+{
+    let btn = $(event.target).closest('.delete_playlist_button');
+    let id_playlist = btn.attr('value');
+    console.log('delete playlist id : ',id_playlist);
 
 }
 );
 
 
 
+
+
+function display_playlists_in_modal(playlists){
+    let card_div = document.createElement("div");
+    card_div.style.width = '18rem';
+    card_div.className = 'card';
+
+
+
+
+    let ul = document.createElement("ul");
+    ul.className = "list-group list-group-flush";
+
+    for (const playlist of playlists) {                     //TODO
+        let li = document.createElement('li');
+        li.className = "list-group-item";
+
+
+        let title = document.createElement("h6");
+        title.innerText = playlist['name_playlist'];
+        li.appendChild(title);
+
+
+        let button_add = document.createElement("button");
+        button_add.type = "button";
+        button_add.className = "btn btn-primary btn-sm button_add_to_playlist";
+        button_add.innerText = "Ajouter";
+        button_add.value = playlist['id_playlist'];
+
+        li.appendChild(button_add);
+
+
+        ul.appendChild(li);
+
+    }
+    card_div.appendChild(ul);
+
+    document.getElementById('div_gestion_playlist_modal').innerHTML = "";
+    document.getElementById('div_gestion_playlist_modal').appendChild(card_div);
+
+
+}
+
+
 $('#create_new_playlist_button').on('click', () =>
     {
         let playlist_name = $('#new_playlist_name').val();
         let cover_url = $('#new_playlist_cover_url').val();
+        //console.log('create playlist', playlist_name, cover_url);
         ajaxRequest('POST', 'php/request.php/add_playlist/', rien, 'id_user='+ id_user + '&name_playlist=' +  playlist_name + '&new_playlist_cover_url=' +cover_url);
 
+        setTimeout(() => {
+            display_playlists();
+            ajaxRequest('GET', 'php/request.php/playlists_user/?id_user=' + id_user, display_playlists_in_modal);
+
+        }, 700);
+    }
+);
+
+$('#div_gestion_playlist_modal').on('click', '.button_add_to_playlist', () =>
+    {
+        let id_playlist = $(event.target).closest('.button_add_to_playlist').attr('value');
+        let id_song = $('#create_new_playlist_button').attr('value');
+        console.warn('id_playlist : ', id_playlist, 'id_song : ', id_song);
+        ajaxRequest('POST', 'php/request.php/add_song_to_playlist/', rien, 'id_playlist='+ id_playlist + '&id_song=' +  id_song);
     }
 );
 

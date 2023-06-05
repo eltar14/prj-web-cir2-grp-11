@@ -127,7 +127,25 @@ class Playlist
     }
 
 
+    static function addSong($id_playlist, $id_song){
+        try{
+            $db = DB::connexion();
+            $request = 'INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) VALUES (:id_playlist, :id_song, CURRENT_DATE);';
+            $statement = $db->prepare($request);
+            $statement->bindParam(':id_playlist', $id_playlist);
+            $statement->bindParam(':id_song', $id_song);
+            $statement->execute();
 
+            return true;
+
+
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+            return false;
+        }
+    }
 
 
 

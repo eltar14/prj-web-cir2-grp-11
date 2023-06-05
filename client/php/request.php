@@ -12,6 +12,7 @@
   require_once ('Artist.php');
   require_once ('Song.php');
   require_once ('Album.php');
+  require_once ('Playlist.php');
 
 
   // Database connection.
@@ -36,7 +37,7 @@ switch ($requestMethod){
     case "PUT":
         put($db, $requestRessource);
     case "DELETE":
-        delete($db, $request);
+        delete($db, $requestRessource);
 }
 
 // ========= GET ==========
@@ -140,6 +141,12 @@ function post($db, $requestRessource){
             header('HTTP/1.1 201 Created');
             exit();
         }
+    }elseif ($requestRessource == 'add_song_to_playlist'){
+        if (isset($_POST["id_playlist"], $_POST["id_song"])){
+            Playlist::addSong($_POST["id_playlist"], $_POST["id_song"]);
+            header('HTTP/1.1 201 Created');
+            exit();
+        }
     }
 
 
@@ -182,9 +189,16 @@ function put($db, $requestRessource){ //modif user
     exit();
 }
 
-// brouillon en dessous =================================
-function delete($db, $request){ //delete tweet
+
+function delete($db, $requestRessource){ //delete tweet
     //dbDeleteTweet($db, array_shift($request), $_GET["login"]);
+    if ($requestRessource == 'delete_playlist'){
+        if (isset($_GET["id_playlist"])){
+            Playlist::delete($_GET["id_playlist"]);
+        }
+    }
+
+    header('HTTP/1.1 200 OK');
     exit();
 }
 

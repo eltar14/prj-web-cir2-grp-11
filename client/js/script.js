@@ -598,10 +598,17 @@ $('#search_results_div').on('click', '.artist_info_btn', () =>
         ajaxRequest('GET', 'php/request.php/description_artist/?id_artist=' + id_artist, displayModalDescriptionArtist);
         ajaxRequest('GET', 'php/request.php/type_artist/?id_artist=' + id_artist, displayModalTypeArtist);
         ajaxRequest('GET', 'php/request.php/get_all_album/?id_artist=' + id_artist, displayModalAlbumsArtist);
-
+        
     }
 );
-
+// $('body').on('click', '.album_info_btn', () =>
+//     {
+//         console.log($(event.target).closest('.album_info_btn').attr('value'));
+//         let id_album = $(event.target).closest('.album_info_btn').attr('value');
+//         console.warn('azerty');
+//         ajaxRequest('GET', 'php/request.php/all_album/?id_album=' + id_album, displayModalInfoAlbumName);
+//     }
+// );
 
 function displayModalInfoArtistName(nameArtist){
     document.getElementById('nameArtist').innerText = nameArtist;
@@ -666,7 +673,7 @@ function displayModalAlbumsArtist(albumsArtist){
 
 
 
-$('#search_results_div').on('click', '.album_info_btn', () =>
+$('body').on('click', '.album_info_btn', () =>
     {
         console.log($(event.target).closest('.album_info_btn').attr('value'));
         let id_album = $(event.target).closest('.album_info_btn').attr('value')

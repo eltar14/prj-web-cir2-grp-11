@@ -344,26 +344,6 @@ class User
         }
     }
 
-    static function addSongToUserHistory($id_user, $id_song){
-        try {
-            $db = DB::connexion();
-            $id_user = intval($id_user);
-            $id_song = intval($id_song);
-            $request = 'INSERT INTO history(id_song, id_user) VALUES (:id_song, :id_user);';
-            $statement = $db->prepare($request);
-            $statement->bindParam(':id_song', $id_song);
-            $statement->bindParam(':id_user', $id_user);
-            $statement->execute();
-
-            return true;
-        }
-        catch (PDOException $exception)
-        {
-            error_log('Request error: '.$exception->getMessage());
-            return false;
-        }
-    }
-
 
     static function addFav($id_user, $id_song){
         try{
@@ -422,25 +402,40 @@ class User
     static function addToHistory($id_user, $id_song){
         try{
             $db = DB::connexion();
+        $id_user = intval($id_user);
+        $id_song = intval($id_song);
 
-            $request = 'INSERT INTO history (id_song, id_user) VALUES (:id_song, :id_user);';
+        // Vérifier si la musique est déjà présente dans l'historique de l'utilisateur
+        $checkRequest = 'SELECT id_song FROM history WHERE id_song = :id_song AND id_user = :id_user;';
+        $checkStatement = $db->prepare($checkRequest);
+        $checkStatement->bindParam(':id_song', $id_song);
+        $checkStatement->bindParam(':id_user', $id_user);
+        $checkStatement->execute();
+        $existingEntry = $checkStatement->fetch(PDO::FETCH_ASSOC);
 
-            $statement = $db->prepare($request);
-
-            $statement->bindParam(':id_song', $id_song);
-            $statement->bindParam(':id_user', $id_user);
-
-            $statement->execute();
-
-            return true;
+        // Si la musique est déjà présente, supprimer l'entrée existante
+        if ($existingEntry) {
+            $deleteRequest = 'DELETE FROM history WHERE id_song = :id;';
+            $deleteStatement = $db->prepare($deleteRequest);
+            $deleteStatement->bindParam(':id', $existingEntry['id_song']);
+            $deleteStatement->execute();
         }
-        catch (PDOException $exception)
-        {
-            error_log('Request error: '.$exception->getMessage());
-            return false;
-        }
 
+        // Ajouter la musique à l'historique
+        $insertRequest = 'INSERT INTO history (id_song, id_user, date_add_song_history) VALUES (:id_song, :id_user, NOW());';
+        $insertStatement = $db->prepare($insertRequest);
+        $insertStatement->bindParam(':id_song', $id_song);
+        $insertStatement->bindParam(':id_user', $id_user);
+        $insertStatement->execute();
+
+        return true;
     }
+    catch (PDOException $exception)
+    {
+        error_log('Request error: '.$exception->getMessage());
+        return false;
+    }
+}
 
     static function getHistory($id_user){
         try{
@@ -451,6 +446,7 @@ class User
                             JOIN song on history.id_song = song.id_song
                             JOIN album a on song.id_album = a.id_album
                         WHERE id_user = :id_user
+                        ORDER BY date_add_song_history DESC
                         LIMIT 10;';
 
             $statement = $db->prepare($request);

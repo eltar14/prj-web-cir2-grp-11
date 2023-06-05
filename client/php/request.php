@@ -1,19 +1,18 @@
 <?php
 
-  require_once('../../DB.php');
-  require_once ('User.php');
-  require_once ('Artist.php');
-  require_once ('Song.php');
-  require_once ('Album.php');
+require_once('../../DB.php');
+require_once ('User.php');
+require_once ('Artist.php');
+require_once ('Song.php');
+require_once ('Album.php');
 
-
-  // Database connection.
-  $db = DB::connexion();
-  if (!$db)
-  {
+// Connection to the database
+$db = DB::connexion();
+if (!$db)
+{
     header('HTTP/1.1 503 Service Unavailable');
     exit;
-  }
+}
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 $request = substr($_SERVER['PATH_INFO'], 1);
@@ -35,7 +34,7 @@ switch ($requestMethod){
 // ========= GET ==========
 function get($db, $requestRessource)
 {
-    // User
+    // Utilisateur
     if ($requestRessource == 'name_user') {
         $id_user =  $_GET["id_user"];
         $data = User::getName($id_user);
@@ -60,7 +59,7 @@ function get($db, $requestRessource)
         $data = User::getHistory($id_user);
     }
 
-    //Artist
+    // Artiste
     elseif ($requestRessource == 'all_artist'){
         $id_artist = $_GET["id_artist"];
         $data = Artist::getAll($id_artist);
@@ -78,7 +77,7 @@ function get($db, $requestRessource)
         $data = Artist::search($val);
     }
 
-    //Album
+    // Album
     elseif ($requestRessource == 'search_album') {
         $val = $_GET["search"];
         $data = Album::search($val);
@@ -94,7 +93,7 @@ function get($db, $requestRessource)
         $data = Album::getAllAlbum($id_artist);
     }
 
-    //Song
+    // Musique
     elseif ($requestRessource == 'search_song') {
         $val = $_GET["search"];
         $id_user = $_GET["id_user"];
@@ -116,7 +115,7 @@ function get($db, $requestRessource)
 
 // ========= POST ==========
 function post($db, $requestRessource){
-    // User
+    // Utilisateur
     if($requestRessource == 'add_user'){   
         if (isset($_POST["name"], $_POST["surname"], $_POST["email"], $_POST["birthdate"], $_POST["password"])) {
             User::addUser($_POST["name"], $_POST["surname"], $_POST["email"], $_POST["birthdate"], $_POST["password"]);
@@ -138,7 +137,7 @@ function post($db, $requestRessource){
             exit();
         }
     }
-    // History
+    // Historique
     elseif ($requestRessource == 'add_to_history'){
         if (isset($_POST["id_user"], $_POST["id_song"])){
             User::addToHistory($_POST["id_user"], $_POST["id_song"]);   
@@ -146,7 +145,6 @@ function post($db, $requestRessource){
             exit();
         }
     }
-
 
     else{
         header('HTTP/1.1 xxx error');
@@ -158,7 +156,8 @@ function post($db, $requestRessource){
 }
 
 // ========= PUT ==========
-function put($db, $requestRessource){ //modif user
+function put($db, $requestRessource){ 
+    // Modification des données de l'utilisateur
     parse_str(file_get_contents('php://input'), $_PUT);
     if ($requestRessource == 'update_name'){
         if (isset($_PUT["id_user"], $_PUT["name_user"])){

@@ -13,7 +13,9 @@ class User
     static function getName($id_user){
         $db = DB::connexion();
 
-        $request = 'SELECT name_user FROM "user" WHERE id_user=:id_user;';
+        $request = 'SELECT name_user 
+                    FROM "user" 
+                    WHERE id_user=:id_user;';
 
         $statement = $db->prepare($request);
 
@@ -32,7 +34,9 @@ class User
     static function getSurname($id_user){
         $db = DB::connexion();
 
-        $request = 'SELECT surname_user FROM "user" WHERE id_user=:id_user;';
+        $request = 'SELECT surname_user 
+                    FROM "user" 
+                    WHERE id_user=:id_user;';
 
         $statement = $db->prepare($request);
 
@@ -52,7 +56,9 @@ class User
     static function getBirthdate($id_user){
         $db = DB::connexion();
 
-        $request = 'SELECT birthdate_user FROM "user" WHERE id_user=:id_user;';
+        $request = 'SELECT birthdate_user 
+                    FROM "user" 
+                    WHERE id_user=:id_user;';
 
         $statement = $db->prepare($request);
 
@@ -71,7 +77,9 @@ class User
     static function getEmail($id_user){
         $db = DB::connexion();
 
-        $request = 'SELECT email_user FROM "user" WHERE id_user=:id_user;';
+        $request = 'SELECT email_user 
+                    FROM "user" 
+                    WHERE id_user=:id_user;';
 
         $statement = $db->prepare($request);
 
@@ -92,7 +100,9 @@ class User
 
         $email = strval($email);
 
-        $request = 'SELECT id_user FROM "user" WHERE email_user=:email_user;';
+        $request = 'SELECT id_user 
+                    FROM "user" 
+                    WHERE email_user=:email_user;';
 
         $statement = $db->prepare($request);
 
@@ -115,8 +125,9 @@ class User
 
             $id_user = intval($id_user);
 
-            $request = 'SELECT id_user, p.id_playlist, name_playlist, cover_playlist, is_fav, date_playlist FROM user_playlist
-                        JOIN playlist p on p.id_playlist = user_playlist.id_playlist
+            $request = 'SELECT id_user, p.id_playlist, name_playlist, cover_playlist, is_fav, date_playlist 
+                        FROM user_playlist
+                        JOIN playlist p ON p.id_playlist = user_playlist.id_playlist
                         WHERE id_user=:id_user;';
 
             $statement = $db->prepare($request);
@@ -145,10 +156,11 @@ class User
 
             $id_user = intval($id_user);
 
-            $request = 'SELECT p.id_playlist FROM user_playlist
-                   JOIN playlist p on p.id_playlist = user_playlist.id_playlist
-                   WHERE id_user = :id_user
-                    AND is_fav;';
+            $request = 'SELECT p.id_playlist 
+                        FROM user_playlist
+                        JOIN playlist p ON p.id_playlist = user_playlist.id_playlist
+                        WHERE id_user = :id_user
+                        AND is_fav;';
 
             $statement = $db->prepare($request);
 
@@ -178,11 +190,12 @@ class User
             $id_fav_playlist = User::getIdFavPlaylist($id_user);
 
             $request = 'SELECT s.id_song, title_song, link_song, duration_song, date_add_song_playlist, name_album, cover_album 
-                            FROM playlist_song 
-                                JOIN playlist p on p.id_playlist = playlist_song.id_playlist 
-                                JOIN song s on playlist_song.id_song = s.id_song 
-                                JOIN album a on a.id_album = s.id_album 
-                            WHERE p.id_playlist = :id_playlist;';
+                        FROM playlist_song 
+                        JOIN playlist p ON p.id_playlist = playlist_song.id_playlist 
+                        JOIN song s ON playlist_song.id_song = s.id_song 
+                        JOIN album a ON a.id_album = s.id_album 
+                        WHERE p.id_playlist = :id_playlist;';
+
             $statement = $db->prepare($request);
 
             $statement->bindParam(':id_playlist', $id_fav_playlist);
@@ -222,9 +235,9 @@ class User
             $id_fav_playlist = User::getIdFavPlaylist($id_user);
 
             $request = 'SELECT id_song 
-                            FROM playlist_song 
-                                JOIN playlist p on p.id_playlist = playlist_song.id_playlist 
-                            WHERE p.id_playlist = :id_playlist;';
+                        FROM playlist_song 
+                        JOIN playlist p ON p.id_playlist = playlist_song.id_playlist 
+                        WHERE p.id_playlist = :id_playlist;';
 
             $statement = $db->prepare($request);
 
@@ -257,7 +270,9 @@ class User
 
         $id_user = intval($id_user);
 
-        $request = 'SELECT id_user, name_user, surname_user, birthdate_user, email_user FROM "user" WHERE id_user = :id_user;';
+        $request = 'SELECT id_user, name_user, surname_user, birthdate_user, email_user 
+                    FROM "user" 
+                    WHERE id_user = :id_user;';
 
         $statement = $db->prepare($request);
         $statement->bindParam(':id_user', $id_user);
@@ -285,7 +300,8 @@ class User
                 $password = strval($password);
                 $email = strval($email);
 
-                $request = 'INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) values (:name_user, :surname_user, :birthdate_user, crypt(:password_user, gen_salt(\'md5\')) , :email_user);';
+                $request = 'INSERT INTO "user"(name_user, surname_user, birthdate_user, password_user, email_user) 
+                            VALUES (:name_user, :surname_user, :birthdate_user, crypt(:password_user, gen_salt(\'md5\')) , :email_user);';
                 
                 $statement = $db->prepare($request);
 
@@ -321,7 +337,9 @@ class User
             $id_user = intval($id_user);
             $email_user = strval($email_user);
 
-            $request = 'UPDATE "user" SET email_user = :email_user WHERE id_user = :id_user;';
+            $request = 'UPDATE "user" 
+                        SET email_user = :email_user 
+                        WHERE id_user = :id_user;';
 
             $statement = $db->prepare($request);
 
@@ -351,7 +369,9 @@ class User
             $id_user = intval($id_user);
             $name_user = strval($name_user);
 
-            $request = 'UPDATE "user" SET name_user = :name_user WHERE id_user = :id_user;';
+            $request = 'UPDATE "user" 
+                        SET name_user = :name_user 
+                        WHERE id_user = :id_user;';
 
             $statement = $db->prepare($request);
 
@@ -380,7 +400,9 @@ class User
             $id_user = intval($id_user);
             $surname_user = strval($surname_user);
 
-            $request = 'UPDATE "user" SET surname_user = :surname_user WHERE id_user = :id_user;';
+            $request = 'UPDATE "user" 
+                        SET surname_user = :surname_user 
+                        WHERE id_user = :id_user;';
 
             $statement = $db->prepare($request);
 
@@ -410,7 +432,10 @@ class User
             $id_user = intval($id_user);
             $password_user = strval($password_user);
 
-            $request = 'UPDATE "user" SET password_user = crypt(:password_user, gen_salt(\'md5\')) WHERE id_user = :id_user;';
+            $request = 'UPDATE "user" 
+                        SET password_user = crypt(:password_user, gen_salt(\'md5\')) 
+                        WHERE id_user = :id_user;';
+
             $statement = $db->prepare($request);
 
             $statement->bindParam(':id_user', $id_user);
@@ -439,7 +464,9 @@ class User
             $id_user = intval($id_user);
             $birthdate_user = strval($birthdate_user);
 
-            $request = 'UPDATE "user" SET birthdate_user = :birthdate_user WHERE id_user = :id_user;';
+            $request = 'UPDATE "user" 
+                        SET birthdate_user = :birthdate_user 
+                        WHERE id_user = :id_user;';
 
             $statement = $db->prepare($request);
 
@@ -470,7 +497,8 @@ class User
             if (!in_array($id_song, $liked_arr)){
                 $id_fav_playlist = User::getIdFavPlaylist($id_user);
 
-                $request = 'INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) VALUES (:id_playlist, :id_song, CURRENT_DATE);';
+                $request = 'INSERT INTO playlist_song(id_playlist, id_song, date_add_song_playlist) 
+                            VALUES (:id_playlist, :id_song, CURRENT_DATE);';
                 
                 $statement = $db->prepare($request);
 
@@ -508,7 +536,9 @@ class User
 
             $id_fav_playlist = User::getIdFavPlaylist($id_user);
 
-            $request = 'DELETE FROM playlist_song WHERE id_song=:id_song AND id_playlist=:id_playlist;';
+            $request = 'DELETE FROM playlist_song 
+                        WHERE id_song=:id_song 
+                        AND id_playlist=:id_playlist;';
 
             $statement = $db->prepare($request);
 
@@ -539,7 +569,10 @@ class User
             $id_song = intval($id_song);
 
             // Vérifier si la musique est déjà présente dans l'historique de l'utilisateur
-            $checkRequest = 'SELECT id_song FROM history WHERE id_song = :id_song AND id_user = :id_user;';
+            $checkRequest = 'SELECT id_song 
+                            FROM history 
+                            WHERE id_song = :id_song 
+                            AND id_user = :id_user;';
 
             $checkStatement = $db->prepare($checkRequest);
 
@@ -551,7 +584,8 @@ class User
 
             // Si la musique est déjà présente, supprimer l'entrée existante
             if ($existingEntry) {
-                $deleteRequest = 'DELETE FROM history WHERE id_song = :id;';
+                $deleteRequest = 'DELETE FROM history 
+                                  WHERE id_song = :id;';
 
                 $deleteStatement = $db->prepare($deleteRequest);
 
@@ -560,7 +594,8 @@ class User
             }
 
             // Ajouter la musique à l'historique
-            $insertRequest = 'INSERT INTO history (id_song, id_user, date_add_song_history) VALUES (:id_song, :id_user, NOW());';
+            $insertRequest = 'INSERT INTO history (id_song, id_user, date_add_song_history) 
+                              VALUES (:id_song, :id_user, NOW());';
 
             $insertStatement = $db->prepare($insertRequest);
 
@@ -589,8 +624,8 @@ class User
 
             $request = 'SELECT history.id_song, title_song, duration_song, link_song, song.id_album, name_album, cover_album
                         FROM history
-                            JOIN song on history.id_song = song.id_song
-                            JOIN album a on song.id_album = a.id_album
+                        JOIN song ON history.id_song = song.id_song
+                        JOIN album a ON song.id_album = a.id_album
                         WHERE id_user = :id_user
                         ORDER BY date_add_song_history DESC
                         LIMIT 10;';

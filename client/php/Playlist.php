@@ -18,7 +18,8 @@ class Playlist
             $name_playlist = strval($name_playlist);
             $cover_playlist = strval($cover_playlist);
 
-            $request = 'INSERT INTO playlist(name_playlist, cover_playlist) values(:name_playlist, :cover_playlist)';
+            $request = 'INSERT INTO playlist(name_playlist, cover_playlist) 
+                        VALUES (:name_playlist, :cover_playlist)';
 
             $statement = $db->prepare($request);
 
@@ -39,7 +40,8 @@ class Playlist
 
             //echo $id_playlist;
 
-            $request = 'INSERT INTO user_playlist(id_playlist, id_user, date_playlist) values (:id_playlist, :id_user, CURRENT_DATE);';
+            $request = 'INSERT INTO user_playlist(id_playlist, id_user, date_playlist) 
+                        VALUES (:id_playlist, :id_user, CURRENT_DATE);';
 
             $statement = $db->prepare($request);
 
@@ -66,7 +68,9 @@ class Playlist
             $id_playlist = intval($id_playlist);
             $new_name = strval($new_name);
 
-            $request = 'UPDATE playlist SET name_playlist = :name_playlist WHERE id_playlist = :id_playlist;';
+            $request = 'UPDATE playlist 
+                        SET name_playlist = :name_playlist 
+                        WHERE id_playlist = :id_playlist;';
 
             $statement = $db->prepare($request);
 
@@ -94,7 +98,8 @@ class Playlist
         $id_playlist = intval($id_playlist);
         try 
         {
-            $request = 'DELETE FROM user_playlist WHERE id_playlist = :id_playlist;';
+            $request = 'DELETE FROM user_playlist 
+                        WHERE id_playlist = :id_playlist;';
 
             $statement = $db->prepare($request);
 
@@ -109,7 +114,8 @@ class Playlist
 
         try 
         {
-            $request = 'DELETE FROM playlist WHERE id_playlist = :id_playlist;';
+            $request = 'DELETE FROM playlist 
+                        WHERE id_playlist = :id_playlist;';
 
             $statement = $db->prepare($request);
 
@@ -134,7 +140,9 @@ class Playlist
         $id_playlist = intval($id_playlist);
         try 
         {
-            $request = 'SELECT name_playlist FROM playlist WHERE id_playlist = :id_playlist;';
+            $request = 'SELECT name_playlist 
+                        FROM playlist 
+                        WHERE id_playlist = :id_playlist;';
 
             $statement = $db->prepare($request);
 
@@ -162,7 +170,9 @@ class Playlist
         $id_playlist = intval($id_playlist);
         try 
         {
-            $request = 'SELECT cover_playlist FROM playlist WHERE id_playlist = :id_playlist;';
+            $request = 'SELECT cover_playlist 
+                        FROM playlist 
+                        WHERE id_playlist = :id_playlist;';
 
             $statement = $db->prepare($request);
 

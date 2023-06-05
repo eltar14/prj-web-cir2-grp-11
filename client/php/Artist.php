@@ -13,7 +13,9 @@ class Artist
     static function getName($id_artist){
         $db = DB::connexion();
 
-        $request = 'SELECT name_artist FROM artist WHERE id_artist=:id_artist;';
+        $request = 'SELECT name_artist 
+                    FROM artist 
+                    WHERE id_artist=:id_artist;';
 
         $statement = $db->prepare($request);
 
@@ -31,7 +33,10 @@ class Artist
     static function getType($id_artist){
         $db = DB::connexion();
 
-        $request = 'SELECT type_artist FROM artist JOIN type_artist ta on artist.id_type_artist = ta.id_type_artist WHERE id_artist=:id_artist;';
+        $request = 'SELECT type_artist 
+                    FROM artist 
+                    JOIN type_artist ta ON artist.id_type_artist = ta.id_type_artist 
+                    WHERE id_artist=:id_artist;';
         
         $statement = $db->prepare($request);
 
@@ -49,7 +54,9 @@ class Artist
     static function getDescription($id_artist){
         $db = DB::connexion();
 
-        $request = 'SELECT description_artist FROM artist WHERE id_artist = :id_artist;';
+        $request = 'SELECT description_artist 
+                    FROM artist 
+                    WHERE id_artist = :id_artist;';
 
         $statement = $db->prepare($request);
 
@@ -69,7 +76,10 @@ class Artist
 
         $id_artist = intval($id_artist);
 
-        $request = 'SELECT id_artist, name_artist, description_artist, type_artist, artist.id_type_artist FROM artist JOIN type_artist ta on artist.id_type_artist = ta.id_type_artist  WHERE id_artist = :id_artist;';
+        $request = 'SELECT id_artist, name_artist, description_artist, type_artist, artist.id_type_artist 
+                    FROM artist 
+                    JOIN type_artist ta ON artist.id_type_artist = ta.id_type_artist  
+                    WHERE id_artist = :id_artist;';
         
         $statement = $db->prepare($request);
 
@@ -89,7 +99,10 @@ class Artist
 
         $id_artist = intval($id_artist);
 
-        $request = 'SELECT * FROM album JOIN artist USING (id_artist) where id_artist = :id_artist;';
+        $request = 'SELECT * 
+                    FROM album 
+                    JOIN artist USING (id_artist) 
+                    WHERE id_artist = :id_artist;';
 
         $statement = $db->prepare($request);
 
@@ -114,7 +127,8 @@ class Artist
                 $description_artist = strval($description_artist);
                 $id_type_artist = intval($id_type_artist);
 
-                $request = 'INSERT INTO artist(name_artist, description_artist, id_type_artist) VALUES(:name_artist, :description_artist, :id_type_artist);';
+                $request = 'INSERT INTO artist(name_artist, description_artist, id_type_artist) 
+                            VALUES(:name_artist, :description_artist, :id_type_artist);';
                 
                 $statement = $db->prepare($request);
 
@@ -147,7 +161,10 @@ class Artist
         $val = strval($val);
         $val = '%'.$val.'%';
 
-        $request = "SELECT id_artist, name_artist, description_artist, type_artist FROM artist JOIN type_artist ta on ta.id_type_artist = artist.id_type_artist WHERE name_artist ILIKE :val;";
+        $request = "SELECT id_artist, name_artist, description_artist, type_artist 
+                    FROM artist 
+                    JOIN type_artist ta ON ta.id_type_artist = artist.id_type_artist 
+                    WHERE name_artist ILIKE :val;";
        
         $statement = $db->prepare($request);
 

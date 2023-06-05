@@ -172,6 +172,7 @@ $('#search_titre').on('click', () =>
 // Song results
 
 // ========== CAROUSELS ==========
+
 // ===== SONG =====
 
 function display_song_cards(values, r = false, oid = false){
@@ -277,11 +278,6 @@ function create_song_card(title, description, image_src, button_text, button_url
             '</svg>';
         button2.classList.remove('filled');
     }
-
-
-
-
-
     let button3 = document.createElement("button");
     button3.className = "btn playlist_button";
     button3.type = "button";
@@ -503,7 +499,7 @@ function display_playlists_cards(playlists){
     let str = '';
     let total_length = playlists.length;
     let nbr = Math.ceil(total_length/5);
-    str += '<div id="carouselPlaylists" class="carousel carousel-dark slide" data-bs-ride="carousel">\n' +
+    str += '<div id="carouselPlaylists" class="carousel slide carousel-dark" data-bs-ride="carousel">\n' +
         '        <div class="carousel-inner">';
 
     for (let i = 0; i < nbr; i++) {
@@ -520,7 +516,8 @@ function display_playlists_cards(playlists){
                 let pos = 5*i + j;
                 str += createPlaylistCard(playlists[pos]['name_playlist'],
                     playlists[pos]['date_playlist'],
-                    playlists[pos]['cover_playlist']
+                    playlists[pos]['cover_playlist'],
+                    playlists[pos]['id_playlist']
                 )
             }
 
@@ -542,10 +539,7 @@ function display_playlists_cards(playlists){
 
     document.getElementById("playlists").innerHTML = str; //TODO ===================
 }
-
-
-
-function createPlaylistCard(title, date, cover_url){
+function createPlaylistCard(title, date, cover_url, id_playlist){
     let card = document.createElement("div");
     card.className = "card";
 
@@ -565,22 +559,162 @@ function createPlaylistCard(title, date, cover_url){
     cardText.className = "card-text";
     cardText.textContent = date;
 
+    let btn_container = document.createElement('div');
+    btn_container.style.display = "flex";
+    btn_container.style.justifyContent = "space-between";
+
+
+    let button_more = document.createElement("button");
+    button_more.type = 'button';
+    button_more.className = 'btn btn-primary more_playlist_button';
+    button_more.value = id_playlist;
+    button_more.setAttribute('data-bs-target', '#modalPlaylistInfos')
+    button_more.setAttribute('data-bs-toggle', 'modal')
+    button_more.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">\n' +
+        '  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>\n' +
+        '  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>\n' +
+        '</svg>';
+
+    let button_delete = document.createElement("button");
+    button_delete.type = 'button';
+    button_delete.className = 'btn btn-danger btn-sm delete_playlist_button';
+    button_delete.value = id_playlist;
+    button_delete.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">\n' +
+        '  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>\n' +
+        '  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>\n' +
+        '</svg>';
+
 
     // Ajouter les éléments à la carte
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(cardText);
+    btn_container.appendChild(button_more);
+    btn_container.appendChild(button_delete);
+    cardBody.appendChild(btn_container);
     card.appendChild(image);
     card.appendChild(cardBody);
 
     let div = document.createElement("div");
     div.appendChild(card);
-    return div.innerHTML;    
+    return div.innerHTML;
+}
+
+
+
+
+
+
+
+function display_song_cards_in_playlist_modal(values, id_html = 'carouselPlaylistsGestion'){
+    let id = String(id_html);
+    let str = '';
+    let total_length = values.length;
+    let nbr = Math.ceil(total_length/5);
+    str += '<div id="' + id + '" class="carousel slide carousel-dark" data-bs-ride="carousel">\n' +
+        '        <div class="carousel-inner">';
+    console.error(total_length);
+    for (let i = 0; i < nbr; i++) {
+
+        if (i === 0){
+            str += '<div class="carousel-item active">' +
+                '<div class="cards-wrapper">';
+        } else {
+            str += '<div class="carousel-item">\n' +
+                '                <div class="cards-wrapper">';
+        }
+
+        for (let j = 0; j < 5; j++) {
+            if (((i)*5 + j+1) <= total_length){
+                let pos = 5*i + j;
+                str += create_song_card_in_playlist_display(values[pos]['title_song'],
+                    values[pos]['name_album'],
+                    values[pos]['cover_album'],
+                    'Ecouter',
+                    values[pos]['link_song'],
+                    values[pos]['id_song'],
+                    values[pos]['id_playlist']
+                )
+            }
+        }
+        str += '</div>\n' +
+            '            </div>';
+    }
+    str += '</div>\n' +
+        '        <button class="carousel-control-prev btn-outline-light" type="button" data-bs-target="#' + id + '" data-bs-slide="prev">\n' +
+        '            <span class="carousel-control-prev-icon" aria-hidden="true"></span>\n' +
+        '            <span class="visually-hidden">Previous</span>\n' +
+        '        </button>\n' +
+        '        <button class="carousel-control-next btn-outline-light" type="button" data-bs-target="#' + id + '" data-bs-slide="next">\n' +
+        '            <span class="carousel-control-next-icon" aria-hidden="true"></span>\n' +
+        '            <span class="visually-hidden">Next</span>\n' +
+        '        </button>\n' +
+        '    </div>';
+        return str;
+}
+function create_song_card_in_playlist_display(title, title_album, image_src, button_text, button_url, id_song, id_playlist){
+
+    let card = document.createElement("div");
+    card.className = "card";
+
+    let image = document.createElement("img");
+    image.className = "card-img-top";
+    image.src = image_src;
+    image.alt = title;
+
+    let cardBody = document.createElement("div");
+    cardBody.className = "card-body";
+
+    let cardTitle = document.createElement("h5");
+    cardTitle.className = "card-title";
+    cardTitle.textContent = title;
+
+    let cardText = document.createElement("p");
+    cardText.className = "card-text";
+    cardText.textContent = title_album;
+
+    let button1 = document.createElement("a");
+    let button1inner = document.createElement("button");
+
+    button1inner.className = "btn btn-primary";
+    button1.href = button_url;
+    button1inner.textContent = button_text;
+    button1inner.value = id_song;
+    button1.appendChild(button1inner);
+
+    let button2 = document.createElement("button");
+    button2.type = 'button';
+    button2.className = 'btn btn-danger btn-sm delete_song_from_playlist_button';
+    button2.value = id_song;
+    button2.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">\n' +
+        '  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>\n' +
+        '  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>\n' +
+        '</svg>';
+
+
+    let button3 = document.createElement("button");
+    button3.value = id_playlist;
+    button3.style.display = 'none';
+    button3.className = 'id_playlist_gestion_playlist';
+
+    // Ajouter les éléments à la carte
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardText);
+    cardBody.appendChild(button1);
+    cardBody.appendChild(button2);
+    cardBody.appendChild(button3);
+
+    card.appendChild(image);
+    card.appendChild(cardBody);
+
+    let div = document.createElement("div");
+    div.appendChild(card);
+    return div.innerHTML;
 }
 
 // ===== HISTORY =====
 
 function display_history_cards(values, r = false, oid = false){
-    
+
     let id = 'carouselHistory';
     let str = '';
     let total_length = values.length;
@@ -656,9 +790,10 @@ $('#search_results_div').on('click', '.artist_info_btn', () =>
         ajaxRequest('GET', 'php/request.php/description_artist/?id_artist=' + id_artist, displayModalDescriptionArtist);
         ajaxRequest('GET', 'php/request.php/type_artist/?id_artist=' + id_artist, displayModalTypeArtist);
         ajaxRequest('GET', 'php/request.php/get_all_album/?id_artist=' + id_artist, displayModalAlbumsArtist);
-        
+
     }
 );
+//delete_playlist_button
 // $('body').on('click', '.album_info_btn', () =>
 //     {
 //         console.log($(event.target).closest('.album_info_btn').attr('value'));
@@ -823,10 +958,104 @@ $('body').on('click', '.playlist_button', () =>
     console.log(id_song);
 
     $('#create_new_playlist_button').val(id_song);
+    ajaxRequest('GET', 'php/request.php/playlists_user/?id_user=' + id_user, display_playlists_in_modal);
+}
+);
+
+// onclick bouton infos playlist
+$('body').on('click', '.more_playlist_button', () =>
+{
+    let btn = $(event.target).closest('.more_playlist_button');
+    let id_playlist = btn.attr('value');
+    console.log('info playlist id : ',id_playlist);
+    ajaxRequest('GET', 'php/request.php/get_playlist_content/?id_playlist=' + id_playlist, aux4);
+}
+);
+function aux4(data){
+    //console.warn(data);
+    document.getElementById('id_playlist_gestion_modal').innerHTML = display_song_cards_in_playlist_modal(data);
+}
+// onclick bouton delete playlist / song from playlist
+
+
+//click bouton delete song from playlist
+$('body').on('click', '.delete_song_from_playlist_button',() =>
+    {
+        let btn = $(event.target).closest('.delete_song_from_playlist_button');
+        let id_song = btn.attr('value');
+        let id_playlist = btn.next('.id_playlist_gestion_playlist').attr('value');
+        console.log("del song from playlist ids, idp : ", id_song+' , '+ id_playlist);
+
+        ajaxRequest('DELETE', 'php/request.php/delete_song_from_playlist/'+ id_playlist +'/'+ id_song +'/', rien);
+        setTimeout(() => {
+            ajaxRequest('GET', 'php/request.php/get_playlist_content/?id_playlist=' + id_playlist, aux4);
+        }, 400);
+    }
+);
+
+
+
+//click bouton delete playlist
+$('body').on('click', '.delete_playlist_button', () =>
+{
+    let btn = $(event.target).closest('.delete_playlist_button');
+    let id_playlist = btn.attr('value');
+    console.log('delete playlist id : ',id_playlist);
+    ajaxRequest('DELETE', 'php/request.php/delete_playlist/'+ id_playlist +'/', display_playlists);
+    setTimeout(() => {
+        display_playlists()
+    }, 400);
+
+
+
 
 }
 );
 
+
+
+
+
+function display_playlists_in_modal(playlists){
+    let card_div = document.createElement("div");
+    card_div.style.width = '18rem';
+    card_div.className = 'card';
+
+
+
+
+    let ul = document.createElement("ul");
+    ul.className = "list-group list-group-flush";
+
+    for (const playlist of playlists) {                     //TODO
+        let li = document.createElement('li');
+        li.className = "list-group-item";
+
+
+        let title = document.createElement("h6");
+        title.innerText = playlist['name_playlist'];
+        li.appendChild(title);
+
+
+        let button_add = document.createElement("button");
+        button_add.type = "button";
+        button_add.className = "btn btn-primary btn-sm button_add_to_playlist";
+        button_add.innerText = "Ajouter";
+        button_add.value = playlist['id_playlist'];
+
+        li.appendChild(button_add);
+
+
+        ul.appendChild(li);
+
+    }
+    card_div.appendChild(ul);
+
+    document.getElementById('div_gestion_playlist_modal').innerHTML = "";
+    document.getElementById('div_gestion_playlist_modal').appendChild(card_div);
+
+
+}
 
 
 $('#create_new_playlist_button').on('click', () =>
@@ -835,6 +1064,20 @@ $('#create_new_playlist_button').on('click', () =>
         let cover_url = $('#new_playlist_cover_url').val();
         ajaxRequest('POST', 'php/request.php/add_playlist/', rien, 'id_user='+ id_user + '&name_playlist=' +  playlist_name + '&new_playlist_cover_url=' +cover_url);
 
+        setTimeout(() => {
+            display_playlists();
+            ajaxRequest('GET', 'php/request.php/playlists_user/?id_user=' + id_user, display_playlists_in_modal);
+
+        }, 700);
+    }
+);
+
+$('#div_gestion_playlist_modal').on('click', '.button_add_to_playlist', () =>
+    {
+        let id_playlist = $(event.target).closest('.button_add_to_playlist').attr('value');
+        let id_song = $('#create_new_playlist_button').attr('value');
+        console.warn('id_playlist : ', id_playlist, 'id_song : ', id_song);
+        ajaxRequest('POST', 'php/request.php/add_song_to_playlist/', rien, 'id_playlist='+ id_playlist + '&id_song=' +  id_song);
     }
 );
 

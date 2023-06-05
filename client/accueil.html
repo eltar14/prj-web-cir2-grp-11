@@ -401,7 +401,7 @@
     </div>
 </div>
 
-<!-- modal playlist -->
+<!-- modal add / create playlist -->
 <div class="modal fade" id="modalPlaylist" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -412,14 +412,20 @@
             <div class="modal-body">
                 <!-- Contenu modal de gestion des playlists-->
                 <div style="display: flex; justify-content: space-between">
+
+
                     <div>
                         <h5>div gauche</h5>
+                        <div id="div_gestion_playlist_modal">
+                            <p>liste playlists ici !</p>
 
+                        </div>
                     </div>
-                    <div>
+
+
+                    <div id="div_add_playlist">
                         <h5>Nouvelle playlist</h5>
                         <form>
-
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="new_playlist_title_desc">Nom</span>
                                 <input id="new_playlist_name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="new_playlist_title_desc" required>
@@ -435,6 +441,29 @@
                     </div>
 
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- modal infos playlist via accordéon bas de page -->
+<div class="modal fade" id="modalPlaylistInfos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Gestion playlist</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="id_playlist_gestion_modal" class="modal-body">
+                <!-- Contenu modal de gestion des playlists via l'accordion en bas de page -->
+
+                <p>aaa</p>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                 </div>

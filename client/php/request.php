@@ -1,26 +1,19 @@
 <?php
 
-// GET    /tweet/
-// GET    /tweet/?login=...
-// POST   /tweet/?login=...&text=...
-// PUT    /tweet/i?login=...&text=...
-// DELETE /tweet/i?login=...
+require_once('../../DB.php');
+require_once ('User.php');
+require_once ('Artist.php');
+require_once ('Song.php');
+require_once ('Album.php');
+require_once ('Playlist.php');
 
-  require_once('../../DB.php')
-  ;
-  require_once ('User.php');
-  require_once ('Artist.php');
-  require_once ('Song.php');
-  require_once ('Album.php');
-
-
-  // Database connection.
-  $db = DB::connexion();
-  if (!$db)
-  {
+// Connection to the database
+$db = DB::connexion();
+if (!$db)
+{
     header('HTTP/1.1 503 Service Unavailable');
     exit;
-  }
+}
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 $request = substr($_SERVER['PATH_INFO'], 1);
@@ -36,13 +29,13 @@ switch ($requestMethod){
     case "PUT":
         put($db, $requestRessource);
     case "DELETE":
-        delete($db, $request);
+        delete($db, $requestRessource, $request);
 }
 
 // ========= GET ==========
 function get($db, $requestRessource)
 {
-    // User
+    // Utilisateur
     if ($requestRessource == 'name_user') {
         $id_user =  $_GET["id_user"];
         $data = User::getName($id_user);
@@ -67,7 +60,7 @@ function get($db, $requestRessource)
         $data = User::getHistory($id_user);
     }
 
-    //Artist
+    // Artiste
     elseif ($requestRessource == 'all_artist'){
         $id_artist = $_GET["id_artist"];
         $data = Artist::getAll($id_artist);
@@ -85,7 +78,7 @@ function get($db, $requestRessource)
         $data = Artist::search($val);
     }
 
-    //Album
+    // Album
     elseif ($requestRessource == 'search_album') {
         $val = $_GET["search"];
         $data = Album::search($val);
@@ -100,8 +93,8 @@ function get($db, $requestRessource)
         $id_artist = $_GET["id_artist"];
         $data = Album::getAllAlbum($id_artist);
     }
-//getSongList
-    //Song
+
+    // Musique
     elseif ($requestRessource == 'search_song') {
         $val = $_GET["search"];
         $id_user = $_GET["id_user"];
@@ -112,10 +105,15 @@ function get($db, $requestRessource)
         $data = Song::isLikedByUser($id_song, $id_user);
     }
 
+    //Playlist
+    elseif ($requestRessource == 'get_playlist_content') {
+        $id_playlist = intval($_GET["id_playlist"]);
+        $data = Playlist::getContent($id_playlist);
+    }
 
 
 
-    // Send data to the client.
+    // Envoi de la réponse au client.
     header('Content-Type: application/json; charset=utf-8');
     header('Cache-control: no-store, no-cache, must-revalidate');
     header('Pragma: no-cache');
@@ -126,8 +124,8 @@ function get($db, $requestRessource)
 
 // ========= POST ==========
 function post($db, $requestRessource){
-    // User
-    if($requestRessource == 'add_user'){   //add user
+    // Utilisateur
+    if($requestRessource == 'add_user'){
         if (isset($_POST["name"], $_POST["surname"], $_POST["email"], $_POST["birthdate"], $_POST["password"])) {
             User::addUser($_POST["name"], $_POST["surname"], $_POST["email"], $_POST["birthdate"], $_POST["password"]);
             header('HTTP/1.1 201 Created');
@@ -147,15 +145,21 @@ function post($db, $requestRessource){
             header('HTTP/1.1 201 Created');
             exit();
         }
-    }
-    elseif ($requestRessource == 'add_to_history'){
-        if (isset($_POST["id_user"], $_POST["id_song"])){
-            User::addToHistory($_POST["id_user"], $_POST["id_song"]);   
+    }elseif ($requestRessource == 'add_song_to_playlist'){
+        if (isset($_POST["id_playlist"], $_POST["id_song"])){
+            Playlist::addSong($_POST["id_playlist"], $_POST["id_song"]);
             header('HTTP/1.1 201 Created');
             exit();
         }
     }
-
+    // Historique
+    elseif ($requestRessource == 'add_to_history'){
+        if (isset($_POST["id_user"], $_POST["id_song"])){
+            User::addToHistory($_POST["id_user"], $_POST["id_song"]);
+            header('HTTP/1.1 201 Created');
+            exit();
+        }
+    }
 
     else{
         header('HTTP/1.1 xxx error');
@@ -167,7 +171,8 @@ function post($db, $requestRessource){
 }
 
 // ========= PUT ==========
-function put($db, $requestRessource){ //modif user
+function put($db, $requestRessource){
+    // Modification des données de l'utilisateur
     parse_str(file_get_contents('php://input'), $_PUT);
     if ($requestRessource == 'update_name'){
         if (isset($_PUT["id_user"], $_PUT["name_user"])){
@@ -190,15 +195,25 @@ function put($db, $requestRessource){ //modif user
             User::updateBirthdate($_PUT["id_user"], $_PUT["birthdate_user"]);
         }
     }
-    //dbAddTweet($db, $_PUT["login"], $_PUT["text"]);
-    //dbModifyTweet($db, array_shift($request), $_PUT["login"], $_PUT["text"]);
     header('HTTP/1.1 200 OK');
     exit();
 }
 
-// brouillon en dessous =================================
-function delete($db, $request){ //delete tweet
+
+function delete($db, $requestRessource, $request){ //delete tweet
     //dbDeleteTweet($db, array_shift($request), $_GET["login"]);
+    if ($requestRessource == 'delete_playlist'){
+        $id_playlist = array_shift($request);
+        Playlist::delete($id_playlist);
+    }elseif ($requestRessource == 'delete_song_from_playlist'){
+        $id_playlist = array_shift($request);
+        $id_song = array_shift($request);
+
+        Playlist::deleteSongFromPlaylist($id_playlist, $id_song);
+        echo json_encode($id_playlist, $id_song);
+    }
+
+    header('HTTP/1.1 200 OK');
     exit();
 }
 

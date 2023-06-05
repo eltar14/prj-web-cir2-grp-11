@@ -256,7 +256,7 @@ function create_song_card(title, description, image_src, button_text, button_url
     let button1 = document.createElement("a");
     let button1inner = document.createElement("button");
 
-    button1inner.className = "btn btn-primary";
+    button1inner.className = "btn btn-primary go_listen";
     button1.href = button_url;
     button1inner.textContent = button_text;
     button1inner.value = id_song;
@@ -596,7 +596,7 @@ function createPlaylistCard(title, date, cover_url, id_playlist){
 
     let div = document.createElement("div");
     div.appendChild(card);
-    return div.innerHTML;    
+    return div.innerHTML;
 }
 
 
@@ -711,9 +711,62 @@ function create_song_card_in_playlist_display(title, title_album, image_src, but
     return div.innerHTML;
 }
 
+// ===== HISTORY =====
 
+function display_history_cards(values, r = false, oid = false){
 
+    let id = 'carouselHistory';
+    let str = '';
+    let total_length = values.length;
+    let nbr = Math.ceil(total_length/5);
+    str += '<div id="' + id + '" class="carousel slide carousel-dark" data-bs-ride="carousel">\n' +
+        '        <div class="carousel-inner">';
 
+    for (let i = 0; i < nbr; i++) {
+        if (i === 0){
+            str += '<div class="carousel-item active">' +
+                '<div class="cards-wrapper">';
+        } else {
+            str += '<div class="carousel-item">\n' +
+                '                <div class="cards-wrapper">';
+        }
+
+        for (let j = 0; j < 5; j++) {
+            if (((i)*5 + j+1) <= total_length){
+                let pos = 5*i + j;
+                str += create_song_card(values[pos]['title_song'],
+                    values[pos]['name_album'],
+                    values[pos]['cover_album'],
+                    'Ecouter',
+                    values[pos]['link_song'],
+                    values[pos]['id_song'],
+                    values[pos]['is_liked']
+                    )
+            }
+
+        }
+        str += '</div>\n' +
+            '            </div>';
+
+    }
+    str += '</div>\n' +
+        '        <button class="carousel-control-prev btn-outline-light" type="button" data-bs-target="#' + id + '" data-bs-slide="prev">\n' +
+        '            <span class="carousel-control-prev-icon" aria-hidden="true"></span>\n' +
+        '            <span class="visually-hidden">Previous</span>\n' +
+        '        </button>\n' +
+        '        <button class="carousel-control-next btn-outline-light" type="button" data-bs-target="#' + id + '" data-bs-slide="next">\n' +
+        '            <span class="carousel-control-next-icon" aria-hidden="true"></span>\n' +
+        '            <span class="visually-hidden">Next</span>\n' +
+        '        </button>\n' +
+        '    </div>';
+
+    if(r){
+        return str;
+    }else{
+        document.getElementById("history").innerHTML = str;
+    }
+
+}
 
 $('#printArtistInfo').on('click', () =>
     {
@@ -736,9 +789,19 @@ $('#search_results_div').on('click', '.artist_info_btn', () =>
         ajaxRequest('GET', 'php/request.php/name_artist/?id_artist=' + id_artist, displayModalInfoArtistName);
         ajaxRequest('GET', 'php/request.php/description_artist/?id_artist=' + id_artist, displayModalDescriptionArtist);
         ajaxRequest('GET', 'php/request.php/type_artist/?id_artist=' + id_artist, displayModalTypeArtist);
+        ajaxRequest('GET', 'php/request.php/get_all_album/?id_artist=' + id_artist, displayModalAlbumsArtist);
+
     }
 );
 //delete_playlist_button
+// $('body').on('click', '.album_info_btn', () =>
+//     {
+//         console.log($(event.target).closest('.album_info_btn').attr('value'));
+//         let id_album = $(event.target).closest('.album_info_btn').attr('value');
+//         console.warn('azerty');
+//         ajaxRequest('GET', 'php/request.php/all_album/?id_album=' + id_album, displayModalInfoAlbumName);
+//     }
+// );
 
 function displayModalInfoArtistName(nameArtist){
     document.getElementById('nameArtist').innerText = nameArtist;
@@ -752,12 +815,58 @@ function displayModalTypeArtist(typeArtist){
     document.getElementById('typeArtist').innerText = typeArtist;
 }
 
+function displayModalAlbumsArtist(albumsArtist){
+    let str = '';
+    let total_length = albumsArtist.length;
+    let nbr = Math.ceil(total_length/5);
+    str += '<div id="carouselAllAlbum" class="carousel carousel-dark slide" data-bs-ride="carousel">\n' +
+        '        <div class="carousel-inner">';
+
+    for (let i = 0; i < nbr; i++) {
+        if (i === 0){
+            str += '<div class="carousel-item active">' +
+                '<div class="cards-wrapper">';
+        } else {
+            str += '<div class="carousel-item">\n' +
+                '                <div class="cards-wrapper">';
+        }
+
+        for (let j = 0; j < 5; j++) {
+            if (((i)*5 + j+1) <= total_length){
+                let pos = 5*i + j;
+                str += create_album_card(albumsArtist[pos]['name_album'],
+                    albumsArtist[pos]['date_album'],
+                    albumsArtist[pos]['name_artist'],
+                    albumsArtist[pos]['cover_album'],
+                    albumsArtist[pos]['id_album']
+                )
+            }
+
+        }
+        str += '</div>\n' +
+            '            </div>';
+
+    }
+    str += '</div>\n' +
+        '        <button class="carousel-control-prev" type="button" data-bs-target="#carouselAllAlbum" data-bs-slide="prev">\n' +
+        '            <span class="carousel-control-prev-icon" aria-hidden="true"></span>\n' +
+        '            <span class="visually-hidden">Previous</span>\n' +
+        '        </button>\n' +
+        '        <button class="carousel-control-next" type="button" data-bs-target="#carouselAllAlbum" data-bs-slide="next">\n' +
+        '            <span class="carousel-control-next-icon" aria-hidden="true"></span>\n' +
+        '            <span class="visually-hidden">Next</span>\n' +
+        '        </button>\n' +
+        '    </div>';
+
+    document.getElementById("all_album_modal_carousel").innerHTML = str;
+}
+
 
 //TODO add like + update + crea playlist a la crea nv compte
 
 
 
-$('#search_results_div').on('click', '.album_info_btn', () =>
+$('body').on('click', '.album_info_btn', () =>
     {
         console.log($(event.target).closest('.album_info_btn').attr('value'));
         let id_album = $(event.target).closest('.album_info_btn').attr('value')
@@ -953,7 +1062,6 @@ $('#create_new_playlist_button').on('click', () =>
     {
         let playlist_name = $('#new_playlist_name').val();
         let cover_url = $('#new_playlist_cover_url').val();
-        //console.log('create playlist', playlist_name, cover_url);
         ajaxRequest('POST', 'php/request.php/add_playlist/', rien, 'id_user='+ id_user + '&name_playlist=' +  playlist_name + '&new_playlist_cover_url=' +cover_url);
 
         setTimeout(() => {
@@ -981,6 +1089,38 @@ $('#form_search').on('keyup keypress', function(e) {
         return false;
     }
 });
+
+
+$('body').on('click', '.go_listen', () => {
+    console.log($(event.target).closest('.go_listen').attr('value'));
+    let id_song = $(event.target).closest('.go_listen').attr('value');
+
+    ajaxRequest('POST', 'php/request.php/add_to_history/', display_history, 'id_user=' + id_user + '&id_song=' + id_song);
+});
+
+function display_history(){
+    ajaxRequest('GET', 'php/request.php/history_user/?id_user=' + id_user, aux4);
+}
+display_history();
+
+function aux4(history){
+
+    //console.warn('playlists');
+    console.warn(history);
+    document.getElementById('history').innerHTML = history;
+
+    display_history_cards(history);
+    setTimeout(() => {
+        document.getElementById('accordion_history').classList.add('active');
+        let panel = document.getElementById('accordion_history').nextElementSibling;
+        panel.style.maxHeight = panel.scrollHeight + "px";
+
+    }, 100);
+}
+
+
+
+
 //create_new_playlist_button
 
 

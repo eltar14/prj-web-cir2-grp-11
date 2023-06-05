@@ -177,6 +177,7 @@
                                 </tbody>
                             </table>
 
+
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -239,49 +240,33 @@
 </button>
 
 <div class="panel">
-    <div id="search_results_div">
-
+    <div class="row">
+      <div class="col">
+        <div id="search_results_div">
+            
+        </div>
+      </div>
     </div>
 </div>
 
 
+
 <!--Menu accordion où l'on voir les différentes informations -->
-<button class="accordion" style="font-size: 1.5em">
+<button class="accordion" id="accordion_history" style="font-size: 1.5em">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-hourglass-split" viewBox="0 0 16 16">
         <path d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2h-7zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48V8.35zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z"/>
     </svg>
     Vos derniers morceaux écoutés
 </button>
 
-<div class="panel">
-    <div class="table-responsive">
-        <table class="table table-borderless align-middle last-listened">
-            <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody> <!-- faire les input des 10 derniers morceaux écoutés -->
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+<div class="panel" style = 'margin-bottom: 6em;'>
+    <div class="row">
+      <div class="col">
+            <div id="history">
+
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -294,9 +279,14 @@
     Vos titres likés
 </button>
 
-<div class="panel">
-    <div id="liked_songs">
+<div class="panel" style = 'margin-bottom: 6em;'>
+    <div class="row">
+      <div class="col">
+            <div id="liked_songs">
 
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -307,9 +297,13 @@
     </svg>
     Vos playlists
 </button>
-<div class="panel" style="margin-bottom: 6em"> <!-- Margin bottom pour que le footer ne cache pas le contenu -->
-    <div id="playlists">
+<div class="panel" style ='margin-bottom: 6em;'>
+    <div class="row">
+      <div class="col"> <!-- Margin bottom pour que le footer ne cache pas le contenu -->
+        <div id="playlists">
 
+        </div>
+      </div>
     </div>
 </div>
 
@@ -349,7 +343,8 @@
                     </tr>
                     </tbody>
                 </table>
-
+                <div id="all_album_modal_carousel" style="height: 500px"></div>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -396,7 +391,7 @@
 
                     </tbody>
                 </table>
-
+                
                 <div id="album_modal_carousel" style="height: 500px"></div>
             </div>
             <div class="modal-footer">

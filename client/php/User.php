@@ -403,7 +403,7 @@ class User
         try{
             $db = DB::connexion();
 
-            $request = 'INSERT INTO history (id_song, id_user) VALUES (:id_song, :id_user);';
+            $request = 'INSERT INTO history (id_song, id_user, date_add_song_history) VALUES (:id_song, :id_user, NOW());';
 
             $statement = $db->prepare($request);
 
@@ -431,6 +431,7 @@ class User
                             JOIN song on history.id_song = song.id_song
                             JOIN album a on song.id_album = a.id_album
                         WHERE id_user = :id_user
+                        ORDER BY date_add_song_history DESC
                         LIMIT 10;';
 
             $statement = $db->prepare($request);

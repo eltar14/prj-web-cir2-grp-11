@@ -149,7 +149,7 @@ CREATE TABLE public.playlist_song(
 CREATE TABLE public.history(
 	id_song   INT  NOT NULL ,
 	id_user   INT  NOT NULL  ,
-	date_add_song_history DATE  ,
+	date_add_song_history TIMESTAMP ,
 	CONSTRAINT history_PK PRIMARY KEY (id_song,id_user)
 
 	,CONSTRAINT history_song_FK FOREIGN KEY (id_song) REFERENCES public.song(id_song)

@@ -848,18 +848,15 @@ $('#form_search').on('keyup keypress', function(e) {
 });
 
 
-$('body').on('click', '.go_listen', () =>
-{
+$('body').on('click', '.go_listen', () => {
     console.log($(event.target).closest('.go_listen').attr('value'));
     let id_song = $(event.target).closest('.go_listen').attr('value');
-    
-    ajaxRequest('POST', 'php/request.php/add_to_history/', rien, 'id_user='+ id_user + '&id_song=' +  id_song);
-}
-);
+
+    ajaxRequest('POST', 'php/request.php/add_to_history/', display_history, 'id_user=' + id_user + '&id_song=' + id_song);
+});
 
 function display_history(){
     ajaxRequest('GET', 'php/request.php/history_user/?id_user=' + id_user, aux4);
-
 }
 display_history();
 
@@ -877,6 +874,7 @@ function aux4(history){
 
     }, 100);
 }
+
 
 
 

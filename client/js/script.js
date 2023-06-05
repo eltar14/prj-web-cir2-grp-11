@@ -255,7 +255,7 @@ function create_song_card(title, description, image_src, button_text, button_url
     let button1 = document.createElement("a");
     let button1inner = document.createElement("button");
 
-    button1inner.className = "btn btn-primary";
+    button1inner.className = "btn btn-primary go_listen";
     button1.href = button_url;
     button1inner.textContent = button_text;
     button1inner.value = id_song;
@@ -497,7 +497,7 @@ function create_artist_card(title, description, image_src, id_artist){
     return div.innerHTML;
 }
 
-// ===== SONG =====
+// ===== PLAYLIST =====
 
 function display_playlists_cards(playlists){
     let str = '';
@@ -542,6 +542,9 @@ function display_playlists_cards(playlists){
 
     document.getElementById("playlists").innerHTML = str; //TODO ===================
 }
+
+
+
 function createPlaylistCard(title, date, cover_url){
     let card = document.createElement("div");
     card.className = "card";
@@ -574,7 +577,64 @@ function createPlaylistCard(title, date, cover_url){
     return div.innerHTML;    
 }
 
+// ===== HISTORY =====
 
+function display_history_cards(values, r = false, oid = false){
+    let id = r?'carouselSongA':'carouselSongB';
+    if (oid){
+        id = 'carouselSongC';
+    }
+    let str = '';
+    let total_length = values.length;
+    let nbr = Math.ceil(total_length/5);
+    str += '<div id="' + id + '" class="carousel slide carousel-dark" data-bs-ride="carousel">\n' +
+        '        <div class="carousel-inner">';
+
+    for (let i = 0; i < nbr; i++) {
+        if (i === 0){
+            str += '<div class="carousel-item active">' +
+                '<div class="cards-wrapper">';
+        } else {
+            str += '<div class="carousel-item">\n' +
+                '                <div class="cards-wrapper">';
+        }
+
+        for (let j = 0; j < 5; j++) {
+            if (((i)*5 + j+1) <= total_length){
+                let pos = 5*i + j;
+                str += create_song_card(values[pos]['title_song'],
+                    values[pos]['name_album'],
+                    values[pos]['cover_album'],
+                    'Ecouter',
+                    values[pos]['link_song'],
+                    values[pos]['id_song'],
+                    values[pos]['is_liked']
+                    )
+            }
+
+        }
+        str += '</div>\n' +
+            '            </div>';
+
+    }
+    str += '</div>\n' +
+        '        <button class="carousel-control-prev btn-outline-light" type="button" data-bs-target="#' + id + '" data-bs-slide="prev">\n' +
+        '            <span class="carousel-control-prev-icon" aria-hidden="true"></span>\n' +
+        '            <span class="visually-hidden">Previous</span>\n' +
+        '        </button>\n' +
+        '        <button class="carousel-control-next btn-outline-light" type="button" data-bs-target="#' + id + '" data-bs-slide="next">\n' +
+        '            <span class="carousel-control-next-icon" aria-hidden="true"></span>\n' +
+        '            <span class="visually-hidden">Next</span>\n' +
+        '        </button>\n' +
+        '    </div>';
+
+    if(r){
+        return str;
+    }else{
+        document.getElementById("history").innerHTML = str;
+    }
+
+}
 
 $('#printArtistInfo').on('click', () =>
     {
@@ -733,6 +793,21 @@ $('#form_search').on('keyup keypress', function(e) {
         return false;
     }
 });
+
+
+$('body').on('click', '.go_listen', () =>
+{
+    console.log($(event.target).closest('.go_listen').attr('value'));
+    let id_song = $(event.target).closest('.go_listen').attr('value');
+    
+    ajaxRequest('GET', 'php/request.php/add_to_history/?id_song=' + id_song +'&?id_user=' + id_user, display_history_cards());
+
+}
+);
+
+
+
+
 //create_new_playlist_button
 
 

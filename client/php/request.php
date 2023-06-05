@@ -141,6 +141,13 @@ function post($db, $requestRessource){
             exit();
         }
     }
+    elseif ($requestRessource == 'add_to_history'){
+        if (isset($_POST["id_user"], $_POST["id_song"])){
+            User::addToHistory($_POST["id_user"], $_POST["id_song"]);
+            header('HTTP/1.1 201 Created');
+            exit();
+        }
+    }
 
 
     else{

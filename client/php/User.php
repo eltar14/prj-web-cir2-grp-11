@@ -405,6 +405,7 @@ class User
         $id_user = intval($id_user);
         $id_song = intval($id_song);
 
+
         // Vérifier si la musique est déjà présente dans l'historique de l'utilisateur
         $checkRequest = 'SELECT id_song FROM history WHERE id_song = :id_song AND id_user = :id_user;';
         $checkStatement = $db->prepare($checkRequest);
@@ -458,6 +459,7 @@ class User
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             return $result;
+
         }
         catch (PDOException $exception)
         {

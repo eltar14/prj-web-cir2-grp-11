@@ -846,34 +846,37 @@ $('#form_search').on('keyup keypress', function(e) {
         return false;
     }
 });
-
+ 
 
 $('body').on('click', '.go_listen', () => {
     console.log($(event.target).closest('.go_listen').attr('value'));
     let id_song = $(event.target).closest('.go_listen').attr('value');
 
     ajaxRequest('POST', 'php/request.php/add_to_history/', display_history, 'id_user=' + id_user + '&id_song=' + id_song);
+    setTimeout(() => {
+        display_history();
+    }, 100);
 });
 
-function display_history(){
+function display_history() {
     ajaxRequest('GET', 'php/request.php/history_user/?id_user=' + id_user, aux4);
+    function aux4(history) {
+        console.warn(history);
+        $('#history').html(history);
+    
+        display_history_cards(history);
+    
+        setTimeout(() => {
+            $('#accordion_history').addClass('active');
+            let panel = $('#accordion_history').next().get(0);
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+        }, 100);
+    }
 }
 display_history();
 
-function aux4(history){
 
-    //console.warn('playlists');
-    console.warn(history);
-    document.getElementById('history').innerHTML = history;
 
-    display_history_cards(history);
-    setTimeout(() => {
-        document.getElementById('accordion_history').classList.add('active');
-        let panel = document.getElementById('accordion_history').nextElementSibling;
-        panel.style.maxHeight = panel.scrollHeight + "px";
-
-    }, 100);
-}
 
 
 

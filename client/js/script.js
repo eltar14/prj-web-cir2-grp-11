@@ -892,6 +892,11 @@ $('body').on('click', '.delete_playlist_button', () =>
     let btn = $(event.target).closest('.delete_playlist_button');
     let id_playlist = btn.attr('value');
     console.log('delete playlist id : ',id_playlist);
+    ajaxRequest('DELETE', 'php/request.php/delete_playlist/'+ id_playlist +'/', display_playlists);
+    setTimeout(() => {
+        display_playlists()
+    }, 400);
+
 
 
 

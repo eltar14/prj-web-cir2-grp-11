@@ -198,9 +198,8 @@ function put($db, $requestRessource){ //modif user
 function delete($db, $requestRessource, $request){ //delete tweet
     //dbDeleteTweet($db, array_shift($request), $_GET["login"]);
     if ($requestRessource == 'delete_playlist'){
-        if (isset($_GET["id_playlist"])){
-            Playlist::delete($_GET["id_playlist"]);
-        }
+        $id_playlist = array_shift($request);
+        Playlist::delete($id_playlist);
     }elseif ($requestRessource == 'delete_song_from_playlist'){
         $id_playlist = array_shift($request);
         $id_song = array_shift($request);

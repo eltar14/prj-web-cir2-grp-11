@@ -299,6 +299,7 @@ INSERT INTO playlist(name_playlist, cover_playlist, is_fav) values ('Titres lik√
 INSERT INTO playlist(name_playlist, cover_playlist) values ('La liste qui joue', 'https://wallpapercave.com/wp/wp11216531.jpg');
 INSERT INTO playlist(name_playlist, cover_playlist) values ('Playlist ROOOCK !!!', 'https://pro2-bar-s3-cdn-cf4.myportfolio.com/dbea3cc43adf643e2aac2f1cbb9ed2f0/f14d6fc4-2cea-41a2-9724-a7e5dff027e8_rw_1200.jpg?h=60e8fb45f75e1a2612c53a4f2174997c');
 INSERT INTO playlist(name_playlist, cover_playlist) values ('Playlist de Quentin', 'https://mir-s3-cdn-cf.behance.net/project_modules/hd/602f4731226337.5646928c3633f.jpg');
+INSERT INTO playlist(name_playlist, cover_playlist) values ('Playlist de Antoine', 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg');
 
 /* Ajout de musiques dans la playlist via playlist_song */
 
@@ -342,3 +343,4 @@ INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (9, 9, '20
 INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (1, 10, '2023-02-06');
 INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (7, 11, '2023-02-06');
 INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (4, 12, '2023-02-06');
+INSERT INTO user_playlist(id_user, id_playlist, date_playlist) values (5, 13, '2023-06-04');

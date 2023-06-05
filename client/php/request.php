@@ -1,13 +1,6 @@
 <?php
 
-// GET    /tweet/
-// GET    /tweet/?login=...
-// POST   /tweet/?login=...&text=...
-// PUT    /tweet/i?login=...&text=...
-// DELETE /tweet/i?login=...
-
-  require_once('../../DB.php')
-  ;
+  require_once('../../DB.php');
   require_once ('User.php');
   require_once ('Artist.php');
   require_once ('Song.php');
@@ -100,7 +93,7 @@ function get($db, $requestRessource)
         $id_artist = $_GET["id_artist"];
         $data = Album::getAllAlbum($id_artist);
     }
-//getSongList
+
     //Song
     elseif ($requestRessource == 'search_song') {
         $val = $_GET["search"];
@@ -112,10 +105,7 @@ function get($db, $requestRessource)
         $data = Song::isLikedByUser($id_song, $id_user);
     }
 
-
-
-
-    // Send data to the client.
+    // Envoi de la réponse au client.
     header('Content-Type: application/json; charset=utf-8');
     header('Cache-control: no-store, no-cache, must-revalidate');
     header('Pragma: no-cache');
@@ -127,13 +117,13 @@ function get($db, $requestRessource)
 // ========= POST ==========
 function post($db, $requestRessource){
     // User
-    if($requestRessource == 'add_user'){   //add user
+    if($requestRessource == 'add_user'){   
         if (isset($_POST["name"], $_POST["surname"], $_POST["email"], $_POST["birthdate"], $_POST["password"])) {
             User::addUser($_POST["name"], $_POST["surname"], $_POST["email"], $_POST["birthdate"], $_POST["password"]);
             header('HTTP/1.1 201 Created');
             exit();
         }
-    }elseif ($requestRessource == 'add_fav'){
+    }elseif ($requestRessource == 'add_fav'){ 
         if (isset($_POST["id_user"], $_POST["id_song"])){
             User::addFav($_POST["id_user"], $_POST["id_song"]);
             header('HTTP/1.1 201 Created');
@@ -148,6 +138,7 @@ function post($db, $requestRessource){
             exit();
         }
     }
+    // History
     elseif ($requestRessource == 'add_to_history'){
         if (isset($_POST["id_user"], $_POST["id_song"])){
             User::addToHistory($_POST["id_user"], $_POST["id_song"]);   
@@ -190,8 +181,6 @@ function put($db, $requestRessource){ //modif user
             User::updateBirthdate($_PUT["id_user"], $_PUT["birthdate_user"]);
         }
     }
-    //dbAddTweet($db, $_PUT["login"], $_PUT["text"]);
-    //dbModifyTweet($db, array_shift($request), $_PUT["login"], $_PUT["text"]);
     header('HTTP/1.1 200 OK');
     exit();
 }

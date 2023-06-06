@@ -31,7 +31,7 @@
   <?php
   if(isset($_POST['addUser'])){
         if(strcmp($_POST['email'],$_POST['emailConfirmation']) == 0 && strcmp($_POST['password'], $_POST['passwordConfirmation']) == 0 && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['name']) && !empty($_POST['surname']) && !empty($_POST['birthDate'])){  
-        $response = User::addUser($_POST['name'], $_POST['surname'], $_POST['email'], $_POST['birthDate'], $_POST['password']);
+        $response = User::addUser($_POST['surname'], $_POST['name'], $_POST['email'], $_POST['birthDate'], $_POST['password']);
           switch ($response){
             case "ok":
             echo '

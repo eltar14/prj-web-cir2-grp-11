@@ -81,9 +81,9 @@ INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album
 /* Création des chansons */
 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Putain, cest génial', '208', '../client/audio/Putain, cest génial !.mp3', 1);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tavernier', '214', 'https://www.youtube.com/watch?v=VhE6vVlcPtg', 1); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tavernier', '214', '../client/audio/Tavernier.mp3', 1); 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Chtarboxe rap', '325', '../client/audio/Chtarboxe rap.mp3', 1); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tatoof', '211', 'https://www.youtube.com/watch?v=ZeIEJvRyDqU', 1); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tatoof', '211', '../client/audio/Tatoof.mp3', 1); 
 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Même pas peur', '208', 'https://www.youtube.com/watch?v=tEdDg-a4qhk', 2); 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Samba Do Brasil', '263', 'https://www.youtube.com/watch?v=-a5Ts4otwps', 2); 

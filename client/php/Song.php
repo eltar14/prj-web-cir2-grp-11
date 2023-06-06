@@ -1,5 +1,7 @@
 <?php
 require_once "../../DB.php";
+require_once  'Song.php';
+
 /**
  * Class Song
  */
@@ -70,20 +72,24 @@ class Song
      * @param $id_song
      * @return mixed
      */
-    static function getSong($id_song){
+    static function getSong($id_song, $id_user = 0){
         $db = DB::connexion();
 
-        $request = 'SELECT * 
-                    FROM song 
+        $request = 'SELECT id_song ,title_song, link_song, name_album, date_album, cover_album, name_artist
+                    FROM song
+                    JOIN album a on a.id_album = song.id_album
+                    JOIN artist a2 on a2.id_artist = a.id_artist
                     WHERE id_song=:id_song;';
-
         $statement = $db->prepare($request);
-
         $statement->bindParam(':id_song', $id_song);
-
         $statement->execute();
+        $arr = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+        if ($id_user !== 0){
+                $arr['is_liked'] = Song::isLikedByUser($id_song, $id_user);
+        }
+        return $arr;
+
     }
     /**
      * Fonction qui retourne l'id de l'album de la chanson

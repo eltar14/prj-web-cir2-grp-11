@@ -119,7 +119,7 @@
                                     </tr>
                                     <tr>
                                         <td>Votre date de naissance :</td>
-                                        <td><input type="date" id="birthdateUserInput"></td>
+                                        <td><input type="date" id="birthdateUserInput" min="1900-01-01" max="2000-13-13" onfocus="this.max=new Date().toISOString().split('T')[0]"></td>
                                     </tr>
                                     <tr>
                                         <td>Votre ancien mot de passe :</td>

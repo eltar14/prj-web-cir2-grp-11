@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---        Script Postgre 
+--        Script Postgre -- (là en secours si il y a des bugs avec model.sql et data.sql) 
 ------------------------------------------------------------
 
 

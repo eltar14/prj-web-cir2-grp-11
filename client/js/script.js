@@ -1139,7 +1139,9 @@ function display_playlists_in_modal(playlists){
 $('#create_new_playlist_button').on('click', () =>
     {
         let playlist_name = $('#new_playlist_name').val();
+        $('#new_playlist_name').val('');
         let cover_url = $('#new_playlist_cover_url').val();
+        $('#new_playlist_cover_url').val('');
         ajaxRequest('POST', 'php/request.php/add_playlist/', ()=>{}, 'id_user='+ id_user + '&name_playlist=' +  playlist_name + '&new_playlist_cover_url=' +cover_url);
 
         setTimeout(() => {

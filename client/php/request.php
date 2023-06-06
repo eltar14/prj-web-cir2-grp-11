@@ -45,6 +45,9 @@ function get($db, $requestRessource)
     }elseif ($requestRessource == 'email_user'){
         $id_user =  $_GET["id_user"];
         $data = User::getEmail($id_user);
+    }elseif($requestRessource == 'birthdate_user'){
+        $id_user =  $_GET["id_user"];
+        $data = User::getBirthdate($id_user);
     }elseif ($requestRessource == 'fav_user'){
         $id_user =  $_GET["id_user"];
         $data = User::getLikedSongs($id_user);

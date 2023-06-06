@@ -136,25 +136,25 @@ $('#go_search').on('click', (e) =>
     {
         e.preventDefault();
         console.log('click search');
-        let searched_value = document.getElementById('search_value').value;
+        let searched_value = document.getElementById('search_value').value; // récupère la valeur de la barre de recherche
         console.log(searched_value);
-        let type = document.querySelector('input[name="options"]:checked').value;
+        let type = document.querySelector('input[name="options"]:checked').value; // récupère la valeur du type de recherche
         console.log(type);
 
         switch (type){
             case 'album':
-                ajaxRequest('GET', 'php/request.php/search_album/?search=' + searched_value, display_album_cards);
+                ajaxRequest('GET', 'php/request.php/search_album/?search=' + searched_value, display_album_cards); // effectue la requête search_album vers le fichier request.php et affiche les cartes des albums correspondants
                 break;
             case 'artist':
-                ajaxRequest('GET', 'php/request.php/search_artist/?search=' + searched_value, display_artist_cards);
+                ajaxRequest('GET', 'php/request.php/search_artist/?search=' + searched_value, display_artist_cards); // effectue la requête search_artist vers le fichier request.php et affiche les cartes des artistes correspondants
                 break;
             case 'title':
-                ajaxRequest('GET', 'php/request.php/search_song/?search=' + searched_value +'&id_user=' + id_user, display_song_cards);
+                ajaxRequest('GET', 'php/request.php/search_song/?search=' + searched_value +'&id_user=' + id_user, display_song_cards); // effectue la requête search_song vers le fichier request.php et affiche les cartes des chansons correspondants
                 break;
         }
         setTimeout(() => {
-            document.getElementById('accordion_recherche').classList.add('active');
-            let panel = document.getElementById('accordion_recherche').nextElementSibling;
+            document.getElementById('accordion_recherche').classList.add('active'); // active l'accordéon
+            let panel = document.getElementById('accordion_recherche').nextElementSibling; 
             panel.style.maxHeight = panel.scrollHeight + "px";
 
         }, 100);
@@ -190,7 +190,7 @@ $('#search_titre').on('click', () =>
 
 // ===== SONG =====
 
-function display_song_cards(values, r = false, oid = false){
+function display_song_cards(values, r = false, oid = false){ // Affiche les cartes des chansons
     let id = r?'carouselSongA':'carouselSongB';
     if (oid){
         id = 'carouselSongC';
@@ -247,7 +247,7 @@ function display_song_cards(values, r = false, oid = false){
 
 }
 
-function create_song_card(title, description, image_src, button_text, button_url, id_song, is_liked){
+function create_song_card(title, description, image_src, button_text, button_url, id_song, is_liked){ // Crée une carte de chanson
 
     let card = document.createElement("div");
     card.className = "card";
@@ -320,7 +320,7 @@ function create_song_card(title, description, image_src, button_text, button_url
 }
 
 // ===== ALBUM =====
-function display_album_cards(values){
+function display_album_cards(values){ // Affiche les cartes d'albums
     let str = '';
     let total_length = values.length;
     let nbr = Math.ceil(total_length/5);
@@ -366,7 +366,7 @@ function display_album_cards(values){
     document.getElementById("search_results_div").innerHTML = str;
 }
 
-function create_album_card(title, date_album, name_artist, image_src, id_album){
+function create_album_card(title, date_album, name_artist, image_src, id_album){ // Crée une carte d'album
     let card = document.createElement("div");
     card.className = "card";
 
@@ -419,7 +419,7 @@ function create_album_card(title, date_album, name_artist, image_src, id_album){
 
 
 // ===== ARTIST =====
-function display_artist_cards(values){
+function display_artist_cards(values){ // Affiche les cartes d'artistes
 
     let str = '';
     let total_length = values.length;
@@ -465,7 +465,7 @@ function display_artist_cards(values){
     document.getElementById("search_results_div").innerHTML = str;
 }
 
-function create_artist_card(title, description, image_src, id_artist){
+function create_artist_card(title, description, image_src, id_artist){ // Crée une carte d'artiste
     let card = document.createElement("div");
     card.className = "card";
 
@@ -510,7 +510,7 @@ function create_artist_card(title, description, image_src, id_artist){
 
 // ===== PLAYLIST =====
 
-function display_playlists_cards(playlists){
+function display_playlists_cards(playlists){ // Affiche les cartes de playlists
     let str = '';
     let total_length = playlists.length;
     let nbr = Math.ceil(total_length/5);
@@ -624,7 +624,7 @@ function createPlaylistCard(title, date, cover_url, id_playlist, is_fav){
 
 
 
-function display_song_cards_in_playlist_modal(values, id_html = 'carouselPlaylistsGestion'){
+function display_song_cards_in_playlist_modal(values, id_html = 'carouselPlaylistsGestion'){ // Affiche les cartes des musiques contenues dans une playlist
     let id = String(id_html);
     let str = '';
     let total_length = values.length;
@@ -732,7 +732,7 @@ function create_song_card_in_playlist_display(title, title_album, image_src, but
 
 // ===== HISTORY =====
 
-function display_history_cards(values, r = false, oid = false){
+function display_history_cards(values, r = false, oid = false){ // affiche les cartes des musiques écoutées récemment
 
     let id = 'carouselHistory';
     let str = '';
@@ -794,7 +794,7 @@ $('#printArtistInfo').on('click', () =>
         let id_artist = document.getElementById('id_artist').innerText;
         console.log(id_artist);
 
-        ajaxRequest('GET', 'php/request.php/artist/?id_artist=' + id_artist, rien);
+        ajaxRequest('GET', 'php/request.php/artist/?id_artist=' + id_artist, rien); // lorsque le bouton est cliqué on récupère l'id de l'artiste
     }
 );
 
@@ -804,11 +804,11 @@ $('#printArtistInfo').on('click', () =>
 $('#search_results_div').on('click', '.artist_info_btn', () =>
     {
         console.log($(event.target).closest('.artist_info_btn').attr('value'));
-        let id_artist = $(event.target).closest('.artist_info_btn').attr('value');
-        ajaxRequest('GET', 'php/request.php/name_artist/?id_artist=' + id_artist, displayModalInfoArtistName);
-        ajaxRequest('GET', 'php/request.php/description_artist/?id_artist=' + id_artist, displayModalDescriptionArtist);
-        ajaxRequest('GET', 'php/request.php/type_artist/?id_artist=' + id_artist, displayModalTypeArtist);
-        ajaxRequest('GET', 'php/request.php/get_all_album/?id_artist=' + id_artist, displayModalAlbumsArtist);
+        let id_artist = $(event.target).closest('.artist_info_btn').attr('value'); 
+        ajaxRequest('GET', 'php/request.php/name_artist/?id_artist=' + id_artist, displayModalInfoArtistName); // lorsque le bouton est cliqué on récupère le nom de l'artiste
+        ajaxRequest('GET', 'php/request.php/description_artist/?id_artist=' + id_artist, displayModalDescriptionArtist);  // lorsque le bouton est cliqué on récupère la description de l'artiste
+        ajaxRequest('GET', 'php/request.php/type_artist/?id_artist=' + id_artist, displayModalTypeArtist); // lorsque le bouton est cliqué on récupère le type de l'artiste
+        ajaxRequest('GET', 'php/request.php/get_all_album/?id_artist=' + id_artist, displayModalAlbumsArtist); // lorsque le bouton est cliqué on récupère les albums de l'artiste
 
     }
 );
@@ -822,19 +822,19 @@ $('#search_results_div').on('click', '.artist_info_btn', () =>
 //     }
 // );
 
-function displayModalInfoArtistName(nameArtist){
+function displayModalInfoArtistName(nameArtist){ // affiche le nom de l'artiste dans la modal
     document.getElementById('nameArtist').innerText = nameArtist;
 }
 
-function displayModalDescriptionArtist(descriptionArtist){
+function displayModalDescriptionArtist(descriptionArtist){ // affiche la description de l'artiste dans la modal
     document.getElementById('descriptionArtist').innerText = descriptionArtist;
 }
 
-function displayModalTypeArtist(typeArtist){
+function displayModalTypeArtist(typeArtist){ // affiche le type de l'artiste dans la modal
     document.getElementById('typeArtist').innerText = typeArtist;
 }
 
-function displayModalAlbumsArtist(albumsArtist){
+function displayModalAlbumsArtist(albumsArtist){ // affiche les albums de l'artiste dans la modal
     let str = '';
     let total_length = albumsArtist.length;
     let nbr = Math.ceil(total_length/5);
@@ -889,28 +889,28 @@ $('body').on('click', '.album_info_btn', () =>
     {
         console.log($(event.target).closest('.album_info_btn').attr('value'));
         let id_album = $(event.target).closest('.album_info_btn').attr('value')
-        ajaxRequest('GET', 'php/request.php/all_album/?id_album=' + id_album, displayModalInfoAlbumName);
+        ajaxRequest('GET', 'php/request.php/all_album/?id_album=' + id_album, displayModalInfoAlbumName); //lorsque que le bouton d'info d'un album est cliqué on récupère les infos de l'album
     }
 );
 
 function displayModalInfoAlbumName(album_infos){
-    document.getElementById('nameAlbum').innerText = album_infos['name_album'];
-    document.getElementById('dateAlbum').innerText = album_infos['date_album'];
-    document.getElementById('styleAlbum').innerText = album_infos['style_album'];
+    document.getElementById('nameAlbum').innerText = album_infos['name_album']; // affiche le nom de l'album dans la modal
+    document.getElementById('dateAlbum').innerText = album_infos['date_album']; // affiche la date de l'album dans la modal
+    document.getElementById('styleAlbum').innerText = album_infos['style_album']; // affiche le style de l'album dans la modal
     let id_album = album_infos['id_album'];
-    ajaxRequest('GET', 'php/request.php/songs_album/?id_album=' + id_album + '&id_user=' + id_user, aux)
+    ajaxRequest('GET', 'php/request.php/songs_album/?id_album=' + id_album + '&id_user=' + id_user, aux) //on récupère toutes les musiques de l'album
 
     function aux(songs){
-        document.getElementById('album_modal_carousel').innerHTML = display_song_cards(songs, true, true);
+        document.getElementById('album_modal_carousel').innerHTML = display_song_cards(songs, true, true); // on affiche les musiques de l'album dans la modal sous forme de carrousels
     }
 }
 
 // === display liked songs at page loading ===
 
-function display_liked_songs(){
-    ajaxRequest('GET', 'php/request.php/fav_user/?id_user=' + id_user, aux2);
+function display_liked_songs(){ // affiche les musiques likées par l'utilisateur
+    ajaxRequest('GET', 'php/request.php/fav_user/?id_user=' + id_user, aux2); // on récupère les musiques likées par l'utilisateur
     function aux2(songs){
-        document.getElementById('liked_songs').innerHTML = display_song_cards(songs, true);
+        document.getElementById('liked_songs').innerHTML = display_song_cards(songs, true); 
         setTimeout(() => {
             document.getElementById('accordion_likes').classList.add('active');
             let panel = document.getElementById('accordion_likes').nextElementSibling;
@@ -922,7 +922,7 @@ function display_liked_songs(){
 display_liked_songs();
 
 // === display users playlists at page loading ===
-function display_playlists(){
+function display_playlists(){ //
     ajaxRequest('GET', 'php/request.php/playlists_user/?id_user=' + id_user, aux3);
 
 }

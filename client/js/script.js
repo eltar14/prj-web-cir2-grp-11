@@ -126,6 +126,8 @@ $('#submitChangeUserInfo').on('click', () =>
         getEmail(document.getElementById('emailUserInput').value)
 
         ajaxRequest('PUT', 'php/request.php/update_password/', rien, 'id_user='+ id_user +'&password_user='+ document.getElementById('passwordUserInput').value + '&former_password_user=' + document.getElementById('formerPasswordUserInput').value); // effectue la requête update_password vers le fichier request.php et modifie le mot de passe de l'utilisateur en fonction de son id
+        document.getElementById('formerPasswordUserInput').value = '';
+        document.getElementById('passwordUserInput').value = '';
 
         ajaxRequest('PUT', 'php/request.php/update_birthdate/', rien, 'id_user='+ id_user +'&birthdate_user='+ document.getElementById('birthdateUserInput').value); // effectue la requête update_birthdate vers le fichier request.php et modifie la date de naissance de l'utilisateur en fonction de son id
         

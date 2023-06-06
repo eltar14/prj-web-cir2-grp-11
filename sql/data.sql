@@ -56,6 +56,8 @@ INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Kin
 INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Michel Polnareff', 2, 'Description'); /* 14 */
 INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Daniel Balavoine', 1, 'Description'); /* 15 */
 INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Haddaway', 1, 'Description'); /* 16 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Alan Walker', 1, 'Alan Walker qui a créé Faded'); /* 17 */
+
 
 
 /* Création des albums */
@@ -77,6 +79,8 @@ INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Polnarévolution', '1972-11-02', 'https://m.media-amazon.com/images/I/81+eUSFAbwL._UF894,1000_QL80_.jpg', 14, 1); /* 15 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Sauver l amour', '1985-10-14', 'https://p5.storage.canalblog.com/58/32/636073/125759783_o.jpg', 15, 19); /* 16 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('The Album - 2nd Edition', '1993-05-07', 'https://m.media-amazon.com/images/I/51IdGIXWx6L._UXNaN_FMjpg_QL85_.jpg', 16, 3); /* 17 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Different World', '2018-01-01', 'https://m.media-amazon.com/images/I/81wCQ1dqABL._UF894,1000_QL80_.jpg', 17, 2); /* 18 */
+
 
 /* Création des chansons */
 
@@ -125,6 +129,22 @@ INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tous l
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('L Aziza','261','https://www.youtube.com/watch?v=lHjJlSq3BhA',16);
 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('What is love','251','../client/audio/Haddaway - What Is Love (slowed).mp3',17);
+-- Alan Walker
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Intro','251','../client/audio/AW Different World/1 - Intro.mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Lost Control','251','../client/audio/AW Different World/2 - Lost Control.mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('I Dont Wanna Go','251','../client/audio/AW Different World/3 - I Dont Wanna Go.mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Lily','251','../client/audio/AW Different World/4 - Lily.mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Lonely','251','../client/audio/AW Different World/5 - Lonely.mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Do It All For You','251','../client/audio/Alan Walker - Different World (2018)/6 - Do It All For You.mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Different World','251','../client/audio/Alan Walker - Different World (2018)/7 - Different World.mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Interlude','251','../client/audio/Alan Walker - Different World (2018)/8 - Interlude.mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Sing Me To Sleep','251','../client/audio/Alan Walker - Different World (2018)/9 - Sing Me To Sleep.mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('All Falls Down','251','../client/audio/Alan Walker - Different World (2018)/10 - All Falls Down.mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Darkside','251','../client/audio/Alan Walker - Different World (2018)/11 - Darkside.mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Alone','251','../client/audio/Alan Walker - Different World (2018)/12 - Alone.mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Diamond Heart','251','../client/audio/AW Different World/13 - Diamond Heart.mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Faded (Interlude)','251','../client/audio/AW Different World/14 - Faded (Interlude).mp3',18);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Faded','251','../client/audio/AW Different World/15 - Faded.mp3',18);
 
 /* Création de playlists */
 /* Titres likes */

@@ -19,7 +19,7 @@ class Playlist
             $cover_playlist = strval($cover_playlist);
 
             $request = 'INSERT INTO playlist(name_playlist, cover_playlist) 
-                        VALUES (:name_playlist, :cover_playlist)';
+                        VALUES (:name_playlist, :cover_playlist);';
 
             $statement = $db->prepare($request);
 
@@ -87,6 +87,42 @@ class Playlist
             return false;
         }
     }
+
+    static  function createLikedPlaylist($id_user){
+        try
+        {
+            $db = DB::connexion();
+
+            $request = 'INSERT INTO playlist(name_playlist, cover_playlist, is_fav) 
+                        VALUES (\'Titres likés\', \'https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg\', true);';
+
+            $statement = $db->prepare($request);
+            $statement->execute();
+
+            // ==
+            $id_user = intval($id_user);
+            $id_playlist = $db->lastInsertId();
+
+            $request = 'INSERT INTO user_playlist(id_playlist, id_user, date_playlist) 
+                        VALUES (:id_playlist, :id_user, CURRENT_DATE);';
+
+            $statement = $db->prepare($request);
+
+            $statement->bindParam(':id_playlist', $id_playlist);
+            $statement->bindParam(':id_user', $id_user);
+            $statement->execute();
+
+            return true;
+        }
+        catch (PDOException $exception)
+        {
+            error_log('Request error: '.$exception->getMessage());
+            return false;
+        }
+    }
+
+
+
     static function deleteSongFromPlaylist($id_playlist, $id_song){
         $db = DB::connexion();
         $id_song = intval($id_song);

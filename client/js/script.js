@@ -107,29 +107,26 @@ function displayBirthDateUserModal(birthdate){ // Renvoie la date de naissance d
     document.getElementById('birthdateUserInput').value = birthdate;
 }
 
-function rien(a){ // callback vide
-    return;
-}
 
 $('#submitChangeUserInfo').on('click', () =>
     {
         console.log('click on submitChangeUserInfo button')
 
-        ajaxRequest('PUT', 'php/request.php/update_name/', rien, 'id_user='+ id_user +'&name_user='+ document.getElementById('nameUserInput').value); //effectue la requête update_name vers le fichier request.php	et modifie le nom de l'utilisateur en fonction de son id
+        ajaxRequest('PUT', 'php/request.php/update_name/', ()=>{}, 'id_user='+ id_user +'&name_user='+ document.getElementById('nameUserInput').value); //effectue la requête update_name vers le fichier request.php	et modifie le nom de l'utilisateur en fonction de son id
         getName(document.getElementById('nameUserInput').value)
 
-        ajaxRequest('PUT', 'php/request.php/update_surname/', rien, 'id_user='+ id_user +'&surname_user='+ document.getElementById('surnameUserInput').value); // effectue la requête update_surname vers le fichier request.php et modifie le prénom de l'utilisateur en fonction de son id
+        ajaxRequest('PUT', 'php/request.php/update_surname/', ()=>{}, 'id_user='+ id_user +'&surname_user='+ document.getElementById('surnameUserInput').value); // effectue la requête update_surname vers le fichier request.php et modifie le prénom de l'utilisateur en fonction de son id
         getSurname(document.getElementById('surnameUserInput').value)
 
 
-        ajaxRequest('PUT', 'php/request.php/update_email/', rien, 'id_user='+ id_user +'&email_user='+ document.getElementById('emailUserInput').value); // effectue la requête update_email vers le fichier request.php et modifie l'email de l'utilisateur en fonction de son id
+        ajaxRequest('PUT', 'php/request.php/update_email/', ()=>{}, 'id_user='+ id_user +'&email_user='+ document.getElementById('emailUserInput').value); // effectue la requête update_email vers le fichier request.php et modifie l'email de l'utilisateur en fonction de son id
         getEmail(document.getElementById('emailUserInput').value)
 
-        ajaxRequest('PUT', 'php/request.php/update_password/', rien, 'id_user='+ id_user +'&password_user='+ document.getElementById('passwordUserInput').value + '&former_password_user=' + document.getElementById('formerPasswordUserInput').value); // effectue la requête update_password vers le fichier request.php et modifie le mot de passe de l'utilisateur en fonction de son id
+        ajaxRequest('PUT', 'php/request.php/update_password/', ()=>{}, 'id_user='+ id_user +'&password_user='+ document.getElementById('passwordUserInput').value + '&former_password_user=' + document.getElementById('formerPasswordUserInput').value); // effectue la requête update_password vers le fichier request.php et modifie le mot de passe de l'utilisateur en fonction de son id
         document.getElementById('formerPasswordUserInput').value = '';
         document.getElementById('passwordUserInput').value = '';
 
-        ajaxRequest('PUT', 'php/request.php/update_birthdate/', rien, 'id_user='+ id_user +'&birthdate_user='+ document.getElementById('birthdateUserInput').value); // effectue la requête update_birthdate vers le fichier request.php et modifie la date de naissance de l'utilisateur en fonction de son id
+        ajaxRequest('PUT', 'php/request.php/update_birthdate/', ()=>{}, 'id_user='+ id_user +'&birthdate_user='+ document.getElementById('birthdateUserInput').value); // effectue la requête update_birthdate vers le fichier request.php et modifie la date de naissance de l'utilisateur en fonction de son id
         
     }
 );
@@ -796,7 +793,7 @@ $('#printArtistInfo').on('click', () =>
         let id_artist = document.getElementById('id_artist').innerText;
         console.log(id_artist);
 
-        ajaxRequest('GET', 'php/request.php/artist/?id_artist=' + id_artist, rien); // lorsque le bouton est cliqué on récupère l'id de l'artiste
+        ajaxRequest('GET', 'php/request.php/artist/?id_artist=' + id_artist, ()=>{}); // lorsque le bouton est cliqué on récupère l'id de l'artiste
     }
 );
 
@@ -904,8 +901,10 @@ function displayModalInfoAlbumName(album_infos){
     }
 }
 
-// === display liked songs at page loading ===
 
+/**
+ * === display liked songs at page loading ===
+ */
 function display_liked_songs(){ // affiche les musiques likées par l'utilisateur
     ajaxRequest('GET', 'php/request.php/fav_user/?id_user=' + id_user, aux2); // on récupère les musiques likées par l'utilisateur
     function aux2(songs){
@@ -920,21 +919,25 @@ function display_liked_songs(){ // affiche les musiques likées par l'utilisateu
 }
 display_liked_songs();
 
-// === display users playlists at page loading ===
-function display_playlists(){ //
+
+/**
+ * === display users playlists at page loading ===
+ */
+function display_playlists(){ // requete ajax afficher les playlists dans l'accordéon
     ajaxRequest('GET', 'php/request.php/playlists_user/?id_user=' + id_user, aux3);
 
 }
 display_playlists();
 
+/**
+ * permet d'ajouter les cartes des playlists dans l'accordeon playlists
+ * @param playlists
+ */
 function aux3(playlists){
-
-    //console.warn('playlists');
-    //console.warn(playlists);
-    document.getElementById('playlists').innerHTML = playlists;
+    //document.getElementById('playlists').innerHTML = playlists;
 
     display_playlists_cards(playlists);
-    setTimeout(() => {
+    setTimeout(() => {          //remet à la bonne taille au cas où une partie des cards ne passe pas sur l'axe vertical, ou quand l'accordeon est fermé
         document.getElementById('accordion_playlists').classList.add('active');
         let panel = document.getElementById('accordion_playlists').nextElementSibling;
         panel.style.maxHeight = panel.scrollHeight + "px";
@@ -942,15 +945,16 @@ function aux3(playlists){
     }, 100);
 }
 
-
+/**
+ * onclick bouton like : déclenche l'ajout aux titres likés et l'update de l'affichage
+ */
 $('body').on('click', '.like_button', () =>
     {
-
         let btn = $(event.target).closest('.like_button');
-        let id_song = btn.attr('value');
-        console.log(id_song);
-        btn.toggleClass('filled');
-        if (btn.hasClass('filled')){
+        let id_song = btn.attr('value');        // récupère l'id de la musique via la value du bouton
+        //console.log(id_song);
+        btn.toggleClass('filled');  //change la classe du bouton concernant le visuel du coeur rempli ou non
+        if (btn.hasClass('filled')){    //change l'aspect en fonction de la classe
             btn.html('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-heart-fill" viewBox="0 0 16 16">\n' +
             '                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>\n' +
             '                </svg>');
@@ -961,60 +965,73 @@ $('body').on('click', '.like_button', () =>
         }
 
 
-        ajaxRequest('POST', 'php/request.php/add_fav/', rien, 'id_user='+ id_user + '&id_song=' +  id_song);
-        setTimeout((id_song) => {
-            display_liked_songs();
+        ajaxRequest('POST', 'php/request.php/add_fav/', ()=>{}, 'id_user='+ id_user + '&id_song=' +  id_song);
+        setTimeout((id_song) => {   //actions multiples après l'ajout en BDD
+            display_liked_songs();               // update de l'affichage
             update_like_footer(id_song, id_user);
             $('#go_search').click();
         }, 100, id_song);
     }
 );
 
+/**
+ * oncklick bouton + playlist via card song
+ */
 $('body').on('click', '.playlist_button', () =>
 {
     let btn = $(event.target).closest('.playlist_button');
     let id_song = btn.attr('value');
-    console.log(id_song);
+    //console.log(id_song);
 
-    $('#create_new_playlist_button').val(id_song);
+    $('#create_new_playlist_button').val(id_song);  //met l'id de la musique dont provient le clic dans le bouton de la fenêtre modale
     ajaxRequest('GET', 'php/request.php/playlists_user/?id_user=' + id_user, display_playlists_in_modal);
 }
 );
 
-// onclick bouton infos playlist
+/**
+ * onclick bouton infos playlist du carousel des playlists
+ */
 $('body').on('click', '.more_playlist_button', () =>
 {
     let btn = $(event.target).closest('.more_playlist_button');
     let id_playlist = btn.attr('value');
     console.log('info playlist id : ',id_playlist);
-    ajaxRequest('GET', 'php/request.php/get_playlist_content/?id_playlist=' + id_playlist, aux4);
+    ajaxRequest('GET', 'php/request.php/get_playlist_content/?id_playlist=' + id_playlist, set_modal_display_playlist_content);
 }
 );
-function aux4(data){
+
+/**
+ * affichage des playlists dans l'accordeon playlist
+ * @param data
+ */
+function set_modal_display_playlist_content(data){
     //console.warn(data);
     document.getElementById('id_playlist_gestion_modal').innerHTML = display_song_cards_in_playlist_modal(data);
 }
 // onclick bouton delete playlist / song from playlist
 
 
-//click bouton delete song from playlist
-$('body').on('click', '.delete_song_from_playlist_button',() =>
+/**
+ * click bouton delete song from playlist
+ */
+$('body').on('click', '.delete_song_from_playlist_button',() => //onclick suppression musique d'une playlist
     {
         let btn = $(event.target).closest('.delete_song_from_playlist_button');
-        let id_song = btn.attr('value');
-        let id_playlist = btn.next('.id_playlist_gestion_playlist').attr('value');
-        console.log("del song from playlist ids, idp : ", id_song+' , '+ id_playlist);
+        let id_song = btn.attr('value');                                                // récupère l'id de la musique
+        let id_playlist = btn.next('.id_playlist_gestion_playlist').attr('value'); // récupère l'id de la playlist
+        //console.log("del song from playlist ids, idp : ", id_song+' , '+ id_playlist);
 
-        ajaxRequest('DELETE', 'php/request.php/delete_song_from_playlist/'+ id_playlist +'/'+ id_song +'/', rien);
+        ajaxRequest('DELETE', 'php/request.php/delete_song_from_playlist/'+ id_playlist +'/'+ id_song +'/', ()=>{});
         setTimeout(() => {
-            ajaxRequest('GET', 'php/request.php/get_playlist_content/?id_playlist=' + id_playlist, aux4);
+            ajaxRequest('GET', 'php/request.php/get_playlist_content/?id_playlist=' + id_playlist, set_modal_display_playlist_content); // a mettre en callback
         }, 400);
     }
 );
 
 
-
-//click bouton delete playlist
+/**
+ * click bouton delete playlist
+ */
 $('body').on('click', '.delete_playlist_button', () =>
 {
     let btn = $(event.target).closest('.delete_playlist_button');
@@ -1024,17 +1041,13 @@ $('body').on('click', '.delete_playlist_button', () =>
     setTimeout(() => {
         display_playlists()
     }, 400);
-
-
-
-
 }
 );
 
-
-
-
-
+/**
+ *  affichage des playlists dans le modal
+ * @param playlists
+ */
 function display_playlists_in_modal(playlists){
     let card_div = document.createElement("div");
     card_div.style.width = '18rem';
@@ -1076,31 +1089,41 @@ function display_playlists_in_modal(playlists){
 
 }
 
-
+/**
+ * onclick bouton create new playlist (dans la modale de gestion playlist via card song)
+ */
 $('#create_new_playlist_button').on('click', () =>
     {
         let playlist_name = $('#new_playlist_name').val();
         let cover_url = $('#new_playlist_cover_url').val();
-        ajaxRequest('POST', 'php/request.php/add_playlist/', rien, 'id_user='+ id_user + '&name_playlist=' +  playlist_name + '&new_playlist_cover_url=' +cover_url);
+        ajaxRequest('POST', 'php/request.php/add_playlist/', ()=>{}, 'id_user='+ id_user + '&name_playlist=' +  playlist_name + '&new_playlist_cover_url=' +cover_url);
 
         setTimeout(() => {
             display_playlists();
+
             ajaxRequest('GET', 'php/request.php/playlists_user/?id_user=' + id_user, display_playlists_in_modal);
 
         }, 700);
     }
 );
 
+/**
+ *  onclick bouton d'ajout d'une musique à une playlist
+ */
 $('#div_gestion_playlist_modal').on('click', '.button_add_to_playlist', () =>
     {
         let id_playlist = $(event.target).closest('.button_add_to_playlist').attr('value');
         let id_song = $('#create_new_playlist_button').attr('value');
         console.warn('id_playlist : ', id_playlist, 'id_song : ', id_song);
-        ajaxRequest('POST', 'php/request.php/add_song_to_playlist/', rien, 'id_playlist='+ id_playlist + '&id_song=' +  id_song);
+        ajaxRequest('POST', 'php/request.php/add_song_to_playlist/', ()=>{}, 'id_playlist='+ id_playlist + '&id_song=' +  id_song);
     }
 );
 
 
+/**
+ *  désactive le submit sur appui ENTER
+ *  (évite le rechargement de la page)
+ */
 $('#form_search').on('keyup keypress', function(e) {
     var keyCode = e.keyCode || e.which;
     if (keyCode === 13) {
@@ -1108,8 +1131,11 @@ $('#form_search').on('keyup keypress', function(e) {
         return false;
     }
 });
- 
 
+
+/**
+ * onclick bouton lecture de la carte d'une musique
+ */
 $('body').on('click', '.go_listen', (e) => {
     e.preventDefault();
     console.log($(event.target).closest('.go_listen').attr('value'));
@@ -1123,8 +1149,15 @@ $('body').on('click', '.go_listen', (e) => {
         document.getElementById('player_bar').style.display = 'block';
     }, 100);
 });
+
+/**
+ * lecture d'une musique + actualisation de la barre de lecture en bas de l'écran
+ *
+ *  array song en entrée avec au moins link_song, title_song, name_artist, id_song, bool is_liked
+ * @param song
+ */
 function play_song(song){
-    console.warn('play_song : ', song);
+    //console.warn('play_song : ', song);
     document.getElementById('audio_player').src = song['link_song'];
     let img_cover = document.createElement("img");
     img_cover.style.maxHeight = '3em';
@@ -1132,13 +1165,13 @@ function play_song(song){
     document.getElementById('footer_cover_image').innerHTML = '';
     document.getElementById('footer_cover_image').appendChild(img_cover);
 
-    document.getElementById('now_playing').innerText = song['title_song'];
+    document.getElementById('now_playing').innerText = song['title_song'];  //
     document.getElementById('now_playing_artist_name').innerText = song['name_artist'];
     document.getElementById('now_playing_like_button').value = song['id_song'];
     document.getElementById('now_playing_playlist_button').value = song['id_song'];
     document.getElementById('now_playing_playlist_button').setAttribute('data-bs-target', '#modalPlaylist')
     document.getElementById('now_playing_playlist_button').setAttribute('data-bs-toggle', 'modal')
-    if (song['is_liked']){
+    if (song['is_liked']){      // couleur de remplissage du coeur si liké ou non
         document.getElementById('now_playing_like_button').classList.add('filled');
         document.getElementById('now_playing_like_button').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-heart-fill" viewBox="0 0 16 16">\n' +
                                                                 '                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>\n' +
@@ -1150,10 +1183,19 @@ function play_song(song){
     }
 }
 
+/**
+ *  appelle update_like_footer_aux via callback
+ * @param id_song
+ * @param id_user
+ */
 function update_like_footer(id_song, id_user){
     ajaxRequest('GET', 'php/request.php/get_song_infos/?id_song=' + id_song+ '&id_user=' + id_user, update_like_footer_aux);
 }
 
+/**
+ * met à jour le remplissage du coeur du player
+ * @param arg le tableau de get_song_infos
+ */
 function update_like_footer_aux(arg){
     let is_liked = arg['is_liked'];
     document.getElementById('now_playing_like_button').classList.toggle('filled');
@@ -1168,6 +1210,9 @@ function update_like_footer_aux(arg){
     }
 }
 
+/**
+ * affichage de l'historique
+ */
 function display_history() {
     ajaxRequest('GET', 'php/request.php/history_user/?id_user=' + id_user, aux4);
     function aux4(history) {
@@ -1187,33 +1232,6 @@ display_history();
 
 
 
-
-
-//create_new_playlist_button
-
-
-//$(event.target).closest('.artist_info_btn').attr('value')
-
-/*
-
-function printt(val){
-    document.getElementById('nav_name_user').innerText = val;
-}
-
-ajaxRequest('PUT', 'php/request.php/update_name/', printt, 'id_user='+ id_user +'&name_user=polooo');
-
-ajaxRequest('GET', 'php/request.php/name_user/?id_user=' + id_user, printt);*/
-
-// let search = 'paul';
-// ajaxRequest('GET', 'php/request.php/search_album/?search=' + search, console.warn);
-
-
-/*
-document.getElementById("search_results_div").appendChild(createCard("Test1 card",
-    "Une belle description lorem ipsum dolor sit amet.",
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
-    'Voir',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg'))*/
-
-
+// fait une recherche de musique avec une str vide pour avoir un affichage
+// dans l'accordéon recherche lors du chargement de la page
 document.getElementById('go_search').click();

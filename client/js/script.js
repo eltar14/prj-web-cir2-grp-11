@@ -1,10 +1,10 @@
-id_user = document.getElementById('id_user').innerText;
+id_user = document.getElementById('id_user').innerText; 
 
 
 
 ajaxRequest('GET', 'php/request.php/name_user/?id_user=' + id_user, getName);
 
-function getName(name){
+function getName(name){ // récupère le nom de l'utilisateur et l'affiche dans le HTML
     document.getElementById('nav_name_user').innerText = name;
     document.getElementById('nameUserInput').value = name;
 }
@@ -12,13 +12,13 @@ function getName(name){
 
 
 
-ajaxRequest('GET', 'php/request.php/surname_user/?id_user=' + id_user, getSurnameDelay);
+ajaxRequest('GET', 'php/request.php/surname_user/?id_user=' + id_user, getSurnameDelay); //Envoie la requête surname_user vers le fichier request.php et récupère l'id de l'utilisateur
 
 
-function getSurnameDelay(surname){
+function getSurnameDelay(surname){ 
     setTimeout(getSurname, 50, surname);
 }
-function getSurname(surname){
+function getSurname(surname){ // récupère le nom de l'utilisateur et l'affiche dans le HTML
     let name = document.getElementById('nav_name_user').innerText;
     let fullName = name + ' ' + surname;
     document.getElementById('nav_name_user').innerText = fullName;
@@ -29,7 +29,7 @@ function getSurname(surname){
 
 // ========== POUR LES CARDS
 
-function createCard(title, description, imageSrc, buttonText, buttonUrl) {
+function createCard(title, description, imageSrc, buttonText, buttonUrl) { // Créer une carte Bootstrap
     var card = document.createElement("div");
     card.className = "card";
     card.style.width = '300';
@@ -78,26 +78,36 @@ function createCard(title, description, imageSrc, buttonText, buttonUrl) {
   
 // ==========
 
-ajaxRequest('GET', 'php/request.php/email_user/?id_user=' + id_user, getEmail);
+ajaxRequest('GET', 'php/request.php/email_user/?id_user=' + id_user, getEmail); //Envoie la requête email_user vers le fichier request.php et récupère l'email de l'utilisateur
 
-function getEmail(email){
+function getEmail(email){ //Renvoie la valeur de l'email de l'utilisateur dans le HTML
     document.getElementById('emailUserInput').value = email;
 }
 
 // ==========
 
 
-function displayNameUserModal(name){
+function displayNameUserModal(name){ // Renvoie le prénom de l'utilisateur dans le modal
     document.getElementById('nameUserInput').value = name;
 }
-function displaySurnameUserModal(surname){
+function displaySurnameUserModal(surname){ // Renvoie le nom de l'utilisateur dans le modal
     document.getElementById('surnameUserInput').value = surname;
 }
-function displayEmailUserModal(email){
+function displayEmailUserModal(email){ // Renvoie l'email de l'utilisateur dans le modal
     document.getElementById('emailUserInput').value = email;
 }
 
-function rien(a){
+function displayFormerPasswordUserModal(password){ // Renvoie l'ancien mot de passe de l'utilisateur dans le modal
+    document.getElementById('formerPasswordUserInput').value = formerPassword;
+}
+function displayPasswordUserModal(password){ // Renvoie le nouveau mot de passe de l'utilisateur dans le modal
+    document.getElementById('passwordUserInput').value = password;
+}
+function displayBirthDateUserModal(birthdate){ // Renvoie la date de naissance de l'utilisateur dans le modal
+    document.getElementById('birthdateUserInput').value = birthdate;
+}
+
+function rien(a){ // callback vide
     return;
 }
 
@@ -105,15 +115,20 @@ $('#submitChangeUserInfo').on('click', () =>
     {
         console.log('click on submitChangeUserInfo button')
 
-        ajaxRequest('PUT', 'php/request.php/update_name/', rien, 'id_user='+ id_user +'&name_user='+ document.getElementById('nameUserInput').value);
+        ajaxRequest('PUT', 'php/request.php/update_name/', rien, 'id_user='+ id_user +'&name_user='+ document.getElementById('nameUserInput').value); //effectue la requête update_name vers le fichier request.php	et modifie le nom de l'utilisateur en fonction de son id
         getName(document.getElementById('nameUserInput').value)
 
-        ajaxRequest('PUT', 'php/request.php/update_surname/', rien, 'id_user='+ id_user +'&surname_user='+ document.getElementById('surnameUserInput').value);
+        ajaxRequest('PUT', 'php/request.php/update_surname/', rien, 'id_user='+ id_user +'&surname_user='+ document.getElementById('surnameUserInput').value); // effectue la requête update_surname vers le fichier request.php et modifie le prénom de l'utilisateur en fonction de son id
         getSurname(document.getElementById('surnameUserInput').value)
 
 
-        ajaxRequest('PUT', 'php/request.php/update_email/', rien, 'id_user='+ id_user +'&email_user='+ document.getElementById('emailUserInput').value);
+        ajaxRequest('PUT', 'php/request.php/update_email/', rien, 'id_user='+ id_user +'&email_user='+ document.getElementById('emailUserInput').value); // effectue la requête update_email vers le fichier request.php et modifie l'email de l'utilisateur en fonction de son id
         getEmail(document.getElementById('emailUserInput').value)
+
+        ajaxRequest('PUT', 'php/request.php/update_password/', rien, 'id_user='+ id_user +'&password_user='+ document.getElementById('passwordUserInput').value + '&former_password_user=' + document.getElementById('formerPasswordUserInput').value); // effectue la requête update_password vers le fichier request.php et modifie le mot de passe de l'utilisateur en fonction de son id
+
+        ajaxRequest('PUT', 'php/request.php/update_birthdate/', rien, 'id_user='+ id_user +'&birthdate_user='+ document.getElementById('birthdateUserInput').value); // effectue la requête update_birthdate vers le fichier request.php et modifie la date de naissance de l'utilisateur en fonction de son id
+        
     }
 );
 

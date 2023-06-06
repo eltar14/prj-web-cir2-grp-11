@@ -11,12 +11,25 @@
 </head>
 
 <body class="d-flex flex-column h-100 justify-content-between">
-
+    
 
     <header>
-        <nav class="navbar colorPurple justify-content-center">
+    <nav class="navbar colorPurple" > <!-- Navbar -->
+        <div class="container-fluid">
+            <img src="../LogoSpotyPHI.png" height="75" width="75">
+        <a class="nav-link" href="#">
+            <button type="button justify-content-center" class="btn" style="color: white">
+                <h1>SpØty<strong>φ</strong></h1>
+            </button>
+        </a>
+        <a style="color : #cf47e6">
+            a
+        </a>
+        </div>
+        <!-- <nav class="navbar colorPurple justify-content-center">
+            <img src="../LogoSpotyPHI.png" height="75" width="75">
             <h3>PAGE D'AUTHENTIFICATION</h3>
-        </nav>
+        </nav> -->
     </header>
 
 

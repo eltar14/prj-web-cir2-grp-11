@@ -752,7 +752,7 @@ function display_history_cards(values, r = false, oid = false){ // affiche les c
         for (let j = 0; j < 5; j++) {
             if (((i)*5 + j+1) <= total_length){
                 let pos = 5*i + j;
-                str += create_song_card(values[pos]['title_song'],
+                str += create_song_card_history(values[pos]['title_song'],
                     values[pos]['name_album'],
                     values[pos]['cover_album'],
                     'Ecouter',
@@ -784,6 +784,50 @@ function display_history_cards(values, r = false, oid = false){ // affiche les c
         document.getElementById("history").innerHTML = str;
     }
 
+}
+
+
+function create_song_card_history(title, description, image_src, button_text, button_url, id_song, is_liked){ // Crée une carte de chanson
+
+    let card = document.createElement("div");
+    card.className = "card";
+
+    let image = document.createElement("img");
+    image.className = "card-img-top";
+    image.src = image_src;
+    image.alt = title;
+
+    let cardBody = document.createElement("div");
+    cardBody.className = "card-body";
+
+    let cardTitle = document.createElement("h5");
+    cardTitle.className = "card-title";
+    cardTitle.textContent = title;
+
+    let cardText = document.createElement("p");
+    cardText.className = "card-text";
+    cardText.textContent = description;
+
+    let button1 = document.createElement("a");
+    let button1inner = document.createElement("button");
+
+    button1inner.className = "btn btn-primary go_listen";
+    button1.href = button_url;
+    button1inner.textContent = button_text;
+    button1inner.value = id_song;
+    button1.appendChild(button1inner);
+
+    // Ajouter les éléments à la carte
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardText);
+    cardBody.appendChild(button1);
+
+    card.appendChild(image);
+    card.appendChild(cardBody);
+
+    let div = document.createElement("div");
+    div.appendChild(card);
+    return div.innerHTML;
 }
 
 $('#printArtistInfo').on('click', () =>

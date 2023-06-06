@@ -514,7 +514,14 @@ function create_artist_card(title, description, image_src, id_artist){ // Crée 
 
 // ===== PLAYLIST =====
 
-function display_playlists_cards(playlists){ // Affiche les cartes de playlists
+function display_playlists_cards(playlists_in){ // Affiche les cartes de playlists
+    let playlists = [];
+    for (let pl of playlists_in) {
+        if (pl['is_fav'] == false){
+            playlists.push(pl);
+        }
+    }
+
     let str = '';
     let total_length = playlists.length;
     let nbr = Math.ceil(total_length/5);
@@ -560,9 +567,10 @@ function display_playlists_cards(playlists){ // Affiche les cartes de playlists
     document.getElementById("playlists").innerHTML = str;
 }
 function createPlaylistCard(title, date, cover_url, id_playlist, is_fav){
+
     let card = document.createElement("div");
     card.className = "card";
-    card.style.width = "15%"; 
+    card.style.width = "15%";
 
 
     let image = document.createElement("img");
@@ -622,6 +630,7 @@ function createPlaylistCard(title, date, cover_url, id_playlist, is_fav){
     let div = document.createElement("div");
     div.appendChild(card);
     return div.innerHTML;
+
 }
 
 

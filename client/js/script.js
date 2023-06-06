@@ -517,7 +517,8 @@ function display_playlists_cards(playlists){
                 str += createPlaylistCard(playlists[pos]['name_playlist'],
                     playlists[pos]['date_playlist'],
                     playlists[pos]['cover_playlist'],
-                    playlists[pos]['id_playlist']
+                    playlists[pos]['id_playlist'],
+                    playlists[pos]['is_fav']
                 )
             }
 
@@ -539,7 +540,7 @@ function display_playlists_cards(playlists){
 
     document.getElementById("playlists").innerHTML = str; //TODO ===================
 }
-function createPlaylistCard(title, date, cover_url, id_playlist){
+function createPlaylistCard(title, date, cover_url, id_playlist, is_fav){
     let card = document.createElement("div");
     card.className = "card";
 
@@ -589,7 +590,10 @@ function createPlaylistCard(title, date, cover_url, id_playlist){
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(cardText);
     btn_container.appendChild(button_more);
-    btn_container.appendChild(button_delete);
+    if (!is_fav){
+        btn_container.appendChild(button_delete);
+    }
+
     cardBody.appendChild(btn_container);
     card.appendChild(image);
     card.appendChild(cardBody);
@@ -675,7 +679,7 @@ function create_song_card_in_playlist_display(title, title_album, image_src, but
     let button1 = document.createElement("a");
     let button1inner = document.createElement("button");
 
-    button1inner.className = "btn btn-primary";
+    button1inner.className = "btn btn-primary go_listen";
     button1.href = button_url;
     button1inner.textContent = button_text;
     button1inner.value = id_song;

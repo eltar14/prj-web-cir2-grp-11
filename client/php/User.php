@@ -126,7 +126,7 @@ class User
 
             $id_user = intval($id_user);
 
-            $request = 'SELECT id_user, p.id_playlist, name_playlist, cover_playlist, is_fav, date_playlist 
+            $request = 'SELECT id_user, p.id_playlist, name_playlist, cover_playlist, is_fav, date_playlist, is_fav 
                         FROM user_playlist
                         JOIN playlist p ON p.id_playlist = user_playlist.id_playlist
                         WHERE id_user=:id_user;';
@@ -137,7 +137,9 @@ class User
 
             $statement->execute();
 
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
+            $arr = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return $arr;
         }
         catch (PDOException $exception)
         {

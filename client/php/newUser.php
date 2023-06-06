@@ -15,7 +15,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
   <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-  <link href="../../custom.css" rel="stylesheet">
+  <link href="../css/custom.css" rel="stylesheet">
 </head>
 
 <body class="d-flex flex-column h-100 justify-content-between">

@@ -1,5 +1,6 @@
 <?php
 require_once "../../DB.php";
+require_once 'Playlist.php'; // pour création playlist likes dans addUser
 /**
  * Class User
  */
@@ -313,7 +314,13 @@ class User
 
                 $statement->execute();
 
-                return "ok";
+                $id_user = $db->lastInsertId();
+                if (Playlist::createLikedPlaylist($id_user)){
+                    return "ok";
+                }else{
+                    return "error";
+                }
+
             } 
             catch (PDOException $exception) 
             {

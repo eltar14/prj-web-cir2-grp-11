@@ -240,10 +240,10 @@ INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album
 
 /* Création des chansons */
 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Putain, cest génial', '208', '../client/audio/Putain, cest génial !.mp3', 1);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tavernier', '214', '../client/audio/Tavernier.mp3', 1); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Putain, cest génial', '208', 'audio/Putain, cest génial !.mp3', 1);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tavernier', '214', 'audio/Tavernier.mp3', 1);
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Chtarboxe rap', '325', 'https://www.youtube.com/watch?v=YDwmaV87wZQ', 1); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tatoof', '211', '../client/audio/Tatoof.mp3', 1); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tatoof', '211', 'audio/Tatoof.mp3', 1);
 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Même pas peur', '208', 'https://www.youtube.com/watch?v=tEdDg-a4qhk', 2); 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Samba Do Brasil', '263', 'https://www.youtube.com/watch?v=-a5Ts4otwps', 2); 
@@ -284,7 +284,7 @@ INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Aimer 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tous les cris les S.O.S','306','https://www.youtube.com/watch?v=urWV2OjAmUQ',16);
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('L Aziza','261','https://www.youtube.com/watch?v=lHjJlSq3BhA',16);
 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('What is love','251','../client/audio/Haddaway - What Is Love (slowed).mp3',17);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('What is love','251','audio/Haddaway - What Is Love (slowed).mp3',17);
 
 /* Création de playlists */
 /* Titres likes */

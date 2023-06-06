@@ -647,4 +647,52 @@ class User
             return false;
         }
     }
+
+    static function changeBirthDate($id_user, $birthdate_user){
+        try{
+            $db = DB::connexion();
+
+            $id_user = intval($id_user);
+
+            $request = 'UPDATE "user" 
+                        SET birthdate_user = :birthdate_user 
+                        WHERE id_user = :id_user;';
+            
+            $statement = $db->prepare($request);
+            $statement->bindParam(':birthdate_user', $birthdate_user);
+            $statement->bindParam(':id_user', $id_user);
+            $statement->execute();
+
+            return true;
+        }
+        catch(PDOException $exception){
+            error_log('Request error: '.$exception->getMessage());
+            return false;
+        }
+    }
+
+    static function changePassword($id_user, $password_user, $former_password_user){
+        try{
+            $db = DB::connexion();
+
+            $id_user = intval($id_user);
+
+            $request = 'UPDATE "user"
+            SET password_user = crypt(:password_user, gen_salt(\'md5\'))
+            WHERE id_user = :id_user AND password_user = crypt(:former_password_user, (SELECT password_user FROM "user" WHERE id_user = :id_user));
+            ';
+            
+            $statement = $db->prepare($request);
+            $statement->bindParam(':password_user', $password_user);
+            $statement->bindParam(':former_password_user', $former_password_user);
+            $statement->bindParam(':id_user', $id_user);
+            $statement->execute();
+
+            return true;
+        }
+        catch(PDOException $exception){
+            error_log('Request error: '.$exception->getMessage());
+            return false;
+        }
+    }
 }

@@ -97,6 +97,16 @@ function displayEmailUserModal(email){
     document.getElementById('emailUserInput').value = email;
 }
 
+function displayFormerPasswordUserModal(password){
+    document.getElementById('formerPasswordUserInput').value = formerPassword;
+}
+function displayPasswordUserModal(password){
+    document.getElementById('passwordUserInput').value = password;
+}
+function displayBirthDateUserModal(birthdate){
+    document.getElementById('birthdateUserInput').value = birthdate;
+}
+
 function rien(a){
     return;
 }
@@ -114,6 +124,10 @@ $('#submitChangeUserInfo').on('click', () =>
 
         ajaxRequest('PUT', 'php/request.php/update_email/', rien, 'id_user='+ id_user +'&email_user='+ document.getElementById('emailUserInput').value);
         getEmail(document.getElementById('emailUserInput').value)
+
+        ajaxRequest('PUT', 'php/request.php/update_password/', rien, 'id_user='+ id_user +'&password_user='+ document.getElementById('passwordUserInput').value + '&former_password_user=' + document.getElementById('formerPasswordUserInput').value);
+
+        ajaxRequest('PUT', 'php/request.php/update_birthdate/', rien, 'id_user='+ id_user +'&birthdate_user='+ document.getElementById('birthdateUserInput').value);
     }
 );
 

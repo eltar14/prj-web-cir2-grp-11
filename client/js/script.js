@@ -250,6 +250,7 @@ function create_song_card(title, description, image_src, button_text, button_url
 
     let card = document.createElement("div");
     card.className = "card";
+    card.style.width = "15%"; 
 
     let image = document.createElement("img");
     image.className = "card-img-top";
@@ -368,6 +369,8 @@ function display_album_cards(values){ // Affiche les cartes d'albums
 function create_album_card(title, date_album, name_artist, image_src, id_album){ // Crée une carte d'album
     let card = document.createElement("div");
     card.className = "card";
+    card.style.width = "15%"; // Ajout du style pour ajuster la largeur de la carte à 100%
+
 
     let image = document.createElement("img");
     image.className = "card-img-top";
@@ -467,6 +470,8 @@ function display_artist_cards(values){ // Affiche les cartes d'artistes
 function create_artist_card(title, description, image_src, id_artist){ // Crée une carte d'artiste
     let card = document.createElement("div");
     card.className = "card";
+    card.style.width = "15%"; 
+
 
     let image = document.createElement("img");
     image.className = "card-img-top";
@@ -557,6 +562,8 @@ function display_playlists_cards(playlists){ // Affiche les cartes de playlists
 function createPlaylistCard(title, date, cover_url, id_playlist, is_fav){
     let card = document.createElement("div");
     card.className = "card";
+    card.style.width = "15%"; 
+
 
     let image = document.createElement("img");
     image.className = "card-img-top";
@@ -673,6 +680,8 @@ function create_song_card_in_playlist_display(title, title_album, image_src, but
 
     let card = document.createElement("div");
     card.className = "card";
+    card.style.width = "15%"; 
+
 
     let image = document.createElement("img");
     image.className = "card-img-top";

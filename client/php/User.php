@@ -689,7 +689,7 @@ class User
 
             $request = 'UPDATE "user"
             SET password_user = crypt(:password_user, gen_salt(\'md5\'))
-            WHERE id_user = :id_user AND password_user = crypt(:former_password_user, (SELECT password_user FROM "user" WHERE id_user = :id_user));
+            WHERE id_user = :id_user AND password_user = decrypt(:former_password_user, \'md5\');
             ';
             
             $statement = $db->prepare($request);

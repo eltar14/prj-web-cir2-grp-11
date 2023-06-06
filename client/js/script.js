@@ -538,7 +538,7 @@ function display_playlists_cards(playlists){
         '        </button>\n' +
         '    </div>';
 
-    document.getElementById("playlists").innerHTML = str; //TODO ===================
+    document.getElementById("playlists").innerHTML = str;
 }
 function createPlaylistCard(title, date, cover_url, id_playlist, is_fav){
     let card = document.createElement("div");
@@ -1098,6 +1098,8 @@ $('#form_search').on('keyup keypress', function(e) {
 $('body').on('click', '.go_listen', () => {
     console.log($(event.target).closest('.go_listen').attr('value'));
     let id_song = $(event.target).closest('.go_listen').attr('value');
+
+
 
     ajaxRequest('POST', 'php/request.php/add_to_history/', display_history, 'id_user=' + id_user + '&id_song=' + id_song);
     setTimeout(() => {

@@ -840,6 +840,9 @@ function create_song_card_history(title, description, image_src, button_text, bu
 
     let card = document.createElement("div");
     card.className = "card";
+    card.style.width = "15%"; 
+
+
 
     let image = document.createElement("img");
     image.className = "card-img-top";

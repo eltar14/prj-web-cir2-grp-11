@@ -107,11 +107,18 @@ function displayBirthDateUserModal(birthdate){ // Renvoie la date de naissance d
     document.getElementById('birthdateUserInput').value = birthdate;
 }
 
+function displayAgeUserModal(age){ // Renvoie l'âge de l'utilisateur dans le modal
+    document.getElementById('ageUserInput').value = age;
+}
+
 
 
 $('#submitChangeUserInfo').on('click', () =>
     {
         console.log('click on submitChangeUserInfo button')
+        
+        
+        document.getElementById('ageUserInput').value = age;
 
         ajaxRequest('PUT', 'php/request.php/update_name/', ()=>{}, 'id_user='+ id_user +'&name_user='+ document.getElementById('nameUserInput').value); //effectue la requête update_name vers le fichier request.php	et modifie le nom de l'utilisateur en fonction de son id
         getName(document.getElementById('nameUserInput').value)
@@ -129,18 +136,7 @@ $('#submitChangeUserInfo').on('click', () =>
 
         ajaxRequest('PUT', 'php/request.php/update_birthdate/', ()=>{}, 'id_user='+ id_user +'&birthdate_user='+ document.getElementById('birthdateUserInput').value); // effectue la requête update_birthdate vers le fichier request.php et modifie la date de naissance de l'utilisateur en fonction de son id
         getBirthdate(document.getElementById('birthdateUserInput').value);
-
-        let birthdateInput = document.getElementById('birthdateUserInput').value;
-        let birthdate = new Date(birthdateInput);
-        let today = new Date();
-        let age = today.getFullYear() - birthdate.getFullYear();
-        
-        // Vérifier si l'anniversaire de l'utilisateur n'est pas encore passé cette année
-        if (today.getMonth() < birthdate.getMonth() || (today.getMonth() === birthdate.getMonth() && today.getDate() < birthdate.getDate())) {
-          age--;
-        }
-        
-        document.getElementById('ageUserInput').value = age;
+        calculateAge(document.getElementById('birthdateUserInput').value);
     }
 );
 
@@ -149,6 +145,22 @@ ajaxRequest('GET', 'php/request.php/birthdate_user/?id_user=' + id_user, getBirt
 function getBirthdate(birthdate){ // Renvoie la date de naissance de l'utilisateur dans le HTML
     document.getElementById('birthdateUserInput').value = birthdate;
 }
+
+function calculateAge(birthdate){
+    birthdateInput = document.getElementById('birthdateUserInput').value;
+        birthdate = new Date(birthdateInput);
+        today = new Date();
+        age = today.getFullYear() - birthdate.getFullYear();
+        
+        if (today.getMonth() < birthdate.getMonth() || (today.getMonth() === birthdate.getMonth() && today.getDate() < birthdate.getDate())) {
+          age--;
+        }
+        
+        document.getElementById('ageUserInput').value = age;
+}
+document.getElementById('changeUserInfo').addEventListener('click', () => {
+    ajaxRequest('GET', 'php/request.php/birthdate_user/?id_user=' + id_user, calculateAge);
+});
 
 $('#go_search').on('click', (e) =>
     {

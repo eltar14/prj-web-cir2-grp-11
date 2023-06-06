@@ -55,6 +55,7 @@ INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Ear
 INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('King Crimson', 1, 'Description'); /* 13 */
 INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Michel Polnareff', 2, 'Description'); /* 14 */
 INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Daniel Balavoine', 1, 'Description'); /* 15 */
+INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Haddaway', 1, 'Description'); /* 16 */
 
 
 /* Création des albums */
@@ -75,6 +76,7 @@ INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('In the Court of the Crimson King', '1969-10-10', 'https://m.media-amazon.com/images/I/71FM257lYjL._UF894,1000_QL80_.jpg', 13, 1); /* 14 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Polnarévolution', '1972-11-02', 'https://m.media-amazon.com/images/I/81+eUSFAbwL._UF894,1000_QL80_.jpg', 14, 1); /* 15 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Sauver l amour', '1985-10-14', 'https://p5.storage.canalblog.com/58/32/636073/125759783_o.jpg', 15, 19); /* 16 */
+INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('The Album - 2nd Edition', '1993-05-07', 'https://m.media-amazon.com/images/I/51IdGIXWx6L._UXNaN_FMjpg_QL85_.jpg', 16, 3); /* 17 */
 
 /* Création des chansons */
 
@@ -121,6 +123,8 @@ INSERT INTO song(title_song, duration_song, link_song, id_album) values ('On ira
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Aimer est plus fort que d etre aimé','246','https://www.youtube.com/watch?v=3Pwd24iBu5o',16);
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tous les cris les S.O.S','306','https://www.youtube.com/watch?v=urWV2OjAmUQ',16);
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('L Aziza','261','https://www.youtube.com/watch?v=lHjJlSq3BhA',16);
+
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('What is love','251','../client/audio/Haddaway - What Is Love (slowed).mp3',17);
 
 /* Création de playlists */
 /* Titres likes */

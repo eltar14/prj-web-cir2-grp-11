@@ -81,9 +81,9 @@ INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album
 /* Création des chansons */
 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Putain, cest génial', '208', '../client/audio/Putain, cest génial !.mp3', 1);
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tavernier', '214', 'https://www.youtube.com/watch?v=VhE6vVlcPtg', 1); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Chtarboxe rap', '325', 'https://www.youtube.com/watch?v=YDwmaV87wZQ', 1); 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tatoof', '211', 'https://www.youtube.com/watch?v=ZeIEJvRyDqU', 1); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tavernier', '214', '../client/audio/Tavernier.mp3', 1); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Chtarboxe rap', '325', '../client/audio/Chtarboxe rap.mp3', 1); 
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Tatoof', '211', '../client/audio/Tatoof.mp3', 1); 
 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Même pas peur', '208', 'https://www.youtube.com/watch?v=tEdDg-a4qhk', 2); 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Samba Do Brasil', '263', 'https://www.youtube.com/watch?v=-a5Ts4otwps', 2); 
@@ -100,7 +100,7 @@ INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Wati b
 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Bella','242','https://www.youtube.com/watch?v=AFg79G2Y8A0',7);
 
-INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Kalash','230','https://www.youtube.com/watch?v=pH7OTtQb4m0',8);
+INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Kalash','230','../client/audio/Booba   Kalash Feat Kaaris.mp3',8);
 
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Readymade','243','https://www.youtube.com/watch?v=jg09lNupc1s',9);
 INSERT INTO song(title_song, duration_song, link_song, id_album) values ('Usseewa','203','https://www.youtube.com/watch?v=Qp3b-RXtz4w',9);

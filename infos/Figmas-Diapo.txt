@@ -1,0 +1,14 @@
+Lien du figma (V.0):
+https://www.figma.com/file/qHscL4mcCbRcmXUDmyRGe4/SITE-FAKE-SPOTIFY?type=design&node-id=7%3A592824&t=QVj8s8TPiFNXI3AQ-1
+
+Par soucis de temps l'accès à certaines fonctionnalités ne sont disponibles qu'avec certains éléments. Ces fonctionnalités seront évidemment disponibles avec tous les éléments de l'application web finale.
+Voir les informations d'un album : seulement l'album 2
+Voir les informations d'un artiste : seulement l'artiste 2
+Voir les informations d'un morceau : seulement le morceau 8
+Voir les informations d'une playlist : seuelemtn la playlist 1
+
+Lien du figma (version finale):
+https://www.figma.com/file/0Ri1mF8ZUOKxsu6N7HuUN1/Figma-final?type=design&node-id=0-1&t=CMISrRH767PrJMGU-0
+
+Lien du diapo sur Canva:
+https://www.canva.com/design/DAFk97hHy9o/gMIvscgZ1T0dHgypPirZMw/edit?utm_content=DAFk97hHy9o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton

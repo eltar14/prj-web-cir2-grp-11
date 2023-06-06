@@ -16,7 +16,7 @@
     <header>
     <nav class="navbar colorPurple" > <!-- Navbar -->
         <div class="container-fluid">
-            <img src="../LogoSpotyPHI.png" height="75" width="75">
+            <img src="img/LogoSpotyPHI.png" height="75" width="75">
         <a class="nav-link" href="#">
             <button type="button justify-content-center" class="btn" style="color: white">
                 <h1>SpØty<strong>φ</strong></h1>

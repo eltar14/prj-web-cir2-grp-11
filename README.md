@@ -1,4 +1,4 @@
-# prj-web-cir2-grp-11
+# Projet Web - Application de lecture de musique : SpØtyφ - Groupe 11: LE BOULCH Antoine, LE GOFF Quentin, PAITIER Mathias
 
 Installation nécessaire pour utiliser l'application :
 

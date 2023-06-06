@@ -103,6 +103,14 @@ function get($db, $requestRessource)
         $id_user = $_GET["id_user"];
         $id_song = $_GET["id_song"];
         $data = Song::isLikedByUser($id_song, $id_user);
+    }elseif ($requestRessource == 'get_song_url') {
+        if (isset($_GET["id_song"])){
+            $data = Song::getLink($_GET["id_song"]);
+        }
+    }elseif ($requestRessource == 'get_song_infos') {
+        if (isset($_GET["id_song"], $_GET["id_user"])){
+            $data = Song::getSong($_GET["id_song"], $_GET["id_user"]);
+        }
     }
 
     //Playlist
@@ -110,6 +118,7 @@ function get($db, $requestRessource)
         $id_playlist = intval($_GET["id_playlist"]);
         $data = Playlist::getContent($id_playlist);
     }
+
 
 
 

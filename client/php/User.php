@@ -1,6 +1,7 @@
 <?php
 require_once "../../DB.php";
 require_once 'Playlist.php'; // pour création playlist likes dans addUser
+require_once  'Song.php';
 /**
  * Class User
  */

@@ -866,9 +866,6 @@ function displayModalAlbumsArtist(albumsArtist){
 }
 
 
-//TODO add like + update + crea playlist a la crea nv compte
-
-
 
 $('body').on('click', '.album_info_btn', () =>
     {
@@ -948,10 +945,11 @@ $('body').on('click', '.like_button', () =>
 
 
         ajaxRequest('POST', 'php/request.php/add_fav/', rien, 'id_user='+ id_user + '&id_song=' +  id_song);
-        setTimeout(() => {
-            display_liked_songs()
+        setTimeout((id_song) => {
+            display_liked_songs();
+            update_like_footer(id_song, id_user);
             $('#go_search').click();
-        }, 100);
+        }, 100, id_song);
     }
 );
 
@@ -1031,7 +1029,7 @@ function display_playlists_in_modal(playlists){
     let ul = document.createElement("ul");
     ul.className = "list-group list-group-flush";
 
-    for (const playlist of playlists) {                     //TODO
+    for (const playlist of playlists) {
         let li = document.createElement('li');
         li.className = "list-group-item";
 
@@ -1095,17 +1093,63 @@ $('#form_search').on('keyup keypress', function(e) {
 });
  
 
-$('body').on('click', '.go_listen', () => {
+$('body').on('click', '.go_listen', (e) => {
+    e.preventDefault();
     console.log($(event.target).closest('.go_listen').attr('value'));
     let id_song = $(event.target).closest('.go_listen').attr('value');
 
-
+    ajaxRequest('GET', 'php/request.php/get_song_infos/?id_song=' + id_song+ '&id_user=' + id_user, play_song);
 
     ajaxRequest('POST', 'php/request.php/add_to_history/', display_history, 'id_user=' + id_user + '&id_song=' + id_song);
     setTimeout(() => {
         display_history();
+        document.getElementById('player_bar').style.display = 'block';
     }, 100);
 });
+function play_song(song){
+    console.warn('play_song : ', song);
+    document.getElementById('audio_player').src = song['link_song'];
+    let img_cover = document.createElement("img");
+    img_cover.style.maxHeight = '3em';
+    img_cover.src = song['cover_album'];
+    document.getElementById('footer_cover_image').innerHTML = '';
+    document.getElementById('footer_cover_image').appendChild(img_cover);
+
+    document.getElementById('now_playing').innerText = song['title_song'];
+    document.getElementById('now_playing_artist_name').innerText = song['name_artist'];
+    document.getElementById('now_playing_like_button').value = song['id_song'];
+    document.getElementById('now_playing_playlist_button').value = song['id_song'];
+    document.getElementById('now_playing_playlist_button').setAttribute('data-bs-target', '#modalPlaylist')
+    document.getElementById('now_playing_playlist_button').setAttribute('data-bs-toggle', 'modal')
+    if (song['is_liked']){
+        document.getElementById('now_playing_like_button').classList.add('filled');
+        document.getElementById('now_playing_like_button').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-heart-fill" viewBox="0 0 16 16">\n' +
+                                                                '                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>\n' +
+                                                                '                </svg>';
+    }else{
+        document.getElementById('now_playing_like_button').innerHTML ='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-heart" viewBox="0 0 16 16">\n' +
+                                                                                '  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>\n' +
+                                                                                '</svg>';
+    }
+}
+
+function update_like_footer(id_song, id_user){
+    ajaxRequest('GET', 'php/request.php/get_song_infos/?id_song=' + id_song+ '&id_user=' + id_user, update_like_footer_aux);
+}
+
+function update_like_footer_aux(arg){
+    let is_liked = arg['is_liked'];
+    document.getElementById('now_playing_like_button').classList.toggle('filled');
+    if (is_liked){
+        document.getElementById('now_playing_like_button').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-heart-fill" viewBox="0 0 16 16">\n' +
+            '                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>\n' +
+            '                </svg>';
+    }else{
+        document.getElementById('now_playing_like_button').innerHTML ='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-heart" viewBox="0 0 16 16">\n' +
+            '  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>\n' +
+            '</svg>';
+    }
+}
 
 function display_history() {
     ajaxRequest('GET', 'php/request.php/history_user/?id_user=' + id_user, aux4);
@@ -1123,8 +1167,6 @@ function display_history() {
     }
 }
 display_history();
-
-
 
 
 
@@ -1157,4 +1199,4 @@ document.getElementById("search_results_div").appendChild(createCard("Test1 card
     'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg'))*/
 
 
-
+document.getElementById('go_search').click();

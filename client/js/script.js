@@ -156,7 +156,7 @@ $('#go_search').on('click', (e) =>
             let panel = document.getElementById('accordion_recherche').nextElementSibling; 
             panel.style.maxHeight = panel.scrollHeight + "px";
 
-        }, 100);
+        }, 200);
 
 
 

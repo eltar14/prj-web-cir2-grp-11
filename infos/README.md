@@ -7,7 +7,7 @@ Installation nécessaire pour utiliser l'application :
 
 ssh user1@10.10.51.81 mdp : Groupe11
 
-Pour se connecter à la base de données : 
+Pour se connecter à la base de données nommée groupe11: 
 user : groupe11 
 mdp : Groupe11
 

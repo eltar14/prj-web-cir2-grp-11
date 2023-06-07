@@ -10,7 +10,7 @@ class Song
     /**
      * Fonction qui retourne le titre d'une chanson
      * @param $id_song
-     * @return mixed
+     * @return mixed (title_song)
      */
     static function getTitle($id_song){
         $db = DB::connexion();
@@ -27,10 +27,12 @@ class Song
 
         return $statement->fetch()[0];
     }
+
+
     /**
      * Fonction qui retourne la durée d'une chanson
      * @param $id_song
-     * @return mixed
+     * @return mixed (duration_song)
      */
     static function getDuration($id_song){
         $db = DB::connexion();
@@ -48,9 +50,9 @@ class Song
         return $statement->fetch()[0];
     }
     /**
-     * Fonction qui retourne le lien d'une chanson
+     * Fonction qui retourne le lien/emplacement d'une chanson
      * @param $id_song
-     * @return mixed
+     * @return mixed (link_song)
      */
     static function getLink($id_song){
         $db = DB::connexion();
@@ -70,7 +72,7 @@ class Song
     /**
      * Fonction qui retourne toutes les informations d'une chanson
      * @param $id_song
-     * @return mixed
+     * @return mixed (id_song ,title_song, link_song, name_album, date_album, cover_album, name_artist)
      */
     static function getSong($id_song, $id_user = 0){
         $db = DB::connexion();
@@ -94,7 +96,7 @@ class Song
     /**
      * Fonction qui retourne l'id de l'album de la chanson
      * @param $id_song
-     * @return mixed 
+     * @return mixed (id_album)
      */
     static function getIdAlbum($id_song){
         $db = DB::connexion();
@@ -114,7 +116,7 @@ class Song
     /**
      * Fonction qui retourne le nom de l'album de la chanson
      * @param $id_song
-     * @return mixed
+     * @return mixed (name_album)
      */
     static function getNameAlbum($id_song){
         $db = DB::connexion();
@@ -191,7 +193,7 @@ class Song
     /**
      * Fonction qui permet de faire la recherche d'une chanson
      * @param $val, $id_user
-     * @return array
+     * @return array (id_song, title_song, duration_song, link_song, song.id_album, name_album, cover_album)
      */
     static function search($val, $id_user = null){
         $db = DB::connexion();

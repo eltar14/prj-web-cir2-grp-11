@@ -1,6 +1,6 @@
 # Projet Web - Application de lecture de musique : SpØtyφ - Groupe 11: LE BOULCH Antoine, LE GOFF Quentin, PAITIER Mathias
 
-### Installation nécessaire sur la VM pour utiliser l'application :
+## Installation nécessaire sur la VM pour utiliser l'application :
 
 - installer apache2 :              ```sudo apt install apache2```
   - modules : php-pgsql ``sudo apt install php-pgsql`` et  libapache2-mod-php ``sudo  apt install libapache2-mod-php``
@@ -29,6 +29,10 @@ Les musiques dont on peut écouter l'audio sont:
 - What Is Love - Haddaway
 - toutes les musiques de "Different World" - Allan Walker
 
+## Accès au site
+Avec  http://10.10.51.81/ via le réseau ISEN.
+
+
 ## Remarques
 Changement du site root pour arriver directement sur l'index en allant sur l'IP du serveur. 
-Le site a été mis dans un répertoire "client" en prévision de la réalisation d'une partie Admin. Un vhost pourra être mis en place pour rediriger vers celui-ci.  
+Le site a été mis dans un répertoire "client" en prévision de la réalisation d'une partie Admin. Un vhost pourra être mis en place pour rediriger vers un répertoire "admin". 

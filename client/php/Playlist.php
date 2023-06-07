@@ -88,12 +88,20 @@ class Playlist
         }
     }
 
+    /**
+     * crée une playlist de titres likés à l'utilisateur dont l'id est spécifié en argument.
+     * est appelé seulement à la création du compte.
+     *
+     * @param $id_user
+     * @return bool
+     */
     static  function createLikedPlaylist($id_user){
         try
         {
             $db = DB::connexion();
 
-            $request = 'INSERT INTO playlist(name_playlist, cover_playlist, is_fav) 
+            // booléen is_fav true
+            $request = 'INSERT INTO playlist(name_playlist, cover_playlist, is_fav)  
                         VALUES (\'Titres likés\', \'https://i1.sndcdn.com/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg\', true);';
 
             $statement = $db->prepare($request);
@@ -122,7 +130,12 @@ class Playlist
     }
 
 
-
+    /**
+     * Supprime une musique d'une playlist
+     * @param $id_playlist
+     * @param $id_song
+     * @return void
+     */
     static function deleteSongFromPlaylist($id_playlist, $id_song){
         $db = DB::connexion();
         $id_song = intval($id_song);
@@ -142,6 +155,11 @@ class Playlist
         }
     }
 
+    /**
+     * supprimme une playlilst ainsi que toutes les musiques qu'elle contient
+     * @param $id_playlist
+     * @return void
+     */
     static function delete($id_playlist){
         $db = DB::connexion();
         $id_playlist = intval($id_playlist);
@@ -192,7 +210,7 @@ class Playlist
     /**
      * Fonction qui permet de récupérer le nom d'une playlist
      * @param $id_playlist
-     * @return mixed
+     * @return mixed (name_playlist)
      */
     static function getName($id_playlist){
         $db = DB::connexion();
@@ -221,6 +239,12 @@ class Playlist
         }
     }
 
+    /**
+     * retourne le contenu d'une playlist
+     *
+     * @param $id_playlist
+     * @return array|false (title_song, name_album, cover_album, link_song, s.id_song as id_song, ps.id_playlist)
+     */
     static function getContent($id_playlist){
         try {
             $db = DB::connexion();
@@ -247,7 +271,7 @@ class Playlist
     /**
      * Fonction qui permet de récupérer la cover d'une playlist
      * @param $id_playlist
-     * @return mixed
+     * @return mixed (cover_playlist)
      */
     static function getCover($id_playlist){
         $db = DB::connexion();
@@ -276,6 +300,12 @@ class Playlist
     }
 
 
+    /**
+     * ajout d'une musique à une playlist
+     * @param $id_playlist
+     * @param $id_song
+     * @return bool
+     */
     static function addSong($id_playlist, $id_song){
         try{
             $db = DB::connexion();

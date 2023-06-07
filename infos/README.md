@@ -13,3 +13,10 @@ mdp : Groupe11
 
 Les deux MCDs sont disponibles: spotyphi_0.mcd (première version) et spotyphi_final.mcd (version finale)
 Les liens des deux versions du Figma ainsi que du diapo sont disponibles dans Figmas-Diapo.txt
+
+Nous n'avons pas téléchargé toutes les musiques dans la base de donnée ce qui explique pourquoi certaines ne lisent pas de musique.
+Les musiques dont on peut écouter l'audio sont:
+- les 4 musiques de l'album "Putain cest génial" - Patrick Sébastien
+- Kalash - Booba
+- What Is Love - Haddaway
+- toutes les musiques de "Different World" - Allan Walker

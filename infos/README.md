@@ -12,7 +12,7 @@ Connexion à la VM:
 > mdp : Groupe11
 
 ### Pour se connecter à la base de données nommée groupe11:   
-> user : groupe11 
+> user : groupe11  
 > mdp : Groupe11
 
 Pour mettre les données dans la base de données, deux choix:

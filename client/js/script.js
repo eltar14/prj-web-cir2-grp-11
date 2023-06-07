@@ -97,9 +97,9 @@ function displayEmailUserModal(email){ // Renvoie l'email de l'utilisateur dans 
     document.getElementById('emailUserInput').value = email;
 }
 
-function displayFormerPasswordUserModal(password){ // Renvoie l'ancien mot de passe de l'utilisateur dans le modal
-    document.getElementById('formerPasswordUserInput').value = formerPassword;
-}
+//TODO !! function displayFormerPasswordUserModal(password){ // Renvoie l'ancien mot de passe de l'utilisateur dans le modal
+//     document.getElementById('formerPasswordUserInput').value = formerPassword;
+// }
 function displayPasswordUserModal(password){ // Renvoie le nouveau mot de passe de l'utilisateur dans le modal
     document.getElementById('passwordUserInput').value = password;
 }
@@ -130,8 +130,8 @@ $('#submitChangeUserInfo').on('click', () =>
         ajaxRequest('PUT', 'php/request.php/update_email/', ()=>{}, 'id_user='+ id_user +'&email_user='+ document.getElementById('emailUserInput').value); // effectue la requête update_email vers le fichier request.php et modifie l'email de l'utilisateur en fonction de son id
         getEmail(document.getElementById('emailUserInput').value)
 
-        ajaxRequest('PUT', 'php/request.php/update_password/', ()=>{}, 'id_user='+ id_user +'&password_user='+ document.getElementById('passwordUserInput').value + '&former_password_user=' + document.getElementById('formerPasswordUserInput').value); // effectue la requête update_password vers le fichier request.php et modifie le mot de passe de l'utilisateur en fonction de son id
-        document.getElementById('formerPasswordUserInput').value = '';
+        ajaxRequest('PUT', 'php/request.php/update_password/', ()=>{}, 'id_user='+ id_user +'&password_user='+ document.getElementById('passwordUserInput').value); // effectue la requête update_password vers le fichier request.php et modifie le mot de passe de l'utilisateur en fonction de son id
+        // document.getElementById('formerPasswordUserInput').value = '';
         document.getElementById('passwordUserInput').value = '';
 
         ajaxRequest('PUT', 'php/request.php/update_birthdate/', ()=>{}, 'id_user='+ id_user +'&birthdate_user='+ document.getElementById('birthdateUserInput').value); // effectue la requête update_birthdate vers le fichier request.php et modifie la date de naissance de l'utilisateur en fonction de son id
@@ -277,7 +277,7 @@ function display_song_cards(values, r = false, oid = false){ // Affiche les cart
 
 }
 
-function create_song_card(title, description, image_src, button_text, button_url, id_song, is_liked){ // Crée une carte de musique
+function create_song_card(title, description, image_src, button_text, button_url, id_song, is_liked){ // Crée une carte de chanson
 
     let card = document.createElement("div");
     card.className = "card";
@@ -473,7 +473,7 @@ function display_artist_cards(values){ // Affiche les cartes d'artistes
             if (((i)*5 + j+1) <= total_length){
                 let pos = 5*i + j;
                 str += create_artist_card(values[pos]['name_artist'],
-                    values[pos]['type_artist'],
+                    values[pos]['description_artist'],
                     'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
                     values[pos]['id_artist']
                 )
@@ -498,7 +498,7 @@ function display_artist_cards(values){ // Affiche les cartes d'artistes
     document.getElementById("search_results_div").innerHTML = str;
 }
 
-function create_artist_card(title, type_artist, image_src, id_artist){ // Crée une carte d'artiste
+function create_artist_card(title, description, image_src, id_artist){ // Crée une carte d'artiste
     let card = document.createElement("div");
     card.className = "card";
     card.style.width = "15%"; 
@@ -518,7 +518,7 @@ function create_artist_card(title, type_artist, image_src, id_artist){ // Crée 
 
     let cardText = document.createElement("p");
     cardText.className = "card-text";
-    cardText.textContent = type_artist;
+    cardText.textContent = description;
 
     let button1 = document.createElement("button");
     button1.className = "btn btn-primary artist_info_btn";

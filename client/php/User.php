@@ -681,7 +681,7 @@ class User
         }
     }
 
-    static function changePassword($id_user, $password_user, $former_password_user){
+    static function changePassword($id_user, $password_user){
         try{
             $db = DB::connexion();
 
@@ -689,12 +689,10 @@ class User
 
             $request = 'UPDATE "user"
             SET password_user = crypt(:password_user, gen_salt(\'md5\'))
-            WHERE id_user = :id_user AND password_user = decrypt(:former_password_user, \'md5\');
-            ';
+            WHERE id_user = :id_user;';
             
             $statement = $db->prepare($request);
             $statement->bindParam(':password_user', $password_user);
-            $statement->bindParam(':former_password_user', $former_password_user);
             $statement->bindParam(':id_user', $id_user);
             $statement->execute();
 

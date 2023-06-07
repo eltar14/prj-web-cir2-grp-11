@@ -207,10 +207,9 @@ function put($db, $requestRessource){
             User::updateBirthdate($_PUT["id_user"], $_PUT["birthdate_user"]);
         }
     }elseif($requestRessource == 'update_password'){
-        if (isset($_PUT["id_user"], $_PUT["password_user"],$_PUT["former_password_user"])){
+        if (isset($_PUT["id_user"], $_PUT["password_user"])){
             $newPassword = strval($_PUT["password_user"]);
-            $formerPassword = strval($_PUT["former_password_user"]);
-            User::updatePassword($_PUT["id_user"], $newPassword, $formerPassword);
+            User::updatePassword($_PUT["id_user"], $newPassword);
         }
     }
     header('HTTP/1.1 200 OK');

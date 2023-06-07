@@ -1,7 +1,7 @@
 Lien du figma (V.0):
 https://www.figma.com/file/qHscL4mcCbRcmXUDmyRGe4/SITE-FAKE-SPOTIFY?type=design&node-id=7%3A592824&t=QVj8s8TPiFNXI3AQ-1
 
-Par soucis de temps l'accès à certaines fonctionnalités ne sont disponibles qu'avec certains éléments. Ces fonctionnalités seront évidemment disponibles avec tous les éléments de l'application web finale.
+Par souci de temps l'accès à certaines fonctionnalités ne sont disponibles qu'avec certains éléments. Ces fonctionnalités seront évidemment disponibles avec tous les éléments de l'application web finale.
 Voir les informations d'un album : seulement l'album 2
 Voir les informations d'un artiste : seulement l'artiste 2
 Voir les informations d'un morceau : seulement le morceau 8

@@ -58,8 +58,6 @@ INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Dan
 INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Haddaway', 1, 'Description'); /* 16 */
 INSERT INTO artist(name_artist, id_type_artist, description_artist) values ('Alan Walker', 1, 'Alan Walker qui a créé Faded'); /* 17 */
 
-
-
 /* Création des albums */
 
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Putain, c est génial', '2023-04-28', 'https://m.media-amazon.com/images/I/811TIdiWG6L._UF894,1000_QL80_.jpg', 1, 19); /* 1 */
@@ -80,7 +78,6 @@ INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Sauver l amour', '1985-10-14', 'https://p5.storage.canalblog.com/58/32/636073/125759783_o.jpg', 15, 19); /* 16 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('The Album - 2nd Edition', '1993-05-07', 'https://m.media-amazon.com/images/I/51IdGIXWx6L._UXNaN_FMjpg_QL85_.jpg', 16, 3); /* 17 */
 INSERT INTO album(name_album, date_album, cover_album, id_artist, id_style_album) values ('Different World', '2018-01-01', 'https://m.media-amazon.com/images/I/81wCQ1dqABL._UF894,1000_QL80_.jpg', 17, 2); /* 18 */
-
 
 /* Création des chansons */
 

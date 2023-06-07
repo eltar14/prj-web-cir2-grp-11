@@ -32,3 +32,4 @@ Les musiques dont on peut écouter l'audio sont:
 ## Remarques
 Changement du site root pour arriver directement sur l'index en allant sur l'IP du serveur. 
 Le site a été mis dans un répertoire "client" en prévision de la réalisation d'une partie Admin. Un vhost pourra être mis en place pour rediriger vers celui-ci.  
+Le client n'a pas la possibilité de se balader dans l'arborescence des dossiers via la barre de recherche (-Indexes sur le répertoire client)

@@ -1,7 +1,7 @@
 ------------------------------------------------------------
 --        Script Postgre -- (là en secours si il y a des bugs avec model.sql et data.sql) 
 ------------------------------------------------------------
-
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 drop table if exists user_playlist cascade;
 

@@ -15,6 +15,10 @@ Connexion à la VM:
 > user : groupe11 
 > mdp : Groupe11
 
+Pour mettre les données dans la base de données, deux choix:
+- executer model.sql puis data.sql
+- executer Spotyφ_creation.sql
+
 Les deux MCDs sont disponibles: spotyphi_0.mcd (première version) et spotyphi_final.mcd (version finale)
 Les liens des deux versions du Figma ainsi que du diapo sont disponibles dans Figmas-Diapo.txt
 

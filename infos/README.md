@@ -1,10 +1,11 @@
 # Projet Web - Application de lecture de musique : SpØtyφ - Groupe 11: LE BOULCH Antoine, LE GOFF Quentin, PAITIER Mathias
 
-Installation nécessaire pour utiliser l'application :
+Installation nécessaire sur la VM pour utiliser l'application :
 
 - installer apache 2 :              sudo apt install apache2 
 - installer postgresql 13 :         sudo apt install postgresql-13 
 
+Connexion à la VM:
 ssh user1@10.10.51.81 mdp : Groupe11
 
 Pour se connecter à la base de données nommée groupe11: 

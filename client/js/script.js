@@ -277,7 +277,7 @@ function display_song_cards(values, r = false, oid = false){ // Affiche les cart
 
 }
 
-function create_song_card(title, description, image_src, button_text, button_url, id_song, is_liked){ // Crée une carte de chanson
+function create_song_card(title, description, image_src, button_text, button_url, id_song, is_liked){ // Crée une carte de musique
 
     let card = document.createElement("div");
     card.className = "card";
@@ -473,7 +473,7 @@ function display_artist_cards(values){ // Affiche les cartes d'artistes
             if (((i)*5 + j+1) <= total_length){
                 let pos = 5*i + j;
                 str += create_artist_card(values[pos]['name_artist'],
-                    values[pos]['description_artist'],
+                    values[pos]['type_artist'],
                     'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
                     values[pos]['id_artist']
                 )
@@ -498,7 +498,7 @@ function display_artist_cards(values){ // Affiche les cartes d'artistes
     document.getElementById("search_results_div").innerHTML = str;
 }
 
-function create_artist_card(title, description, image_src, id_artist){ // Crée une carte d'artiste
+function create_artist_card(title, type_artist, image_src, id_artist){ // Crée une carte d'artiste
     let card = document.createElement("div");
     card.className = "card";
     card.style.width = "15%"; 
@@ -518,7 +518,7 @@ function create_artist_card(title, description, image_src, id_artist){ // Crée 
 
     let cardText = document.createElement("p");
     cardText.className = "card-text";
-    cardText.textContent = description;
+    cardText.textContent = type_artist;
 
     let button1 = document.createElement("button");
     button1.className = "btn btn-primary artist_info_btn";
